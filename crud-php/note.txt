@@ -1,0 +1,2 @@
+base de datos = crud_php_db
+tabla de usuarios = tbl_users
