@@ -1,2 +1,18 @@
-base de datos = crud_php_db
-tabla de usuarios = tbl_users
+
+
+// creacion de la base de datos
+CREATE DATABASE crud_php_db
+
+USE crud_php_db
+// creacion de la tabla de usuarios
+CREATE TABLE tbl_users
+(
+    id int PRIMARY KEY AUTOINCREMENT NOT NULL,
+    nombre varchar(255) NOT NULL,
+    numero int(25) NULL,
+    correo varchar(255) NULL
+)
+
+// insertar usuario nuevo a la tabla
+INSERT INTO tbl_usuarios(`id`, `nombre`, `numero`, `correo`)
+VALUES ('','pepe','1234','correo@mail.com')
