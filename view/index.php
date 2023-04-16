@@ -1,5 +1,5 @@
 <?php
-include('../backend/conexion.php');
+include('../controller/conexion.php');
 
 $con = connection();
 
@@ -50,19 +50,19 @@ $query = mysqli_query($con, $sql);
         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../assets/img/img1.jpg" class="d-block w-100" alt="...">
+                    <img src="../view/assets/img/img1.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../assets/img/img2.jpg" class="d-block w-100" alt="...">
+                    <img src="../view/assets/img/img2.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../assets/img/img3.jpg" class="d-block w-100" alt="...">
+                    <img src="../view/assets/img/img3.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../assets/img/img4.jpg" class="d-block w-100" alt="...">
+                    <img src="../view/assets/img/img4.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../assets/img/img5.jpg" class="d-block w-100" alt="...">
+                    <img src="../view/assets/img/img5.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
     </header>
@@ -170,19 +170,19 @@ $query = mysqli_query($con, $sql);
     <div class="container-fluid row justify-content-center align-items-center p-5">
         <div class="container justify-content-center"><h3 style="text-align:center;">Lugares en ofertas</h3></div>
         <div class="card m-3 card-oferta p-1" style="width: 24rem;">
-            <img src="../assets/img/destination1.jpg" class="card-img-top" alt="...">
+            <img src="../view/assets/img/destination1.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
         </div>
         <div class="card m-3 card-oferta p-1" style="width: 24rem;">
-            <img src="../assets/img/destination2.jpg" class="card-img-top" alt="...">
+            <img src="../view/assets/img/destination2.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
         </div>
         <div class="card m-3 card-oferta p-1" style="width: 24rem;">
-            <img src="../assets/img/destination3.jpg" class="card-img-top" alt="...">
+            <img src="../view/assets/img/destination3.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
