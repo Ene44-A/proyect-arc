@@ -8,7 +8,6 @@
 .carousel-item{
     max-height: 40rem;
 }
-
 .container-check{
     position:absolute;
     top:45%;
@@ -18,6 +17,24 @@
     border-radius:5px;
     background: #fbfafa;
     padding: 15px;
+}
+.tittle-ofertas{
+    text-align: center;
+}
+.card-ofertas{
+    width: 400px;
+    max-width: 400px;
+    height: 500px;
+    min-height: 500px;
+}
+.img-card{
+    /* display: none; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* padding:5px; */
+    /* border:2px solid red; */
+    object-fit: cover;
+    overflow: hidden;
 }
 @media (max-width: 767px) {
     .navbar-collapse>i{
