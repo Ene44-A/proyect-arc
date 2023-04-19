@@ -1,10 +1,10 @@
 <?php
-include('../backend/conexion.php');
+/* include('../backend/conexion.php');
 
 $con = connection();
 
 $sql = 'SELECT * FROM tbl_flights';
-$query = mysqli_query($con, $sql);
+$query = mysqli_query($con, $sql); */
 
 ?>
 
@@ -22,7 +22,6 @@ $query = mysqli_query($con, $sql);
     <link rel='stylesheet' href='./styles/vuelos.css'>
     <title>Index</title>
 </head>
-
 <body>
     <header>
         <nav class='navbar navbar-expand-md bg-body-tertiary'>
@@ -52,166 +51,137 @@ $query = mysqli_query($con, $sql);
         </nav>
     </header>
     <!-- CUERPO DE PAGINA -->
-
-    <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="card">
-                    <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 1</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="card">
-                    <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 2</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="card">
-                    <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 3</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="card">
-                    <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 4</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="card">
-                    <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 5</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="card">
-                    <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 6</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="card">
-                    <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 7</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="card">
-                    <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 8</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="card">
-                    <div class="img-wrapper"><img src="..." class="d-block w-100" alt="..."> </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 9</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+    <section class="vuelos-table-main-container">
+        <div class="vuelos-table-container">
+            <h3 class="vuelos-table__title">Vuelos</h3>
+            <table class="table table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ruta</th>
+                            <th>Matricula Avion</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <th>
+                                565
+                                </th>
+                                <th>
+                                    Medellin-Bogota
+                                </th>
+                                <th>
+                                    HK-4747
+                                </th>
+                                <th>
+                                    $100
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                982
+                                </th>
+                                <th>
+                                    Cali-Monteria
+                                </th>
+                                <th>
+                                    HJ-170
+                                </th>
+                                <th>
+                                    $75
+                                </th>
+                            </tr>
+                    </tbody>
+                </table>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+    </section>
+    <div class="vuelos-pricing-tables-container">
+    <h3 class="vuelos-table__title">Pricing</h3>
+    <div class="vuelos-text-container">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil quam repudiandae error aliquid necessitatibus, in laudantium reprehenderit alias fuga, ratione consequuntur neque voluptatem quae dolorem magni. Odio blanditiis quos modi?</p>
+    </div>
+    <div class="vuelos-cards-container">
+        <div class="vuelos__card-item">
+            <h4 class="fs-2 mt-4 mb-4">Personal</h4>
+            <div class="pice-container">
+                <span class="fs-5">$</span>
+                <span class="price-main">10</span>
+                <span class="fs-5">.00</span>
+            </div>
+            <p class="fs-5">10 Projects</p>
+            <p class="fs-5">380 Downloads</p>
+            <p class="fs-5">24/7 Support</p>
+
+            <button type="button" class="btn btn-secondary mt-2">Buy</button>
+        </div>
+    </div>
     </div>
 
-    <!-- TABLA DE DATOS -->
-    <div class="">
-        <h2>Usuarios registrados</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Contraseña</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = mysqli_fetch_array($query)): ?>
-                    <tr>
-                        <th>
-                            <?= $row['id'] ?>
-                        </th>
-                        <th>
-                            <?= $row['destination'] ?>
-                        </th>
-                        <th>
-                            <?= $row['origin'] ?>
-                        </th>
-                        <th>
-                            <?= $row['price'] ?>
-                        </th>
+    <footer class="bg-secondary text-white text-center text-md-start">
+        <footer class="bg-secondary text-white text-center text-md-start">
+            <div class="container p-4">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Footer Content</h5>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
+                            molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
+                            aliquam voluptatem veniam, est atque cumque eum delectus sint!
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Links</h5>
 
-                        <th><a href=''>Editar</a></th>
-                        <th><a href=''>Eliminar</a></th>
-                    </tr>
-                <?php endwhile;
-                ?>
-            </tbody>
-        </table>
-    </div>
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <i class='bx bxs-envelope'></i>
+                                <a href="#!" class="text-white">Link 1</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-linkedin-square'></i>
+                                <a href="#!" class="text-white">Link 2</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-youtube'></i>
+                                <a href="#!" class="text-white">Link 3</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-telegram'></i>
+                                <a href="#!" class="text-white">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mb-0">Links</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <i class='bx bxl-instagram-alt'></i>
+                                <a href="#!" class="text-white">Link 1</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-facebook-circle'></i>
+                                <a href="#!" class="text-white">Link 2</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-twitter'></i>
+                                <a href="#!" class="text-white">Link 3</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-reddit'></i>
+                                <a href="#!" class="text-white">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2020 Copyright:
+                <a class="text-white" href="https://google.com/">google.com</a>
+            </div>
+        </footer>
+
     <script src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'
         integrity='sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN'
