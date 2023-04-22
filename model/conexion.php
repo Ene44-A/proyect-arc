@@ -1,11 +1,11 @@
-<?php
+    <?php
     function connection(){
 
         $host = "localhost";
         $user = "root";
         $pass = "";
 
-        $bd = "crud_php_db";
+        $bd = "db_aerolinea";
 
         $connect = mysqli_connect($host, $user, $pass); //metodo para pasar parametros de conexion a la db
 
