@@ -1,9 +1,9 @@
 <?php
-include('../controller/conexion.php');
+include('../model/conexion.php');
 
 $con = connection();
 
-$sql = "SELECT * FROM tbl_users";
+$sql = "SELECT * FROM tbl_usuario";
 $query = mysqli_query($con, $sql);
 
 ?>
@@ -50,6 +50,7 @@ $query = mysqli_query($con, $sql);
                 </div>
             </div>
         </nav>
+
         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -130,6 +131,7 @@ $query = mysqli_query($con, $sql);
     <!-- CUERPO DE PAGINA -->
     <div class="container-fluid row justify-content-center align-items-center p-5">
         <h2 class="" style="text-align:center;">Ofertas</h2>
+        <p style="text-align:center; font-size-adjust: 0.5;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque vitae eaque nam nostrum obcaecati eos corporis, magni sequi architecto laboriosam ea dolor accusantium voluptas et aspernatur placeat dolore quos distinctio.</p>
         <div class="container-xxl row justify-content-center align-items-center p-5">
             <div class="card m-2" style="width: 18rem;">
                 <div class="card-body m-1">
@@ -215,16 +217,16 @@ $query = mysqli_query($con, $sql);
                 <?php while ($row = mysqli_fetch_array($query)): ?>
                     <tr>
                         <th>
-                            <?= $row['id'] ?>
+                            <?= $row['ID_usuario'] ?>
                         </th>
                         <th>
-                            <?= $row['name'] ?>
+                            <?= $row['nombre_usuario'] ?>
                         </th>
                         <th>
-                            <?= $row['mail'] ?>
+                            <?= $row['correo_usuario'] ?>
                         </th>
                         <th>
-                            <?= $row['password'] ?>
+                            <?= $row['contrasena'] ?>
                         </th>
 
                         <th><a href="">Editar</a></th>
