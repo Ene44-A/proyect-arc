@@ -1,10 +1,5 @@
 <?php
-include('../model/conexion.php');
-
-$con = connection();
-
-$sql = "SELECT * FROM tbl_usuario";
-$query = mysqli_query($con, $sql);
+include('../model/Conection.php');
 
 ?>
 
