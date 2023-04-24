@@ -24,7 +24,7 @@
                     <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Contraseña">
                 </div>
                 <div class="mb3" style="margin:20px 0;">
-                    <a href="registro-users.php" >Registrar cuenta nueva</a>
+                    <a href="V_register-users.php" >Registrar cuenta nueva</a>
                 </div>
                 <div class="mb3 w-100 container justify-content-between">
                     <button type="submit" class="btn btn-success">Submit</button>
