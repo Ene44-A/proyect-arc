@@ -72,14 +72,8 @@ include('../model/Conection.php');
                 <div class="col-lg">
                     <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
                     <div class="input-group">
-                        <div class="input-group-text">Origen: Urabá</div>
-                        <select class="form-select" id="autoSizingSelect">
-                            <option selected>Destino</option>
-                            <option value="1">Medellin</option>
-                            <option value="2">Bogotá</option>
-                            <option value="3">Cali</option>
-                            <option value="3">Cartagena</option>
-                        </select>
+                        <div class="input-group-text">Rura:</div>
+                        <input type="search" placeholder="Seleccione una ruta" id="mySearch" name="q" />
                     </div>
                 </div>
                 <div class="col-sm">
@@ -98,23 +92,9 @@ include('../model/Conection.php');
                 </div>
                 <div class="container-md row gy-2 gx-3 align-items-center">
                     <div class="col-sm">
-                        <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-                        <select class="form-select" id="autoSizingSelect">
-                            <option selected>Clase</option>
-                            <option value="1">Economica</option>
-                            <option value="2">Ejecutiva</option>
-                            <option value="3">Primera Clase</option>
-                        </select>
+                        
                     </div>
                     <div class="col-sm">
-                        <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-                        <select class="form-select" id="autoSizingSelect">
-                            <option selected>Pasajeros</option>
-                            <option value="1">1 Persona</option>
-                            <option value="2">2 personas</option>
-                            <option value="3">3 Personas</option>
-                            <option value="4">mas de 3</option>
-                        </select>
                     </div>
                 </div>
                 <div class="col-md">

@@ -1,0 +1,6 @@
+.user-section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(21, 250, 0, 0.5)),url("../assets/img/img2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

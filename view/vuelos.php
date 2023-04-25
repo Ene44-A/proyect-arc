@@ -42,10 +42,6 @@ $query = mysqli_query($con, $sql); */
                             <a class='nav-link' href='#'>Link</a>
                         </li>
                     </ul>
-                    <form class='d-flex' role='ingresar' action='ingreso.php'>
-                        <button class='btn btn-outline-success' type='submit'>Ingresar</button>
-
-                    </form>
                 </div>
             </div>
         </nav>
