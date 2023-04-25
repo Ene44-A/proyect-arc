@@ -16,19 +16,19 @@
     <header class="vh-100 m-0 row justify-content-center align-content-center ">
         <div class="container">
             <form class="container p-5 bg-dark text-white" style="max-width: 500px;">
-                <h1>Ingresar</h1>
+                <h1>Login</h1>
                 <div class="mb-3">
-                    <input type="mail" class="form-control" id="formGroupExampleInput" placeholder="Correo">
+                <input type="email" class="form-control" id="correo_usuario" name="correo_usuario"  placeholder="Correo">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Contraseña">
+                <input type="password" class="form-control"  id="contrasena" name="contrasena" placeholder="contrasena">
                 </div>
                 <div class="mb3" style="margin:20px 0;">
                     <a href="V_register-users.php" >Registrar cuenta nueva</a>
                 </div>
                 <div class="mb3 w-100 container justify-content-between">
-                    <button type="submit" class="btn btn-success">Submit</button>
-                    <button type="submit" class="btn btn-danger"><a href="index.php">Atras</a></button>
+                    <button type="submit" class="btn btn-success">Ingresar</button>
+                    <button type="submit" class="btn btn-danger"><a href="index.php">Volver</a></button>
                 </div>
             </form>
         </div>
