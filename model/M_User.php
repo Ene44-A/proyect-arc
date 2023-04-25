@@ -15,5 +15,5 @@ if(isset($_GET['registro']))
      $usuario = new User;
     $heler = $usuario-> newUsuario($inputData);
 
-}  
+}
 ?>
