@@ -50,6 +50,45 @@ $query = mysqli_query($con, $sql); */
             </div>
         </nav>
     </header>
+    <!-- ENTRADA DE USUARIOS -->
+    <section>
+    <div class="container p-2 gx3">
+        <div class="container container-check">
+            <form class="row gy-2 gx-3 align-items-center">
+                <div class="col-lg">
+                    <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-text">Ruta:</div>
+                        <select class="form-select" id="autoSizingSelect">
+                            <option selected>Destino</option>
+                            <option value="1">Medellin</option>
+                            <option value="2">Bogotá</option>
+                            <option value="3">Cali</option>
+                            <option value="4">Cartagena</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    
+                </div>
+                <div class="col-sm">
+                    
+                </div>
+                <div class="container-md row gy-2 gx-3 align-items-center">
+                    <div class="col-sm">
+                        
+                    </div>
+                    <div class="col-sm">
+                        
+                    </div>
+                </div>
+                <div class="col-md">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </section>
     <!-- CUERPO DE PAGINA -->
     <section class="vuelos-table-main-container">
         <div class="vuelos-table-container">
