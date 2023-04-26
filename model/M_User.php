@@ -7,12 +7,12 @@ $db = new Conection;
 if(isset($_GET['registro']))
 {
     $inputData = [
-        'correo' => mysqli_real_escape_string($db->con,$_GET['correo_usuario']),
+        'correo_usuario' => mysqli_real_escape_string($db->con,$_GET['correo_usuario']),
         'contrasena' => mysqli_real_escape_string($db->con,$_GET['contrasena']),
-        'nombre' => mysqli_real_escape_string($db->con,$_GET['nombre_usuario'])
+        'nombre_usuario' => mysqli_real_escape_string($db->con,$_GET['nombre_usuario'])
     ];
 
-     $usuario = new User;
+    $usuario = new User;
     $heler = $usuario-> newUsuario($inputData);
 
 }

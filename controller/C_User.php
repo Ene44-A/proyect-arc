@@ -7,7 +7,7 @@ class User{
             $this->con = new mysqli('localhost','root','','db_aerolinea');//this permite acceder a los atributos
             echo "Conexion exitosa.";
         } catch (Exception $pe) {
-            echo "Error conexion BD $dbname :" . $pe->getMessage();
+            echo "Error conexion BD "; //$dbname :" . $pe->getMessage();
         }
         
     } 
@@ -25,17 +25,51 @@ class User{
     }
      
     public function newUsuario($inputData){
-        $correo =  $inputData['correo'];
+        $correo =  $inputData['correo_usuario'];
         $contrasena = $inputData['contrasena'];
-        $nombre_usuario = $inputData['nombre'];
-        $us = "INSERT INTO tbl_usuario (correo_usuario,contrasena,nombre_usuario) VALUES ('$correo','$contrasena','$nombre_usuario')";
-        $result = mysqli_query($this->con, $us);
-        if($result){
-           return true;
-           
-        }else{
-           return false;
+        $nombre_usuario = $inputData['nombre_usuario'];
+
+        $queryToOldUSers = $this->con->query("SELECT * FROM tbl_usuario WHERE correo_usuario='$correo'");
+
+        if ($queryToOldUSers->num_rows>0){
+			?>
+  				<span>Este Correo ya fue registrado</span>
+  			<?php 
+
+            echo '
+            <script>
+                alert("Esta correo ya se registro");
+                window.location = "../view";
+            </script>
+            ';
+		}
+        elseif (!preg_match("/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/",$correo)) {
+            echo '
+            <script>
+                alert("Esta correo es invalido");
+                /* window.location = "../view"; */
+            </script>
+            ';
         }
+        elseif (!preg_match("/[0-9a-zA-Z]{8,12}/",$contrasena)){
+            echo '
+            <script>
+                alert("La contraseña debe tener entre 8 y 12 caracteres");
+                /* window.location = "../view"; */
+            </script>
+            ';
+        }
+        else {
+            $us = "INSERT INTO tbl_usuario (correo_usuario,contrasena,nombre_usuario) VALUES ('$correo','$contrasena','$nombre_usuario')";
+            $result = mysqli_query($this->con, $us);
+            if($result){
+               return true;
+               echo "guardado.";
+            }else{
+               return false;
+            }
+        }
+
     }
 
  }
