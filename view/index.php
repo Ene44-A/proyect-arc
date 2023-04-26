@@ -38,9 +38,8 @@ include('../model/Conection.php');
                             <a class="nav-link" href="#">Link</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="ingresar" action="ingreso.php">
+                    <form class="d-flex" role="ingresar" action="V_login.php">
                         <button class="btn btn-outline-success" type="submit">Ingresar</button>
-
                     </form>
                 </div>
             </div>

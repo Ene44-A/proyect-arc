@@ -18,13 +18,13 @@
         <form action="../model/M_User.php" method="GET" class="container p-5 bg-dark text-white" style="max-width: 500px;">
 								<h1>Registro</h1>
 								<div class="mb-3">
-									<input type="email" class="form-control" id="correo_usuario" name="correo_usuario"  placeholder="Correo">
+									<input type="text" class="form-control"  name="correo_usuario"  placeholder="Correo">
 								</div>
 								<div class="mb-3">
-									<input type="password" class="form-control"  id="contrasena" name="contrasena" placeholder="contrasena">
+									<input type="password" class="form-control"  name="contrasena" placeholder="contrasena">
 								</div>
 								<div class="mb-3">
-									<input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario"  placeholder="Nombre">
+									<input type="text" class="form-control" name="nombre_usuario"  placeholder="Nombre" required>
 								</div>
 								<div class="mb3 w-100 container justify-content-around">
 									<input type="submit" class="btn btn-success" name="registro" value="Enviar">

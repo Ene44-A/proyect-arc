@@ -16,7 +16,7 @@ class Login
 		//Funcion para validar usuarios
 		public function login($correo_usuario,$contrasena)
 		{
-			
+
 			$consulta=mysql_query("select tbl_usuario('$correo_usuario','$contrasena');");
 			$rel=mysql_fetch_array($consulta);
 			if($rel[0] == 1)
@@ -26,13 +26,13 @@ class Login
 			}else
 			if(empty($correo_usuario) or empty($contrasena))
 			{
-				echo "<p class='exito'>" .$this->error1. "</p>";	
+				echo "<p class='exito'>" .$this->error1. "</p>";
 			}
 			else
 			{
-				echo "<p class='exito'>" .$this->error2. "</p>";				
+				echo "<p class='exito'>" .$this->error2. "</p>";
 		    }
-		}	
+		}
 		//Funcion para cerrar la session
 		public function cerrar_session()
 		{
