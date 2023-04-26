@@ -60,7 +60,8 @@ class User{
             ';
         }
         else {
-            $us = "INSERT INTO tbl_usuario (correo_usuario,contrasena,nombre_usuario) VALUES ('$correo','$contrasena','$nombre_usuario')";
+            $encConstrasena = sha1($contrasena);
+            $us = "INSERT INTO tbl_usuario (correo_usuario,contrasena,nombre_usuario) VALUES ('$correo','$encConstrasena','$nombre_usuario')";
             $result = mysqli_query($this->con, $us);
             if($result){
                return true;
