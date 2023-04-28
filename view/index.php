@@ -72,7 +72,8 @@ include('../model/Conection.php');
                     <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
                     <div class="input-group">
                         <div class="input-group-text">Rura:</div>
-                        <input type="search" placeholder="Seleccione una ruta" id="mySearch" name="q" />
+                        <!-- <input type="search" placeholder="Seleccione una ruta" id="mySearch" name="q" /> -->
+                        <input type="search" class="form-control" placeholder="Seleccione una ruta" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
                 </div>
                 <div class="col-sm">
@@ -97,15 +98,17 @@ include('../model/Conection.php');
                     </div>
                 </div>
                 <div class="col-md">
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Consultar</button>
                 </div>
             </form>
         </div>
     </div>
     <!-- CUERPO DE PAGINA -->
     <div class="container-fluid row justify-content-center align-items-center p-5">
-        <h2 class="" style="text-align:center;">Ofertas</h2>
-        <p style="text-align:center; font-size-adjust: 0.5;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque vitae eaque nam nostrum obcaecati eos corporis, magni sequi architecto laboriosam ea dolor accusantium voluptas et aspernatur placeat dolore quos distinctio.</p>
+        <div class="info-oferta">
+            <h2 class="" style="text-align:center;">Ofertas</h2>
+            <p class="paragraph" style="text-align:center; font-size-adjust: 0.5;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque vitae eaque nam nostrum obcaecati eos corporis, magni sequi architecto laboriosam ea dolor accusantium voluptas et aspernatur placeat dolore quos distinctio.</p>
+        </div>
         <div class="container-xxl row justify-content-center align-items-center p-5">
             <div class="card m-2" style="width: 18rem;">
                 <div class="card-body m-1">
@@ -176,40 +179,6 @@ include('../model/Conection.php');
             </div>
         </div>
     </div>
-    <div class="">
-        <h2>Usuarios registrados</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Contraseña</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = mysqli_fetch_array($query)): ?>
-                    <tr>
-                        <th>
-                            <?= $row['ID_usuario'] ?>
-                        </th>
-                        <th>
-                            <?= $row['nombre_usuario'] ?>
-                        </th>
-                        <th>
-                            <?= $row['correo_usuario'] ?>
-                        </th>
-                        <th>
-                            <?= $row['contrasena'] ?>
-                        </th>
-
-                        <th><a href="">Editar</a></th>
-                        <th><a href="">Eliminar</a></th>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
     <footer class="bg-secondary text-white text-center text-md-start">
         <footer class="bg-secondary text-white text-center text-md-start">
             <div class="container p-4">
@@ -218,7 +187,7 @@ include('../model/Conection.php');
                         <h5 class="text-uppercase">Footer Content</h5>
                         <p>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                            molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
+                            molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae 
                             aliquam voluptatem veniam, est atque cumque eum delectus sint!
                         </p>
                     </div>

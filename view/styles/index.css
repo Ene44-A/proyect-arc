@@ -1,4 +1,6 @@
-
+.info-oferta{
+    max-width: 700px;
+}
 .navbar-collapse>i{
     font-size: 25px;
     padding:0 20px;
