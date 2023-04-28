@@ -1,7 +1,7 @@
 CREATE TABLE tbl_usuario(
     ID_usuario int AUTO_INCREMENT NOT NULL PRIMARY KEY,
     correo_usuario varchar(50),
-    contrasena varchar(11),
+    contrasena varchar(255),
     nombre_usuario varchar(50)
 );
 CREATE TABLE tbl_pasajero (
