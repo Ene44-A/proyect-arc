@@ -6,6 +6,13 @@ $con = connection();
 $sql = 'SELECT * FROM tbl_flights';
 $query = mysqli_query($con, $sql); */
 
+/* session_start();
+if (!isset($_SESSION['tbl_usuario'])) {
+    header('location: login.php');
+    session_destroy();
+    die();
+} */
+
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +49,10 @@ $query = mysqli_query($con, $sql); */
                             <a class='nav-link' href='#'>Link</a>
                         </li>
                     </ul>
+                    <form class="d-flex" role="ingresar" action="V_profile-users.php">
+                        
+                        <button class="btn btn btn-light" type="submit">perfil</button>
+                    </form>
                 </div>
             </div>
         </nav>

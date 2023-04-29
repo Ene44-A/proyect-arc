@@ -14,6 +14,12 @@ if(isset($_GET['registro']))
 
     $usuario = new User;
     $heler = $usuario-> newUsuario($inputData);
-
+    echo '
+            <script>
+                // alert("Esta correo ya se registro");
+                window.location = "../view/vuelos.php";
+            </script>
+            ';
+    
 }
 ?>

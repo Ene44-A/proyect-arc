@@ -5,7 +5,7 @@ class User{
     public function __construct(){
         try {
             $this->con = new mysqli('localhost','root','','db_aerolinea');//this permite acceder a los atributos
-            echo "Conexion exitosa.";
+            // echo "Conexion exitosa.";
         } catch (Exception $pe) {
             echo "Error conexion BD "; //$dbname :" . $pe->getMessage();
         }
@@ -39,7 +39,7 @@ class User{
             echo '
             <script>
                 alert("Esta correo ya se registro");
-                window.location = "../view";
+                window.location = "../view/V_register-users.php";
             </script>
             ';
 		}
@@ -47,7 +47,7 @@ class User{
             echo '
             <script>
                 alert("Esta correo es invalido");
-                /* window.location = "../view"; */
+                window.location = "../view/V_register-users.php";
             </script>
             ';
         }
@@ -55,7 +55,7 @@ class User{
             echo '
             <script>
                 alert("La contraseña debe tener entre 8 y 12 caracteres");
-                /* window.location = "../view"; */
+                window.location = "../view/V_register-users.php";
             </script>
             ';
         }
@@ -67,7 +67,8 @@ class User{
                return true;
                echo "guardado.";
             }else{
-               return false;
+                return false;
+                echo "no guardado.";
             }
         }
 
