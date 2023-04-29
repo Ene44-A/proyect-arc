@@ -43,7 +43,7 @@ class User{
             </script>
             ';
 		}
-        elseif (!preg_match("/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/",$correo)) {
+        elseif (!preg_match("/^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/",$correo)) {
             echo '
             <script>
                 alert("Esta correo es invalido");
