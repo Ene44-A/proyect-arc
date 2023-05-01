@@ -84,6 +84,7 @@ class User{
             $result = mysqli_query($this->con, $us);
             if($result){
                return true;
+               session_start();
                echo "guardado.";
             }else{
                 return false;
