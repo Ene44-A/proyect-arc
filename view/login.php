@@ -30,9 +30,6 @@
             window.location = "../view/V_login.php";
         </script>
         ';
-            
         exit();
     }
-        
-    
 ?>

@@ -1,37 +1,46 @@
 <?php
 include('./Conection.php');
-
 class Login
 {
-	public $correo_usuario;
-	public $contrasena;
-	public $error1="Porfavor ingrese un usuario o una contrase&ntilde;a";
-	public $error2="Usuario o Contrase&ntilde;a incorrecta.";
-	    //Constructor de la clase
-		public function __construct($correo_usuario,$contrasena)
+		public $con;
+		public function __construct()
 		{
-			$this->correo_usuario=$correo_usuario;
-			$this->contrasena=$contrasena;
+			try {
+				$this->con = new mysqli('localhost','root','','db_aerolinea');//this permite acceder a los atributos
+				// echo "Conexion exitosa.";
+			} catch (Exception $pe) {
+				echo "Error conexion BD: " . $pe->getMessage();
+			}
 		}
 		//Funcion para validar usuarios
-		public function login($correo_usuario,$contrasena)
+		public function validarLogin()
 		{
+			session_start();
 
-			$consulta=mysql_query("select tbl_usuario('$correo_usuario','$contrasena');");
-			$rel=mysql_fetch_array($consulta);
-			if($rel[0] == 1)
-			{
-				$_SESSION['correo_usuario']=$correo_usuario;
-				header("Location: index.php");
-			}else
-			if(empty($correo_usuario) or empty($contrasena))
-			{
-				echo "<p class='exito'>" .$this->error1. "</p>";
+			$correo = $_GET['correo_usuario'];
+			$contrasena = $_GET['contrasena'];
+			$encConstrasena = sha1($contrasena);
+
+			//$validar_login = mysqli_query( this.con, "SELECT * FROM tbl_usuario WHERE contrasena='$encConstrasena' and correo_usuario='$correo'");
+			$validar_login = $this->con->query("SELECT * FROM tbl_usuario WHERE contrasena='$encConstrasena' and correo_usuario='$correo'");
+
+			if(mysqli_num_rows($validar_login) > 0){
+				$_SESSION['tbl_usuario'] = $correo;
+				echo '
+				<script>
+					window.location = "../view/vuelos.php";
+				</script>
+				';
+				exit();
+			}else{
+				echo '
+				<script>
+					alert("usuario no existe, por favor verificar los datos");
+					window.location = "../view/V_login.php";
+				</script>
+				';
+				exit();
 			}
-			else
-			{
-				echo "<p class='exito'>" .$this->error2. "</p>";
-		    }
 		}
 		//Funcion para cerrar la session
 		public function cerrar_session()

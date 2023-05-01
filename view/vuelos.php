@@ -1,17 +1,18 @@
 <?php
-/* include('../backend/conexion.php');
 
-$con = connection();
+    session_start();
 
-$sql = 'SELECT * FROM tbl_flights';
-$query = mysqli_query($con, $sql); */
-
-/* session_start();
-if (!isset($_SESSION['tbl_usuario'])) {
-    header('location: login.php');
-    session_destroy();
-    die();
-} */
+    if (!isset($_SESSION['tbl_usuario'])) {
+        echo '
+            <script>
+                alert("Debes inicar sesion");
+                window.location = "V_login.php";
+            </script>
+            ';
+        //header('location: login.php');
+        session_destroy();
+        die();
+    }
 
 ?>
 

@@ -9,8 +9,7 @@ class User{
         } catch (Exception $pe) {
             echo "Error conexion BD "; //$dbname :" . $pe->getMessage();
         }
-        
-    } 
+    }
     public function getUsuario(){ 
         $query = $this->con->query('SELECT * FROM tbl_usuario');
         $retorno =[];
@@ -23,7 +22,6 @@ class User{
         echo $retorno;
 
     }
-     
     public function newUsuario($inputData){
         $correo =  $inputData['correo_usuario'];
         $contrasena = $inputData['contrasena'];
@@ -34,30 +32,51 @@ class User{
         if ($queryToOldUSers->num_rows>0){
 			?>
   				<span>Este Correo ya fue registrado</span>
-  			<?php 
+  			<?php
 
             echo '
             <script>
                 alert("Esta correo ya se registro");
-                window.location = "../view/V_register-users.php";
+                /* window.location = "../view/V_register-users.php"; */
             </script>
             ';
+            exit();
 		}
-        elseif (!preg_match("/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/",$correo)) {
+        elseif (!preg_match("/^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/",$correo)) {
             echo '
             <script>
                 alert("Esta correo es invalido");
-                window.location = "../view/V_register-users.php";
+                /* window.location = "../view/V_register-users.php"; */
             </script>
             ';
+            exit();
         }
         elseif (!preg_match("/[0-9a-zA-Z]{8,12}/",$contrasena)){
             echo '
             <script>
                 alert("La contraseña debe tener entre 8 y 12 caracteres");
-                window.location = "../view/V_register-users.php";
+               /*  window.location = "../view/V_register-users.php"; */
             </script>
             ';
+            exit();
+        }
+        elseif (empty($correo) || empty($contrasena) || empty($nombre_usuario)) {
+            echo '
+            <script>
+                alert("Los campos deben terner valores");
+                /* window.location = "../view/V_register-users.php"; */
+            </script>
+            ';
+            exit();
+        }
+        elseif(!ctype_alpha($nombre_usuario)) {
+            echo '
+            <script>
+                alert("Nombre de usuario no valido");
+                /* window.location = "../view/V_register-users.php"; */
+            </script>
+            ';
+            exit();
         }
         else {
             $encConstrasena = sha1($contrasena);
@@ -65,6 +84,7 @@ class User{
             $result = mysqli_query($this->con, $us);
             if($result){
                return true;
+               session_start();
                echo "guardado.";
             }else{
                 return false;

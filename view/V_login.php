@@ -15,7 +15,7 @@
 <body>
     <header class="vh-100 m-0 row justify-content-center align-content-center ">
         <div class="container">
-            <form action="login.php" method="GET" class="container p-5 bg-dark text-white" style="max-width: 500px;"  >
+            <form action="../model/M_login.php" method="GET" class="container p-5 bg-dark text-white" style="max-width: 500px;"  >
                 <h1>Login</h1>
                 <div class="mb-3">
                 <input type="email" class="form-control" id="correo_usuario" name="correo_usuario"  placeholder="Correo">
