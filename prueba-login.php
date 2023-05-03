@@ -5,7 +5,7 @@
     } catch (Exception $pe) {
         echo "Error conexion BD $dbname :" . $pe->getMessage();
     }
-
+//
     //session_start();
 
     $correo = $_GET['correo_usuario'];
