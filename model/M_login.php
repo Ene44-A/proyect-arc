@@ -2,7 +2,7 @@
 //include('./Conection.php');
 include('../controller/C_login.php');
 
-$db = new Conection;
+// $db = new Conection;
 
 // if(isset($_GET['ingresar']))
 // {

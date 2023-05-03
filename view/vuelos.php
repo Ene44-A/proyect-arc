@@ -1,18 +1,23 @@
 <?php
+// Trae controlador de db rutas
+require_once('../model/Conection.php');
+require_once ('../Controller/C_Ruta.php');
+$con = new Ruta();
+$lasRutas = $con->getRuta();
 
-    session_start();
 
-    if (!isset($_SESSION['tbl_usuario'])) {
-        echo '
+session_start();
+if (!isset($_SESSION['tbl_usuario'])) {
+    echo '
             <script>
                 alert("Debes inicar sesion");
                 window.location = "V_login.php";
             </script>
             ';
-        //header('location: login.php');
-        session_destroy();
-        die();
-    }
+    //header('location: login.php');
+    session_destroy();
+    die();
+}
 
 ?>
 
@@ -30,6 +35,7 @@
     <link rel='stylesheet' href='./styles/vuelos.css'>
     <title>Index</title>
 </head>
+
 <body>
     <header>
         <nav class='navbar navbar-expand-md bg-body-tertiary'>
@@ -51,7 +57,7 @@
                         </li>
                     </ul>
                     <form class="d-flex" role="ingresar" action="V_profile-users.php">
-                        
+
                         <button class="btn btn btn-light" type="submit">perfil</button>
                     </form>
                 </div>
@@ -60,109 +66,91 @@
     </header>
     <!-- ENTRADA DE USUARIOS -->
     <section>
-    <div class="container p-2 gx3">
-        <div class="container container-check">
-            <form class="row gy-2 gx-3 align-items-center">
-                <div class="col-lg">
-                    <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Ruta:</div>
-                        <select class="form-select" id="autoSizingSelect">
-                            <option selected>Destino</option>
-                            <option value="1">Medellin</option>
-                            <option value="2">Bogotá</option>
-                            <option value="3">Cali</option>
-                            <option value="4">Cartagena</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    
-                </div>
-                <div class="col-sm">
-                    
-                </div>
-                <div class="container-md row gy-2 gx-3 align-items-center">
-                    <div class="col-sm">
-                        
+        <div class="container p-2 gx3">
+            <div class="container container-check">
+                <form class="row gy-2 gx-3 align-items-center">
+                    <div class="col-lg">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
+                        <div class="input-group">
+                            <div class="input-group-text">Ruta:</div>
+                            <select class="form-select" id="autoSizingSelect">
+                                <option selected>Destino</option>
+                                <option value="1">Medellin</option>
+                                <option value="2">Bogotá</option>
+                                <option value="3">Cali</option>
+                                <option value="4">Cartagena</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-sm">
-                        
+
                     </div>
-                </div>
-                <div class="col-md">
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </div>
-            </form>
+                    <div class="col-sm">
+
+                    </div>
+                    <div class="container-md row gy-2 gx-3 align-items-center">
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
     </section>
     <!-- CUERPO DE PAGINA -->
     <section class="vuelos-table-main-container">
         <div class="vuelos-table-container">
             <h3 class="vuelos-table__title">Vuelos</h3>
             <table class="table table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Ruta</th>
-                            <th>Matricula Avion</th>
-                            <th>Precio</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            <tr>
-                                <th>
-                                565
-                                </th>
-                                <th>
-                                    Medellin-Bogota
-                                </th>
-                                <th>
-                                    HK-4747
-                                </th>
-                                <th>
-                                    $100
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>
-                                982
-                                </th>
-                                <th>
-                                    Cali-Monteria
-                                </th>
-                                <th>
-                                    HJ-170
-                                </th>
-                                <th>
-                                    $75
-                                </th>
-                            </tr>
-                    </tbody>
-                </table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ruta</th>
+                        <th>Matricula Avion</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        foreach($lasRutas as $alias){
+                            echo "<tr>";
+                                echo "<td>".$alias['ID_rutas']."</td>";
+                                echo "<td>".$alias['descripcion']."</td>";
+                            echo "</tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </section>
     <div class="vuelos-pricing-tables-container">
-    <h3 class="vuelos-table__title">Pricing</h3>
-    <div class="vuelos-text-container">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil quam repudiandae error aliquid necessitatibus, in laudantium reprehenderit alias fuga, ratione consequuntur neque voluptatem quae dolorem magni. Odio blanditiis quos modi?</p>
-    </div>
-    <div class="vuelos-cards-container">
-        <div class="vuelos__card-item">
-            <h4 class="fs-2 mt-4 mb-4">Personal</h4>
-            <div class="pice-container">
-                <span class="fs-5">$</span>
-                <span class="price-main">10</span>
-                <span class="fs-5">.00</span>
-            </div>
-            <p class="fs-5">10 Projects</p>
-            <p class="fs-5">380 Downloads</p>
-            <p class="fs-5">24/7 Support</p>
-
-            <button type="button" class="btn btn-secondary mt-2">Buy</button>
+        <h3 class="vuelos-table__title">Pricing</h3>
+        <div class="vuelos-text-container">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil quam repudiandae error aliquid
+                necessitatibus, in laudantium reprehenderit alias fuga, ratione consequuntur neque voluptatem quae
+                dolorem magni. Odio blanditiis quos modi?</p>
         </div>
-    </div>
+        <div class="vuelos-cards-container">
+            <div class="vuelos__card-item">
+                <h4 class="fs-2 mt-4 mb-4">Personal</h4>
+                <div class="pice-container">
+                    <span class="fs-5">$</span>
+                    <span class="price-main">10</span>
+                    <span class="fs-5">.00</span>
+                </div>
+                <p class="fs-5">10 Projects</p>
+                <p class="fs-5">380 Downloads</p>
+                <p class="fs-5">24/7 Support</p>
+
+                <button type="button" class="btn btn-secondary mt-2">Buy</button>
+            </div>
+        </div>
     </div>
 
     <footer class="bg-secondary text-white text-center text-md-start">
@@ -229,11 +217,11 @@
             </div>
         </footer>
 
-    <script src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'
-        integrity='sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN'
-        crossorigin='anonymous'></script>
-    <script src="./js/vuelos.js"></script>
+        <script src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'
+            integrity='sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN'
+            crossorigin='anonymous'></script>
+        <script src="./js/vuelos.js"></script>
 </body>
 
 </html>

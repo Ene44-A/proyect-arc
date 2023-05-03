@@ -1,5 +1,5 @@
 <?php
-include('./Conection.php');
+// include('../model/Conection.php');
 class Login
 {
 		public $con;
@@ -46,9 +46,9 @@ class Login
 		public function cerrar_session()
 		{
 			session_start();
-			session_unset('correo_usuario');
-			session_destroy('correo_usuario');
-			header("Location: ../login.php");
+			// session_unset('correo_usuario');
+			session_destroy();
+			header("Location: ../view/index.php");
 		}
 }
 
