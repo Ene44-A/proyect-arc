@@ -1,5 +1,9 @@
 <?php
-include('../model/Conection.php');
+    // include('../model/Conection.php');
+
+    // include("../controller/C_login.php");
+
+    // $logout_F = new Login;
 
 ?>
 
@@ -54,8 +58,8 @@ include('../model/Conection.php');
                         <div class="row g-0">
                             <div class="col-md-4 gradient-custom text-center text-white user-section"
                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                                <img src="./assets/img/destination2.jpg"
-                                    alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                                <img src="./assets/img/destination2.jpg" alt="Avatar" class="img-fluid my-5"
+                                    style="width: 80px;" />
                                 <h5>Papucho Flensho</h5>
                                 <i class='bx bxs-plane-take-off'></i>
                             </div>
@@ -89,6 +93,9 @@ include('../model/Conection.php');
                             </div>
                         </div>
                     </div>
+                    <form class="d-flex" role="logout" action="../model/M_logout.php">
+                        <button class="btn btn-outline-success" type="submit">cerrar sesión</button>
+                    </form>
                 </div>
             </div>
         </div>

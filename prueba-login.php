@@ -23,7 +23,7 @@
         ';
         exit();
 
-    }else{
+    }else{s
         echo '
         <script>
             alert("usuario no existe, por favor verificar los datos");
