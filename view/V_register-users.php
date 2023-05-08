@@ -15,24 +15,72 @@
 
 <body>
     <header class="vh-100 m-0 row justify-content-center align-content-center ">
-        <div class="container">
-            <form action="../model/M_User.php" method="GET" class="container p-5 bg-dark text-white"
-                style="max-width: 500px;">
-                <h1>Registro</h1>
-                <div class="mb-3">
-                    <input type="text" class="form-control" name="correo_usuario" placeholder="Correo">
+        <div class="login-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="bg-white shadow rounded">
+                            <div class="row">
+
+
+                                <div class="col-md-5 ps-0 d-none d-md-block">
+                                    <div class="form-right h-100 bg-success text-white text-center pt-5">
+                                        <h2 class="fs-1">¿Quieres ser parte del equipo?</h2>
+                                        <div class="mb3 p-5" style="margin:20px 0;">
+                                            <button type="submit" class="btn btn-light"><a
+                                                    href="V_login.php">Volver</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-7 pe-0">
+                                    <div class="form-left h-100 py-5 px-5">
+                                        <form action="../model/M_login.php" method="GET" class="row g-4">
+
+                                            <div class="col-12">
+                                                <label>Nombre<span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="nombre_usuario"
+                                                        name="nombre_usuario" placeholder="Nombre" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <label>Correo<span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="correo_usuario"
+                                                        name="correo_usuario" placeholder="Correo">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <label>Contraseña<span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+                                                    <input type="text" class="form-control" id="contrasena"
+                                                        name="contrasena" placeholder="contrasena">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <button type="submit"
+                                                    class="btn btn-success px-4 float-end mt-4">Ingresar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <input type="password" class="form-control" name="contrasena" placeholder="contrasena">
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control" name="nombre_usuario" placeholder="Nombre" required>
-                </div>
-                <div class="mb3 w-100 container justify-content-around">
-                    <input type="submit" class="btn btn-success" name="registro" value="Enviar">
-                    <button type="submit" class="btn btn-danger"><a href="V_login.php">Volver</a></button>
-                </div>
-            </form>
+            </div>
         </div>
     </header>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

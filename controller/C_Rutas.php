@@ -1,5 +1,5 @@
 <?php
-    require_once('../model/Conection.php')
+    require_once('../model/Conection.php');
 
     class Ruta{
         public function __construct(){
