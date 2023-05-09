@@ -35,7 +35,7 @@
 
                                 <div class="col-md-7 pe-0">
                                     <div class="form-left h-100 py-5 px-5">
-                                        <form action="../model/M_login.php" method="GET" class="row g-4">
+                                        <form action="../model/M_User.php" method="GET" class="row g-4">
 
                                             <div class="col-12">
                                                 <label>Nombre<span class="text-danger">*</span></label>
@@ -68,7 +68,7 @@
 
                                             <div class="col-12">
                                                 <button type="submit"
-                                                    class="btn btn-success px-4 float-end mt-4">Ingresar</button>
+                                                    class="btn btn-success px-4 float-end mt-4" name="registro">Ingresar</button>
                                             </div>
                                         </form>
                                     </div>
