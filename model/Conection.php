@@ -11,7 +11,7 @@ class Conection{
                             require('../view/V_Register-users.php');
 
         } catch (Exception $pe) {
-            echo "Error conexion BD $dbname :" . $pe->getMessage();
+            echo "Error conexion BD" . $pe->getMessage();
         }
     }
 
