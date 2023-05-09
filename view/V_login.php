@@ -30,7 +30,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-text"><i class="bi bi-person-fill"></i>
                                                     </div>
-                                                    <input type="text" class="form-control" id="correo_usuario"
+                                                    <input type="mail" class="form-control" id="correo_usuario"
                                                         name="correo_usuario" placeholder="Correo">
                                                 </div>
                                             </div>
@@ -39,7 +39,7 @@
                                                 <label>Contraseña<span class="text-danger">*</span></label>
                                                 <div class="input-group">
                                                     <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-                                                    <input type="text" class="form-control" id="contrasena"
+                                                    <input type="password" class="form-control" id="contrasena"
                                                         name="contrasena" placeholder="contrasena">
                                                 </div>
                                             </div>
@@ -57,7 +57,7 @@
                                         <div class="mb3 p-2" style="margin:20px 0;">
                                             <a class="link-register" href="V_register-users.php">Registrar cuenta nueva</a>
                                         </div>
-                                        <button type="submit" class="btn btn-light"><a
+                                        <button type="submit" class="btn btn-light btn-action"><a
                                                 href="index.php">Volver</a></button>
                                     </div>
                                 </div>
