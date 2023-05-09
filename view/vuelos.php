@@ -1,9 +1,9 @@
 <?php
 // Trae controlador de db rutas
 require_once('../model/Conection.php');
-require_once ('../Controller/C_Ruta.php');
-$con = new Ruta();
-$lasRutas = $con->getRuta();
+// require_once ('../Controller/C_Ruta.php');
+// $con = new Ruta();
+// $lasRutas = $con->getRuta();
 
 
 session_start();

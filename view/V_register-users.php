@@ -27,7 +27,7 @@
                                     <div class="form-right h-100 bg-success text-white text-center pt-5">
                                         <h2 class="fs-1">¿Quieres ser parte del equipo?</h2>
                                         <div class="mb3 p-5" style="margin:20px 0;">
-                                            <button type="submit" class="btn btn-light"><a
+                                            <button type="submit" class="btn btn-light btn-action"><a
                                                     href="V_login.php">Volver</a></button>
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-text"><i class="bi bi-person-fill"></i>
                                                     </div>
-                                                    <input type="text" class="form-control" id="correo_usuario"
+                                                    <input type="mail" class="form-control" id="correo_usuario"
                                                         name="correo_usuario" placeholder="Correo">
                                                 </div>
                                             </div>
@@ -61,7 +61,7 @@
                                                 <label>Contraseña<span class="text-danger">*</span></label>
                                                 <div class="input-group">
                                                     <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-                                                    <input type="text" class="form-control" id="contrasena"
+                                                    <input type="password" class="form-control" id="contrasena"
                                                         name="contrasena" placeholder="contrasena">
                                                 </div>
                                             </div>
