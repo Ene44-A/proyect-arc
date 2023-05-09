@@ -74,13 +74,13 @@ require_once('../controller/C_Rutas.php');
                     <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
                     <div class="input-group">
                         <div class="input-group-text">Ruta:</div>
+
                             <select name="suruta">
-                            <?php foreach ($rutas as $lasRutas): ?>
-                                <option value="<?php echo $lasRutas['id']; ?>"><?php echo $lasRutas['nombre']; ?></option>
-                            <?php endforeach; ?>
+                                <?php foreach ($rutas as $lasRutas): ?>
+                                    <option value="<?php echo htmlspecialchars($lasRutas['ID_rutas']); ?>"><?php echo htmlspecialchars($lasRutas['descripcion']); ?></option>
+                                <?php endforeach; ?>
                             </select>
-                         
-                       
+
                         <!-- <input type="search" placeholder="Seleccione una ruta" id="mySearch" name="q" /> -->
                     </div>
                 </div>
@@ -100,7 +100,7 @@ require_once('../controller/C_Rutas.php');
                 </div>
                 <div class="container-md row gy-2 gx-3 align-items-center">
                     <div class="col-sm">
-                        
+
                     </div>
                     <div class="col-sm">
                     </div>

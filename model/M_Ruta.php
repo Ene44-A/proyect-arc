@@ -8,7 +8,7 @@
                 $this->con = new mysqli('localhost','root','','db_aerolinea');//this permite acceder a los atributos
                 echo "Conexion exitosa.";
             } catch (Exception $pe) {
-                echo "Error conexion BD $db_aerolinea :" . $pe->getMessage();
+                echo "Error conexion BD" . $pe->getMessage();
             }
 
         }
