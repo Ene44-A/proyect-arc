@@ -71,11 +71,12 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         <div class="input-group">
                             <div class="input-group-text">Ruta:</div>
                             <select class="form-select" id="autoSizingSelect">
-                                <option selected>Destino</option>
-                                <option value="1">Medellin</option>
-                                <option value="2">Bogotá</option>
-                                <option value="3">Cali</option>
-                                <option value="4">Cartagena</option>
+                                <option selected>Seleccione su ruta</option>
+                                <?php foreach($lasRutas as $rutas => $value){ ?>
+                                    <option value="<?php echo $rutas; ?>"><?php echo $value['descripcion']; ?></option> 
+                                <?php
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -115,17 +116,19 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 </thead>
                 <tbody>
                     <?php
-                    if (!$lasRutas) {
+                    if (!$vuelosInfo) {
                         echo "<tr>";
                         echo "<td>";
                         echo "nafa mi fai";
                         echo "</td>";
                         echo "</tr>";
                     } else {
-                        foreach ($lasRutas as $alias) {
+                        foreach ($vuelosInfo as $alias) {
                             echo "<tr>";
                             echo "<td>" . $alias['ID_rutas'] . "</td>";
                             echo "<td>" . $alias['descripcion'] . "</td>";
+                            echo "<td>" . $alias['matricula_avion'] . "</td>";
+                            echo "<td>" . $alias['precio'] . "</td>";
                             echo "</tr>";
                         }
                     }
