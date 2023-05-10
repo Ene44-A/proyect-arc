@@ -1,6 +1,8 @@
-<?
+<?php
 include('../model/M_Ruta.php');
 
-$con = new Ruta();
-$lasRutas = $con->getRuta();
+$ruta = new Ruta();
+$lasRutas = $ruta->getRuta();
+
+$vuelosInfo = $ruta->getVuelosInfo();
 ?>

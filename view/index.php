@@ -1,6 +1,6 @@
 <?php
-include('../model/Conection.php');
-require_once('../controller/C_Rutas.php');
+//include('../model/Conection.php');
+require('../controller/C_Rutas.php');
 
 
 ?>
@@ -65,6 +65,23 @@ require_once('../controller/C_Rutas.php');
                     <img src="../view/assets/img/img5.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
+            <!-- <?php
+                    if(!$lasRutas){
+                        echo"</tr>";
+                        echo"</td>";
+                        echo"No hay datos para mostrar";
+                        echo"</td>";
+                        echo"</tr>";
+                    }else{
+                    foreach($lasRutas as $rutas){
+                        echo"</tr>";
+                        echo"</td>".$rutas['ID_rutas']."</td>";
+                        echo"</td>".$rutas['descripcion']."</td>";
+                        echo "</tr>";
+                    }
+                    }
+                
+                ?> -->
     </header>
     <!-- FORMATO DE ENTRADA PARA VUELOS -->
     <div class="container">
@@ -75,10 +92,13 @@ require_once('../controller/C_Rutas.php');
                     <div class="input-group">
                         <div class="input-group-text">Ruta:</div>
 
-                            <select name="suruta">
-                                <?php foreach ($rutas as $lasRutas): ?>
-                                    <option value="<?php echo htmlspecialchars($lasRutas['ID_rutas']); ?>"><?php echo htmlspecialchars($lasRutas['descripcion']); ?></option>
-                                <?php endforeach; ?>
+                            <select name="suruta" class="form-select">
+                                <option selected>Seleccione su ruta</option>
+                                <?php foreach($lasRutas as $rutas => $value){ ?>
+                                    <option value="<?php echo $rutas; ?>"><?php echo $value['descripcion']; ?></option> 
+                                <?php
+                                }
+                                ?>
                             </select>
 
                         <!-- <input type="search" placeholder="Seleccione una ruta" id="mySearch" name="q" /> -->
