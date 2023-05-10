@@ -1,9 +1,19 @@
 <?php
-    // include('../model/Conection.php');
+// Trae controlador de db rutas
+require_once('../model/Conection.php');
 
-    // include("../controller/C_login.php");
-
-    // $logout_F = new Login;
+session_start();
+if (!isset($_SESSION['tbl_usuario'])) {
+    echo '
+            <script>
+                alert("Debes inicar sesion");
+                window.location = "V_login.php";
+            </script>
+            ';
+    //header('location: login.php');
+    session_destroy();
+    die();
+}
 
 ?>
 
