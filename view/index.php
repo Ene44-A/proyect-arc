@@ -1,5 +1,7 @@
 <?php
 include('../model/Conection.php');
+require_once('../controller/C_Rutas.php');
+
 
 ?>
 
@@ -71,9 +73,15 @@ include('../model/Conection.php');
                 <div class="col-lg">
                     <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
                     <div class="input-group">
-                        <div class="input-group-text">Rura:</div>
+                        <div class="input-group-text">Ruta:</div>
+
+                            <select name="suruta">
+                                <?php foreach ($rutas as $lasRutas): ?>
+                                    <option value="<?php echo htmlspecialchars($lasRutas['ID_rutas']); ?>"><?php echo htmlspecialchars($lasRutas['descripcion']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+
                         <!-- <input type="search" placeholder="Seleccione una ruta" id="mySearch" name="q" /> -->
-                        <input type="search" class="form-control" placeholder="Seleccione una ruta" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
                 </div>
                 <div class="col-sm">
@@ -92,7 +100,7 @@ include('../model/Conection.php');
                 </div>
                 <div class="container-md row gy-2 gx-3 align-items-center">
                     <div class="col-sm">
-                        
+
                     </div>
                     <div class="col-sm">
                     </div>

@@ -1,10 +1,7 @@
 <?php
-// Trae controlador de db rutas
-require_once('../model/Conection.php');
-require_once ('../Controller/C_Ruta.php');
-$con = new Ruta();
-$lasRutas = $con->getRuta();
 
+require_once('../model/Conection.php');
+require_once('../controller/C_Rutas.php');
 
 session_start();
 if (!isset($_SESSION['tbl_usuario'])) {
@@ -118,12 +115,20 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 </thead>
                 <tbody>
                     <?php
-                        foreach($lasRutas as $alias){
+                    if (!$lasRutas) {
+                        echo "<tr>";
+                        echo "<td>";
+                        echo "nafa mi fai";
+                        echo "</td>";
+                        echo "</tr>";
+                    } else {
+                        foreach ($lasRutas as $alias) {
                             echo "<tr>";
-                                echo "<td>".$alias['ID_rutas']."</td>";
-                                echo "<td>".$alias['descripcion']."</td>";
+                            echo "<td>" . $alias['ID_rutas'] . "</td>";
+                            echo "<td>" . $alias['descripcion'] . "</td>";
                             echo "</tr>";
                         }
+                    }
                     ?>
                 </tbody>
             </table>
