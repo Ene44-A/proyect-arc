@@ -65,15 +65,15 @@ if (!isset($_SESSION['tbl_usuario'])) {
     <section>
         <div class="container p-2 gx3">
             <div class="container container-check">
-                <form class="row gy-2 gx-3 align-items-center">
+                <form class="row gy-2 gx-3 align-items-center" action="V_reserve-flight.php" method="GET">
                     <div class="col-lg">
                         <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
                         <div class="input-group">
                             <div class="input-group-text">Ruta:</div>
-                            <select class="form-select" id="autoSizingSelect">
+                            <select class="form-select" id="autoSizingSelect" name="route-selected">
                                 <option selected>Seleccione su ruta</option>
                                 <?php foreach($lasRutas as $rutas => $value){ ?>
-                                    <option value="<?php echo $rutas; ?>"><?php echo $value['descripcion']; ?></option> 
+                                    <option value="<?php echo $value['descripcion']; ?>"><?php echo $value['descripcion']; ?></option> 
                                 <?php
                                 }
                                 ?>
@@ -95,7 +95,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         </div>
                     </div>
                     <div class="col-md">
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="submit" class="btn btn-success">Reservar</button>
                     </div>
                 </form>
             </div>
