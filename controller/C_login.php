@@ -21,11 +21,14 @@ class Login
 			$contrasena = $_GET['contrasena'];
 			$encConstrasena = sha1($contrasena);
 
+			//$globals = $GLOBALS;
+
 			//$validar_login = mysqli_query( this.con, "SELECT * FROM tbl_usuario WHERE contrasena='$encConstrasena' and correo_usuario='$correo'");
 			$validar_login = $this->con->query("SELECT * FROM tbl_usuario WHERE contrasena='$encConstrasena' and correo_usuario='$correo'");
 
 			if(mysqli_num_rows($validar_login) > 0){
 				$_SESSION['tbl_usuario'] = $correo;
+				$GLOBALS['user_email_global'] = $GLOBALS['correo'];
 				echo '
 				<script>
 					window.location = "../view/vuelos.php";
@@ -41,6 +44,7 @@ class Login
 				';
 				exit();
 			}
+			return $correo;
 		}
 		//Funcion para cerrar la session
 		public function cerrar_session()
@@ -49,6 +53,17 @@ class Login
 			// session_unset('correo_usuario');
 			session_destroy();
 			header("Location: ../view/index.php");
+		}
+
+		public function getIdUser($email_user){
+			$userId = $this->con->query("SELECT ID_usuario FROM tbl_usuario WHERE correo_usuario='$email_user'");
+			$retorno =[];
+            $i = 0;
+            while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
+                $retorno[$i] = $fila;
+                $i++;
+            }
+            return $retorno;
 		}
 }
 
