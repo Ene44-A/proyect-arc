@@ -2,6 +2,7 @@
 
 require_once('../model/Conection.php');
 require_once('../controller/C_Rutas.php');
+session_start();
 
 /* session_start();
 if (!isset($_SESSION['tbl_usuario'])) {
@@ -42,9 +43,20 @@ if (!isset($_SESSION['tbl_usuario'])) {
             <?php
             require_once('../model/Conection.php');
             require_once('../controller/C_Rutas.php');
+            include('../controller/C_login.php');
+
+            $user_email = new Login;
+            $user_query = $user_email->getIdUser($_SESSION['tbl_usuario']);
+
+            //echo "el ID del Viejo USer: " . $user_query;
+            //$correo_user = $_GET['correo_usuario'];
+            //$correo_user = $user_email->getIdUser();
 
             $ruta = $_GET['route-selected'];
             echo $ruta;
+            //echo $_SESSION['tbl_usuario'];
+
+
             //echo $lasRutas['descripcion'][1];
 
             $particularRoute = new Ruta();
@@ -65,6 +77,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         echo"</td>".$route['precio']."</td>";
                         echo "</tr>"; */
 
+                    $id_ruta = $route['ID_rutas'];
                     $fecha_salida = $route['fecha_salida'];
                     $fecha_llegada = $route['fecha_llegada'];
                     $matricula = $route['matricula_avion'];
@@ -73,7 +86,14 @@ if (!isset($_SESSION['tbl_usuario'])) {
                     $precio_tiket = $route['precio'];
 
                 }
-            }
+
+                if (!$user_query) {
+                    echo "No hay datos para mostrar";
+                } else {
+                    foreach ($user_query as $user) {
+                        $user_id = $user['ID_usuario'];
+                    }
+            } }
             ?>
         </h2>
 
@@ -82,55 +102,140 @@ if (!isset($_SESSION['tbl_usuario'])) {
         <form action="../controller/C_reserva.php" method="GET">
             <h2>Info del Vuelo</h2>
 
+            <div class="col-12 mt-2" style="display: none">
+                <label>User ID</label>
+                <div class="input-group">
+                    <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="id_del_usuario"
+                        name="id_del_usuario"
+                        placeholder="<?php echo $user_id; ?>"
+                        autocomplete="off"
+                        value="<?php echo $user_id; ?>"
+                        readonly />
+                </div>
+            </div>
+            
             <div class="col-12 mt-2">
                 <label>Fecha de salida</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                    <input type="text" class="form-control" id="fecha_de_salida" name="fecha_de_salida"
-                        placeholder="<?php echo $fecha_salida; ?>" autocomplete="off" disabled />
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="fecha_de_salida"
+                        name="fecha_de_salida"
+                        placeholder="<?php echo $fecha_salida; ?>"
+                        autocomplete="off"
+                        value="<?php echo $fecha_salida; ?>"
+                        readonly />
                 </div>
             </div>
             <div class="col-12 mt-2">
                 <label>Fecha de llegada</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                    <input type="text" class="form-control" id="fecha_de_llegada" name="fecha_de_llegada"
-                        placeholder="<?php echo $fecha_llegada; ?>" autocomplete="off" disabled />
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="fecha_de_llegada"
+                        name="fecha_de_llegada"
+                        placeholder="<?php echo $fecha_llegada; ?>"
+                        autocomplete="off"
+                        readonly />
                 </div>
             </div>
             <div class="col-12 mt-2">
                 <label>Matricula del Avion</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                    <input type="text" class="form-control" id="matricula_avion" name="matricula_avion"
-                        placeholder="<?php echo $matricula; ?>"  autocomplete="off" disabled />
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="matricula_avion"
+                        name="matricula_avion"
+                        placeholder="<?php echo $matricula; ?>" 
+                        autocomplete="off"
+                        readonly />
                 </div>
             </div>
             <div class="col-12 mt-2">
                 <label>Estado del Vuelo</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                    <input type="text" class="form-control" id="estado_vuelo" name="estado_vuelo1"
-                        placeholder="<?php echo $estado_vuelo; ?>" value="<?php echo $estado_vuelo; ?>" autocomplete="off">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="estado_vuelo"
+                        name="estado_vuelo"
+                        placeholder="<?php echo $estado_vuelo; ?>"
+                        value="<?php echo $estado_vuelo; ?>"
+                        autocomplete="off"
+                        readonly >
                 </div>
             </div>
             <div class="col-12 mt-2">
                 <label>Catidad de asientos disponibles</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                    <input type="text" class="form-control" id="cantidad_asientos" name="cantidad_asientos"
-                        placeholder="<?php echo $cantidad_asientos; ?>" autocomplete="off" disabled>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="cantidad_asientos"
+                        name="cantidad_asientos"
+                        placeholder="<?php echo $cantidad_asientos; ?>"
+                        value="<?php echo $cantidad_asientos; ?>"
+                        autocomplete="off"
+                        readonly >
+                </div>
+            </div>
+            <div class="col-12 mt-2" style="display: none;">
+                <label>Precio por tiket</label>
+                <div class="input-group">
+                    <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="precio_tiket"
+                        name="precio_tiket"
+                        placeholder="<?php echo number_format($precio_tiket, 0); ?>"
+                        value="<?php echo $precio_tiket; ?>"
+                        autocomplete="off"
+                        readonly>
                 </div>
             </div>
             <div class="col-12 mt-2">
-                <label>Precio del tiket</label>
+                <label>Precio por tiket Show</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                    <input type="text" class="form-control" id="precio_tiket" name="precio_tiket1"
-                        placeholder="<?php echo number_format($precio_tiket, 0); ?>" value="<?php echo number_format($precio_tiket, 0); ?>" autocomplete="off">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="precio_tiket_show"
+                        name="precio_tiket_show"
+                        placeholder="<?php echo number_format($precio_tiket, 0); ?>"
+                        value="<?php echo number_format($precio_tiket, 0); ?>"
+                        autocomplete="off"
+                        readonly>
                 </div>
             </div>
-
+            <div class="col-12 mt-2" style="display: none;">
+                <label>ID Ruta</label>
+                <div class="input-group">
+                    <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="id_ruta"
+                        name="id_ruta"
+                        placeholder="<?php echo $id_ruta ?>"
+                        value="<?php echo $id_ruta; ?>"
+                        autocomplete="off"
+                        readonly>
+                </div>
+            </div>
 
             <h2>Ingrese sus datos</h2>
 
@@ -139,8 +244,8 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i>
                     </div>
-                    <input type="text" class="form-control" id="correo_usuario" name="nombre" placeholder="Nombre"
-                        autocomplete="off">
+                    <input type="text" class="form-control" id="correo_usuario" name="nombre_pasajero" placeholder="Ingrese su Nombre"
+                        autocomplete="off" required>
                 </div>
             </div>
             <div class="col-12 mt-2">
@@ -148,8 +253,8 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i>
                     </div>
-                    <input type="text" class="form-control" id="correo_usuario" name="telefono" placeholder="Telefono"
-                        autocomplete="off">
+                    <input type="number" class="form-control" id="correo_usuario" name="telefono_pasajero" placeholder="Telefono"
+                        autocomplete="off" required>
                 </div>
             </div>
             <div class="col-12 mt-2">
@@ -157,8 +262,8 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i>
                     </div>
-                    <input type="date" class="form-control" id="correo_usuario" name="fecha_nacimiento"
-                        placeholder="fecha de nacimiento" autocomplete="off">
+                    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
+                        placeholder="fecha de nacimiento" autocomplete="off" min="1930  -01-01" max="2015-12-31" required>
                 </div>
             </div>
             <div class="col-12 mt-2">
@@ -166,8 +271,8 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i>
                     </div>
-                    <input type="text" class="form-control" id="correo_usuario" name="correo" placeholder="Correo"
-                        autocomplete="off">
+                    <input type="text" class="form-control" id="correo_usuario" name="correo_pasajero" placeholder="<?php echo $_SESSION['tbl_usuario'] ?>"
+                        autocomplete="off" value="<?php echo $_SESSION['tbl_usuario'] ?>" readonly >
                 </div>
             </div>
             <div class="col-12 mt-2">
@@ -181,7 +286,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i>
                     </div>
-                    <input type="text" class="form-control" id="correo_usuario" name="asientos"
+                    <input type="number" class="form-control" id="correo_usuario" name="asientos" max="<?php echo $cantidad_asientos; ?>"
                         placeholder="cantidad de vuelos" autocomplete="off">
                 </div>
             </div>
