@@ -46,7 +46,17 @@ class Reserva{
         }
         return $retorno;
     }
+
+
+    public function getReservaMasDetalle($COD_reserva){
+        $userId = $this->con->query("SELECT * FROM tbl_reserva INNER JOIN tbl_detalle_reserva ON tbl_reserva.COD_reserva = tbl_detalle_reserva.COD_reserva WHERE tbl_detalle_reserva.COD_reserva=$COD_reserva");
+        $retorno =[];
+        $i = 0;
+        while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
+            $retorno[$i] = $fila;
+            $i++;
+        }
+        return $retorno;
+    }
 }
-
-
 ?>

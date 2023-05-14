@@ -117,7 +117,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         readonly />
                 </div>
             </div>
-            
+
             <div class="col-12 mt-2">
                 <label>Fecha de salida</label>
                 <div class="input-group">
@@ -156,7 +156,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         class="form-control"
                         id="matricula_avion"
                         name="matricula_avion"
-                        placeholder="<?php echo $matricula; ?>" 
+                        placeholder="<?php echo $matricula; ?>"
                         autocomplete="off"
                         readonly />
                 </div>
