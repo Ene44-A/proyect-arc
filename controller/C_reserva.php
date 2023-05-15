@@ -5,8 +5,7 @@ if(isset($_GET['enviar_reserva'])){
     var_dump($_GET);
     $estado_vuelo = $_GET['estado_vuelo'];
 
-    /* date_default_timezone_set("America/Bogota");
-    $fecha_reserva = date("d-m-Y h:i:s"); */
+
     $id_ruta = $_GET['id_ruta'];
     $fecha_reserva = date("Y-m-d");
     $id_usuario = $_GET['id_del_usuario'];
@@ -45,7 +44,7 @@ if(isset($_GET['enviar_reserva'])){
     echo "Numero de asientos Restantes: ". $asietos_restantes. "<br/>";
     //echo "". $usuario_id. "<br/>";
     echo "Precio total: ". $precio_total;
-    
+
 
     echo "<br/>";
     echo "<br/>";
@@ -66,6 +65,13 @@ if(isset($_GET['enviar_reserva'])){
     $reserve->updateVuelo($asietos_restantes, $id_ruta);
     //Variables del pasajero
     // nombre_pasajero, telefono, fecha de nacimiento, correo_pasajero
+
+
+
+   $reserve->setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero);
+ 
+
+
 
 	echo '
         <script>

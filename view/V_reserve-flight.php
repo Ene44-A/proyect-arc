@@ -117,7 +117,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         readonly />
                 </div>
             </div>
-            
+
             <div class="col-12 mt-2">
                 <label>Fecha de salida</label>
                 <div class="input-group">
@@ -156,7 +156,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         class="form-control"
                         id="matricula_avion"
                         name="matricula_avion"
-                        placeholder="<?php echo $matricula; ?>" 
+                        placeholder="<?php echo $matricula; ?>"
                         autocomplete="off"
                         readonly />
                 </div>
@@ -276,12 +276,6 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 </div>
             </div>
             <div class="col-12 mt-2">
-
-                <!-- CAMBIAR POR SELECT -->
-
-
-
-
                 <label>Cantidad de asientos<span class="text-danger">*</span></label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i>
