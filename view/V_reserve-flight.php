@@ -78,6 +78,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         echo "</tr>"; */
 
                     $id_ruta = $route['ID_rutas'];
+                    $COD_vuelo = $route['COD_vuelo'];
                     $fecha_salida = $route['fecha_salida'];
                     $fecha_llegada = $route['fecha_llegada'];
                     $matricula = $route['matricula_avion'];
@@ -114,6 +115,22 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         placeholder="<?php echo $user_id; ?>"
                         autocomplete="off"
                         value="<?php echo $user_id; ?>"
+                        readonly />
+                </div>
+            </div>
+
+            <div class="col-12 mt-2" style="display: none">
+                <label>COD Vuelo</label>
+                <div class="input-group">
+                    <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="cod_vuelo"
+                        name="cod_vuelo"
+                        placeholder="<?php echo $COD_vuelo; ?>"
+                        autocomplete="off"
+                        value="<?php echo $COD_vuelo; ?>"
                         readonly />
                 </div>
             </div>

@@ -25,11 +25,30 @@ class Reserva{
 
 
     public function setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero){
-        $this->con->query("INSERT INTO tbl_detalle_reserva(COD_reserva,COD_vuelo,ID_pasajero) VALUES($COD_reserva, $COD_vuelo, $ID_pasajero)");
+        $this->con->query("INSERT INTO tbl_detalle_reserva(COD_reserva,COD_vuelo,ID_pasajero, estado) VALUES($COD_reserva, $COD_vuelo, $ID_pasajero, 'confirmado')");
     }
 
+    public function getUltimatePasajero(){
+        $userId = $this->con->query("SELECT ID_pasajero FROM tbl_pasajero WHERE ID_pasajero = (SELECT MAX(ID_pasajero) FROM tbl_pasajero)");
+        $retorno =[];
+        $i = 0;
+        while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
+            $retorno[$i] = $fila;
+            $i++;
+        }
+        return $retorno[0];
+    }
 
-
+    public function getUltimateReserva(){
+        $userId = $this->con->query("SELECT COD_reserva FROM tbl_reserva WHERE COD_reserva = (SELECT MAX(COD_reserva) FROM tbl_reserva)");
+        $retorno =[];
+        $i = 0;
+        while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
+            $retorno[$i] = $fila;
+            $i++;
+        }
+        return $retorno[0];
+    }
 
     public function updateVuelo($asientos_restantes, $id_ruta ){
         $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes WHERE ID_rutas = $id_ruta ");
