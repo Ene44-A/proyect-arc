@@ -63,39 +63,94 @@ if (!isset($_SESSION['tbl_usuario'])) {
     </header>
     <!-- ENTRADA DE USUARIOS -->
     <section>
-        <div class="container p-2 gx3">
+        <div class="container p-2 gx4">
             <div class="container container-check">
                 <form class="row gy-2 gx-3 align-items-center" action="V_reserve-flight.php" method="GET">
-                    <div class="col-lg">
-                        <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
+                    <div class="col-sm">
+                        <label>Rutas<span class="text-danger">*</span></label>
                         <div class="input-group">
-                            <div class="input-group-text">Ruta:</div>
-                            <select class="form-select" id="autoSizingSelect" name="route-selected">
-                                <option selected>Seleccione su ruta</option>
-                                <?php foreach($lasRutas as $rutas => $value){ ?>
-                                    <option value="<?php echo $value['descripcion']; ?>"><?php echo $value['descripcion']; ?></option> 
-                                <?php
-                                }
-                                ?>
-                            </select>
+                            <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
+                            <div class="input-group">
+                                <div class="input-group-text">Ruta:</div>
+                                <select class="form-select" id="autoSizingSelect mySelect" name="route-selected">
+                                    <!-- <option value="disable" selected>Seleccione su ruta</option> -->
+                                    <option value="disable" selected>Desactivar botón</option>
+                                    <option value="enable">Activar botón</option>
+                                    <?php foreach ($lasRutas as $rutas => $value) { ?>
+                                        <option value="<?php echo $value['descripcion']; ?>"><?php echo $value['descripcion']; ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm">
-
+                        <label>Nombre<span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                            </div>
+                            <input type="text" class="form-control" id="correo_usuario" name="nombre_pasajero"
+                                placeholder="Ingrese su Nombre" autocomplete="off" required>
+                        </div>
                     </div>
                     <div class="col-sm">
-
+                        <label>Telefono<span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                            </div>
+                            <input type="number" class="form-control" id="correo_usuario" name="telefono_pasajero"
+                                placeholder="Telefono" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <label>Fecha de nacimiento<span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                            </div>
+                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
+                                placeholder="fecha de nacimiento" autocomplete="off" min="1930  -01-01" max="2015-12-31"
+                                required>
+                        </div>
                     </div>
                     <div class="container-md row gy-2 gx-3 align-items-center">
                         <div class="col-sm">
-
+                            <label>Correo<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                                </div>
+                                <input type="text" class="form-control" id="correo_usuario" name="correo_pasajero"
+                                    placeholder="<?php echo $_SESSION['tbl_usuario'] ?>" autocomplete="off"
+                                    value="<?php echo $_SESSION['tbl_usuario'] ?>" readonly>
+                            </div>
                         </div>
                         <div class="col-sm">
-
+                            <label>Cantidad de asientos<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                                </div>
+                                <input type="number" class="form-control" id="correo_usuario" name="asientos"
+                                    max="<?php echo $cantidad_asientos; ?>" placeholder="cantidad de vuelos"
+                                    autocomplete="off">
+                            </div>
                         </div>
                     </div>
                     <div class="col-md">
-                        <button type="submit" class="btn btn-success">Reservar</button>
+                        <button type="submit" id="myButton" class="btn btn-success">Reservar</button>
+                        <script>
+                            var select = document.getElementById("mySelect");
+                            var button = document.getElementById("myButton");
+
+                            select.addEventListener("change", function () {
+                                var option = select.value;
+
+                                if (option == "enable") {
+                                    button.disabled = false;
+                                } else {
+                                    button.disabled = true;
+                                }
+                            });
+                        </script>
                     </div>
                 </form>
             </div>

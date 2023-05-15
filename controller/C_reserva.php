@@ -67,8 +67,9 @@ if(isset($_GET['enviar_reserva'])){
     // nombre_pasajero, telefono, fecha de nacimiento, correo_pasajero
 
 
-    
 
+   $reserve->setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero);
+ 
 
 
 

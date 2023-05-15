@@ -276,12 +276,6 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 </div>
             </div>
             <div class="col-12 mt-2">
-
-                <!-- CAMBIAR POR SELECT -->
-
-
-
-
                 <label>Cantidad de asientos<span class="text-danger">*</span></label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="bi bi-person-fill"></i>
