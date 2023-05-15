@@ -26,6 +26,8 @@ $infoReserva = new Reserva();
 $myReserva = $infoReserva->getUsuarioReservas($user_id);
 
 
+
+
 /* session_start();
 if (!isset($_SESSION['tbl_usuario'])) {
     echo '
@@ -94,8 +96,9 @@ if (!isset($_SESSION['tbl_usuario'])) {
     </div>
     <div class="container">
         <?php
-        $infoPasajero = new Reserva();
-        $myDetalle = $infoPasajero->getReservaMasDetalle($COD_reserva);
+        // echo "<p>". $COD_reserva . "</p>";
+        $infoDetalleReserva = new Reserva();
+        $myDetalle = $infoDetalleReserva->getReservaMasDetalle($COD_reserva);
         if (!$myDetalle) {
             echo "</tr>";
             echo "</td>";
@@ -105,11 +108,41 @@ if (!isset($_SESSION['tbl_usuario'])) {
         } else {
             foreach ($myDetalle as $detalle) {
 
-                $reserva_cod = $detalle['ID_detalle_reserva'];
+                $reserva_cod = $detalle['ID_pasajero'];
 
                 echo "<tr>";
                 echo "RESERVA<br>";
                 echo "<td>Total: " . $reserva_cod . "</td><br>";
+                echo "</tr>";
+                echo "<br>";
+                echo "<br>";
+            }
+        }
+        ?>
+        <?php
+        echo "<p>" . $COD_reserva . "</p>";
+        $infoPasajero = new Reserva();
+        $myDetallePasajero = $infoPasajero->getPasajero($_SESSION['tbl_usuario']);
+        if (!$myDetallePasajero) {
+            echo "</tr>";
+            echo "</td>";
+            echo "Nafa mi fai";
+            echo "</td>";
+            echo "</tr>";
+        } else {
+            foreach ($myDetallePasajero as $detallePasajero) {
+
+                $ID_pasajero = $detallePasajero['ID_pasajero'];
+                $nombre_pasajero = $detallePasajero['nombre_pasajero'];
+                $telefono_pasajero = $detallePasajero['telefono'];
+                $correo_pasajero = $detallePasajero['correo_pasajero'];
+
+                echo "<tr>";
+                echo "DATOS DE PASAJERO<br>";
+                echo "<td>ID: " . $ID_pasajero . "</td><br>";
+                echo "<td>nombre: " . $nombre_pasajero . "</td><br>";
+                echo "<td>telefono: " . $telefono_pasajero . "</td><br>";
+                echo "<td>correo: " . $correo_pasajero . "</td><br>";
                 echo "</tr>";
                 echo "<br>";
                 echo "<br>";

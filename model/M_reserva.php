@@ -21,6 +21,16 @@ class Reserva{
         $this->con->query("INSERT INTO tbl_pasajero(nombre_pasajero,telefono,fecha_nacimiento,correo_pasajero) VALUES('$nombre_pasajero','$telefono','$fecha_nacimiento','$correo_pasajero')");
     }
 
+
+
+
+    public function setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero){
+        $this->con->query("INSERT INTO tbl_detalle_reserva(COD_reserva,COD_vuelo,ID_pasajero) VALUES($COD_reserva, $COD_vuelo, $ID_pasajero)");
+    }
+
+
+
+
     public function updateVuelo($asientos_restantes, $id_ruta ){
         $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes WHERE ID_rutas = $id_ruta ");
     }
@@ -50,6 +60,21 @@ class Reserva{
 
     public function getReservaMasDetalle($COD_reserva){
         $userId = $this->con->query("SELECT * FROM tbl_reserva INNER JOIN tbl_detalle_reserva ON tbl_reserva.COD_reserva = tbl_detalle_reserva.COD_reserva WHERE tbl_detalle_reserva.COD_reserva=$COD_reserva");
+        $retorno =[];
+        $i = 0;
+        while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
+            $retorno[$i] = $fila;
+            $i++;
+        }
+        return $retorno;
+    }
+
+
+
+
+
+    public function getPasajero($correo_pasajero){
+        $userId = $this->con->query("SELECT * FROM tbl_pasajero WHERE correo_pasajero='$correo_pasajero'");
         $retorno =[];
         $i = 0;
         while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
