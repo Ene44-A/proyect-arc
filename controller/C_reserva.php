@@ -7,6 +7,7 @@ if(isset($_GET['enviar_reserva'])){
 
 
     $id_ruta = $_GET['id_ruta'];
+    $cod_vuelo = $_GET['cod_vuelo'];
     $fecha_reserva = date("Y-m-d");
     $id_usuario = $_GET['id_del_usuario'];
     $precio_tiket = intval($_GET['precio_tiket']);          //intval(42);
@@ -56,9 +57,6 @@ if(isset($_GET['enviar_reserva'])){
     echo "Correo del pasajero: ". $correo_pasajero . "<br/>";
 
 
-
-
-
     $reserve = new Reserva();
     $reserve->setReservas($estado_vuelo,$fecha_reserva,$id_usuario,$precio_total);
     $reserve->setPasajeros($nombre_pasajero, $telefono_pasajero, $fecha_nacimiento, $correo_pasajero);
@@ -66,11 +64,23 @@ if(isset($_GET['enviar_reserva'])){
     //Variables del pasajero
     // nombre_pasajero, telefono, fecha de nacimiento, correo_pasajero
 
+    // Get current values
+    // get ultimate values of reserva table
+    // ger ultimate values of pasajeros table
 
+    $ultimateReser = $reserve->getUltimateReserva();
+    $ultimatePasa =  $reserve->getUltimatePasajero();
 
-   $reserve->setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero);
- 
+    //$reserve->setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero, 'confirmado');
+   echo "<br/>";
+   echo "<br/>";
+   echo "Datos del detalle de la reserva";
+   echo "<br/>";
+   echo "Ultima posicion de la reserva: ". $ultimateReser['COD_reserva'] . "<br/>";
+   echo "Ultima posicion del pasajero: ". $ultimatePasa['ID_pasajero'] . "<br/>";
+   echo "Codigo del vuelo: ". $cod_vuelo . "<br/>";
 
+    $reserve->setDetalleReserva($ultimateReser['COD_reserva'], $cod_vuelo, $ultimatePasa['ID_pasajero'], 'confirmado');
 
 
 	echo '
