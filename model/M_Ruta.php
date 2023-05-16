@@ -13,8 +13,8 @@
 
         }
 
-        public function getRuta($fecha_vuelo){
-            $query = $this->con->query("SELECT * FROM tbl_rutas INNER JOIN tbl_vuelo ON tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas WHERE fecha_salida='$fecha_vuelo';");
+        public function getRuta(){
+            $query = $this->con->query("SELECT * FROM tbl_rutas");
             $retorno =[];
             $i = 0;
             while($fila = $query->fetch_assoc()){ //devuelve el arreglo
