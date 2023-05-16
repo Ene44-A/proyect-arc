@@ -21,9 +21,6 @@ class Reserva{
         $this->con->query("INSERT INTO tbl_pasajero(nombre_pasajero,telefono,fecha_nacimiento,correo_pasajero) VALUES('$nombre_pasajero','$telefono','$fecha_nacimiento','$correo_pasajero')");
     }
 
-
-
-
     public function setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero){
         $this->con->query("INSERT INTO tbl_detalle_reserva(COD_reserva,COD_vuelo,ID_pasajero, estado) VALUES($COD_reserva, $COD_vuelo, $ID_pasajero, 'confirmado')");
     }
@@ -76,7 +73,6 @@ class Reserva{
         return $retorno;
     }
 
-
     public function getReservaMasDetalle($COD_reserva){
         $userId = $this->con->query("SELECT * FROM tbl_reserva INNER JOIN tbl_detalle_reserva ON tbl_reserva.COD_reserva = tbl_detalle_reserva.COD_reserva WHERE tbl_detalle_reserva.COD_reserva=$COD_reserva");
         $retorno =[];
@@ -87,10 +83,6 @@ class Reserva{
         }
         return $retorno;
     }
-
-
-
-
 
     public function getPasajero($correo_pasajero){
         $userId = $this->con->query("SELECT * FROM tbl_pasajero WHERE correo_pasajero='$correo_pasajero'");
