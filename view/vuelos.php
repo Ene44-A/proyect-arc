@@ -65,6 +65,18 @@ if (!isset($_SESSION['tbl_usuario'])) {
     <section>
         <div class="container p-2 gx4">
             <div class="container container-check">
+                <form action="../controller/C_Rutas.php" method="POST" class="row gy-2 gx-3 align-items-center">
+                    <div class="col-sm">
+                        <label>Fecha de nacimiento<span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                            </div>
+                            <input type="date" class="form-control" id="fecha_vuelo" name="fecha_vuelo"
+                                placeholder="fecha de nacimiento" autocomplete="off" min="2023-04-01" max="2023-05-31"
+                                required>
+                        </div>
+                    </div>
+                </form>
                 <form class="row gy-2 gx-3 align-items-center" action="V_reserve-flight.php" method="GET">
                     <div class="col-sm">
                         <label>Rutas<span class="text-danger">*</span></label>
@@ -73,9 +85,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                             <div class="input-group">
                                 <div class="input-group-text">Ruta:</div>
                                 <select class="form-select" id="autoSizingSelect mySelect" name="route-selected">
-                                    <!-- <option value="disable" selected>Seleccione su ruta</option> -->
-                                    <option value="disable" selected>Desactivar botón</option>
-                                    <option value="enable">Activar botón</option>
+                                    <option value="disable" selected>Seleccione su ruta</option>
                                     <?php foreach ($lasRutas as $rutas => $value) { ?>
                                         <option value="<?php echo $value['descripcion']; ?>"><?php echo $value['descripcion']; ?></option>
                                         <?php
@@ -85,7 +95,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm">
+                    <!-- <div class="col-sm">
                         <label>Nombre<span class="text-danger">*</span></label>
                         <div class="input-group">
                             <div class="input-group-text"><i class="bi bi-person-fill"></i>
@@ -134,23 +144,10 @@ if (!isset($_SESSION['tbl_usuario'])) {
                                     autocomplete="off">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md">
+                    </div> -->
+                    <div class="col-ms">
                         <button type="submit" id="myButton" class="btn btn-success">Reservar</button>
-                        <script>
-                            var select = document.getElementById("mySelect");
-                            var button = document.getElementById("myButton");
 
-                            select.addEventListener("change", function () {
-                                var option = select.value;
-
-                                if (option == "enable") {
-                                    button.disabled = false;
-                                } else {
-                                    button.disabled = true;
-                                }
-                            });
-                        </script>
                     </div>
                 </form>
             </div>
