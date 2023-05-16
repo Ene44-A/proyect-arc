@@ -1,3 +1,5 @@
+Nem db_aerolinea
+
 CREATE TABLE tbl_usuario(
     ID_usuario int AUTO_INCREMENT NOT NULL PRIMARY KEY,
     correo_usuario varchar(50),
@@ -9,7 +11,8 @@ CREATE TABLE tbl_pasajero (
     nombre_pasajero varchar(255) NOT NULL,
     telefono int,
     fecha_nacimiento DATE,
-    correo_pasajero varchar(255)
+    correo_pasajero varchar(255),
+    asientos_reservados int(99)
 );
 CREATE TABLE tbl_aerolinea (
     ID_aerolinea int NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -31,8 +34,10 @@ CREATE TABLE tbl_vuelo (
     FOREIGN KEY (matricula_avion) REFERENCES tbl_avion(matricula_avion),
     ID_rutas int,
     FOREIGN KEY (ID_rutas) REFERENCES tbl_rutas(ID_rutas),
-    fecha_salida DATE,
-    fecha_llegada DATE,
+    fecha_salida DATE NOT NULL,
+    fecha_llegada DATE NOT NULL,
+    hora_salida TIME(0) NOT NULL,
+    hora_llegada TIME(0) NOT NULL,
     estado varchar(15),
     asientos_disponibles int(3),
     precio float
@@ -125,6 +130,7 @@ VALUES ('Confirmado', '2023-04-18', 4, 190000),
 ('En espera', '2023-04-23', 2, 3240000),
 ('Confirmado', '2023-04-25', 3, 9180000),
 ('Confirmado', '2023-04-30', 1, 785000),
+('En espera', '2023-04-29', 1, 185000),
 ('Confirmado', '2023-04-22', 5, 200000);
 
 INSERT INTO tbl_detalle_reserva (COD_reserva, COD_vuelo, ID_pasajero, estado)
@@ -132,6 +138,7 @@ VALUES (1, 1, 4, 'Confirmado'),
 (2, 4, 2, 'En espera'),
 (3, 5, 3, 'Confirmado'),
 (4, 6,1, 'Confirmado'),
+(2, 3,1, 'Confirmado'),
 (5, 3, 5, 'Confirmado');
 
 INSERT INTO tbl_tiquete (COD_reserva, ID_detalle_reserva)

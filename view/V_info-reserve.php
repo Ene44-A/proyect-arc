@@ -60,95 +60,85 @@ if (!isset($_SESSION['tbl_usuario'])) {
 
 <body>
     <h1>Detalle de la reserva</h1>
-    <div class="container">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                1 of 2
+                <?php
 
-        <?php
+                if (!$myReserva) {
+                    echo "</tr>";
+                    echo "</td>";
+                    echo "No hay datos para mostrar";
+                    echo "</td>";
+                    echo "</tr>";
+                } else {
+                    foreach ($myReserva as $reseva) {
 
-        if (!$myReserva) {
-            echo "</tr>";
-            echo "</td>";
-            echo "No hay datos para mostrar";
-            echo "</td>";
-            echo "</tr>";
-        } else {
-            foreach ($myReserva as $reseva) {
+                        $COD_reserva = $reseva['COD_reserva'];
+                        $nombre_usuario = $reseva['nombre_usuario'];
+                        $estado = $reseva['estado'];
+                        $fecha_reserva = $reseva['fecha_reserva'];
+                        $precio_total = $reseva['precio_total'];
+                        echo "<tr>";
+                        echo "RESERVA DE TIQUETES<br>";
+                        echo "<td>Codigo de reserva: " . $COD_reserva . "</td><br>";
+                        echo "<td>Nombre: " . $nombre_usuario . "</td><br>";
+                        echo "<td> Estado: " . $estado . "</td><br>";
+                        echo "<td>Fecha de reserva: " . $fecha_reserva . "</td><br>";
+                        echo "<td>Total: " . $precio_total . "</td><br>";
+                        echo "</tr>";
+                        echo "<br>";
+                    }
+                }
+                ?>
+            </div>
+            <div class="col">
+                2 of 2
+                <?php
+                // echo "<p> Codigo de reserva:  " . $COD_reserva . "</p>";
+                $infoVuelo = new Reserva();
+                $myVuelo = $infoVuelo->getInfoVueloPasajero($_SESSION['tbl_usuario']);
+                if (!$myVuelo) {
+                    echo "</tr>";
+                    echo "</td>";
+                    echo "Nafa mi fai";
+                    echo "</td>";
+                    echo "</tr>";
+                } else {
+                    foreach ($myVuelo as $detalleVuelo) {
 
-                $COD_reserva = $reseva['COD_reserva'];
-                $nombre_usuario = $reseva['nombre_usuario'];
-                $estado = $reseva['estado'];
-                $fecha_reserva = $reseva['fecha_reserva'];
-                $precio_total = $reseva['precio_total'];
-                echo "<br>";
-                echo "<br>";
-                echo "<tr>";
-                echo "RESERVA DE TIQUETES<br>";
-                echo "<td>Codigo de reserva: " . $COD_reserva . "</td><br>";
-                echo "<td>Nombre: " . $nombre_usuario . "</td><br>";
-                echo "<td> Estado: " . $estado . "</td><br>";
-                echo "<td>Fecha de reserva: " . $fecha_reserva . "</td><br>";
-                echo "<td>Total: " . $precio_total . "</td><br>";
-                echo "</tr>";
-                echo "<br>";
-                echo "<br>";
-            }
-        }
-        ?>
+                        $matricula_avion = $detalleVuelo['matricula_avion'];
+                        $fecha_salida = $detalleVuelo['fecha_salida'];
+                        $fecha_llegada = $detalleVuelo['fecha_llegada'];
+                        $nombre_pasajero = $detalleVuelo['nombre_pasajero'];
+                        $telefono = $detalleVuelo['telefono'];
+                        $fecha_nacimiento = $detalleVuelo['fecha_nacimiento'];
+
+                        echo "<tr>";
+                        echo "INFORMACIÓN DEL VUELO<br>";
+                        echo "<td>Matricula: " . $matricula_avion . "</td><br>";
+                        echo "<td>Fecha de Salida: " . $fecha_salida . "</td><br>";
+                        echo "<td>Fecha de Llegada: " . $fecha_llegada . "</td><br>";
+                        echo "<td>Nombre del Pasajero: " . $nombre_pasajero . "</td><br>";
+                        echo "<td>Teléfono: " . $telefono . "</td><br>";
+                        echo "<td>Fecha de Nacimiento: " . $fecha_nacimiento . "</td><br>";
+                        echo "</tr>";
+                        // echo "<br>";
+                        // echo "<br>";
+                        echo "<br>";
+                    }
+                }
+                ?>
+            </div>
+        </div>
     </div>
     <div class="container">
-        <?php
-        // echo "<p>". $COD_reserva . "</p>";
-        $infoDetalleReserva = new Reserva();
-        $myDetalle = $infoDetalleReserva->getReservaMasDetalle($COD_reserva);
-        if (!$myDetalle) {
-            echo "</tr>";
-            echo "</td>";
-            echo "No hay datos para mostrar";
-            echo "</td>";
-            echo "</tr>";
-        } else {
-            foreach ($myDetalle as $detalle) {
 
-                $reserva_cod = $detalle['ID_pasajero'];
+    </div>
 
-                echo "<tr>";
-                echo "RESERVA<br>";
-                echo "<td>Total: " . $reserva_cod . "</td><br>";
-                echo "</tr>";
-                echo "<br>";
-                echo "<br>";
-            }
-        }
-        ?>
-        <?php
-        echo "<p>" . $COD_reserva . "</p>";
-        $infoPasajero = new Reserva();
-        $myDetallePasajero = $infoPasajero->getPasajero($_SESSION['tbl_usuario']);
-        if (!$myDetallePasajero) {
-            echo "</tr>";
-            echo "</td>";
-            echo "Nafa mi fai";
-            echo "</td>";
-            echo "</tr>";
-        } else {
-            foreach ($myDetallePasajero as $detallePasajero) {
+    <div class="container">
 
-                $ID_pasajero = $detallePasajero['ID_pasajero'];
-                $nombre_pasajero = $detallePasajero['nombre_pasajero'];
-                $telefono_pasajero = $detallePasajero['telefono'];
-                $correo_pasajero = $detallePasajero['correo_pasajero'];
-
-                echo "<tr>";
-                echo "DATOS DE PASAJERO<br>";
-                echo "<td>ID: " . $ID_pasajero . "</td><br>";
-                echo "<td>nombre: " . $nombre_pasajero . "</td><br>";
-                echo "<td>telefono: " . $telefono_pasajero . "</td><br>";
-                echo "<td>correo: " . $correo_pasajero . "</td><br>";
-                echo "</tr>";
-                echo "<br>";
-                echo "<br>";
-            }
-        }
-        ?>
     </div>
 </body>
 
