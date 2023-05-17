@@ -73,7 +73,6 @@ if (!isset($_SESSION['tbl_usuario'])) {
                             <div class="input-group">
                                 <div class="input-group-text">Ruta:</div>
                                 <select class="form-select" id="autoSizingSelect mySelect" name="route-selected">
-                                    <option value="disable" selected>Seleccione su ruta</option>
                                     <?php foreach ($lasRutas as $rutas => $value) { ?>
                                         <option value="<?php echo $value['descripcion']; ?>"><?php echo $value['descripcion']; ?></option>
                                         <?php
@@ -83,59 +82,8 @@ if (!isset($_SESSION['tbl_usuario'])) {
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-sm">
-                        <label>Nombre<span class="text-danger">*</span></label>
-                        <div class="input-group">
-                            <div class="input-group-text"><i class="bi bi-person-fill"></i>
-                            </div>
-                            <input type="text" class="form-control" id="correo_usuario" name="nombre_pasajero"
-                                placeholder="Ingrese su Nombre" autocomplete="off" required>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <label>Telefono<span class="text-danger">*</span></label>
-                        <div class="input-group">
-                            <div class="input-group-text"><i class="bi bi-person-fill"></i>
-                            </div>
-                            <input type="number" class="form-control" id="correo_usuario" name="telefono_pasajero"
-                                placeholder="Telefono" autocomplete="off" required>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <label>Fecha de nacimiento<span class="text-danger">*</span></label>
-                        <div class="input-group">
-                            <div class="input-group-text"><i class="bi bi-person-fill"></i>
-                            </div>
-                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
-                                placeholder="fecha de nacimiento" autocomplete="off" min="1930  -01-01" max="2015-12-31"
-                                required>
-                        </div>
-                    </div>
-                    <div class="container-md row gy-2 gx-3 align-items-center">
-                        <div class="col-sm">
-                            <label>Correo<span class="text-danger">*</span></label>
-                            <div class="input-group">
-                                <div class="input-group-text"><i class="bi bi-person-fill"></i>
-                                </div>
-                                <input type="text" class="form-control" id="correo_usuario" name="correo_pasajero"
-                                    placeholder="<?php echo $_SESSION['tbl_usuario'] ?>" autocomplete="off"
-                                    value="<?php echo $_SESSION['tbl_usuario'] ?>" readonly>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <label>Cantidad de asientos<span class="text-danger">*</span></label>
-                            <div class="input-group">
-                                <div class="input-group-text"><i class="bi bi-person-fill"></i>
-                                </div>
-                                <input type="number" class="form-control" id="correo_usuario" name="asientos"
-                                    max="<?php echo $cantidad_asientos; ?>" placeholder="cantidad de vuelos"
-                                    autocomplete="off">
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="col-ms">
                         <button type="submit" id="myButton" class="btn btn-success">Reservar</button>
-
                     </div>
                 </form>
             </div>

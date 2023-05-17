@@ -32,7 +32,11 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <style>
+                                    .btn-action a {
+                                        color: black;
+                                    }
+                                </style>
                                 <div class="col-md-7 pe-0">
                                     <div class="form-left h-100 py-5 px-5">
                                         <form action="../model/M_User.php" method="GET" class="row g-4">
@@ -63,19 +67,21 @@
                                                     <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
                                                     <input type="password" class="form-control" id="contrasena"
                                                         name="contrasena" placeholder="contrasena">
+                                                    <div id="passwordHelpBlock" class="form-text">
+                                                        Su contraseña debe tener entre 8 y 20 caracteres, contener
+                                                        letras y números, y no debe contener espacios, caracteres
+                                                        especiales ni emoji.
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-12">
-                                                <button type="submit"
-                                                    class="btn btn-success px-4 float-end mt-4" name="registro">Ingresar</button>
+                                                <button type="submit" class="btn btn-success px-4 float-end mt-4"
+                                                    name="registro">Ingresar</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-
-
-
                             </div>
                         </div>
                     </div>
