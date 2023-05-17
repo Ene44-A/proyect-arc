@@ -80,7 +80,6 @@ require('../controller/C_Rutas.php');
                         echo "</tr>";
                     }
                     }
-                
                 ?> -->
     </header>
     <!-- FORMATO DE ENTRADA PARA VUELOS -->
@@ -93,7 +92,6 @@ require('../controller/C_Rutas.php');
                         <div class="input-group-text">Ruta:</div>
 
                             <select name="suruta" class="form-select">
-                                <option selected>Seleccione su ruta</option>
                                 <?php foreach($lasRutas as $rutas => $value){ ?>
                                     <option value="<?php echo $rutas; ?>"><?php echo $value['descripcion']; ?></option> 
                                 <?php
