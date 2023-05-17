@@ -51,15 +51,19 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         </li>
                     </ul>
                     <form class="d-flex" role="ingresar" action="V_profile-users.php">
-
-                        <button class="btn btn btn-light" type="submit">perfil</button>
+                        <button class="btn btn btn-success" type="submit"><i class='bx bx-user-circle'></i></button>
                     </form>
                 </div>
             </div>
             <style>
-                .navbar-collapse i {
+                .navbar-collapse>i {
                     font-size: 40px;
                     margin: 0 20px;
+                }
+
+                .bx-user-circle {
+                    font-size: 25px;
+                    padding: 0 10px;
                 }
             </style>
         </nav>
@@ -83,6 +87,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                                     ?>
                                 </select>
                             </div>
+                            <div id="passwordHelpBlock" class="form-text">Elije un destino.</div>
                         </div>
                     </div>
                     <div class="col-ms">
