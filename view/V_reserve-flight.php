@@ -2,7 +2,7 @@
 
 require_once('../model/Conection.php');
 require_once('../controller/C_Rutas.php');
-session_start();
+include('../controller/confirm_session.php');
 
 /* session_start();
 if (!isset($_SESSION['tbl_usuario'])) {
