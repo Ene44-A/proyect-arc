@@ -17,8 +17,8 @@ class Reserva{
         $this->con->query("INSERT INTO tbl_reserva(estado,fecha_reserva,ID_usuario,precio_total) VALUES('$estado_vuelo','$fecha_reserva','$id_usuario','$precio_total')");
     }
 
-    public function setPasajeros($nombre_pasajero,$telefono,$fecha_nacimiento,$correo_pasajero){
-        $this->con->query("INSERT INTO tbl_pasajero(nombre_pasajero,telefono,fecha_nacimiento,correo_pasajero) VALUES('$nombre_pasajero','$telefono','$fecha_nacimiento','$correo_pasajero')");
+    public function setPasajeros($nombre_pasajero,$telefono,$fecha_nacimiento,$correo_pasajero, $asientos_reservados){
+        $this->con->query("INSERT INTO tbl_pasajero(nombre_pasajero,telefono,fecha_nacimiento,correo_pasajero,asientos_reservados) VALUES('$nombre_pasajero','$telefono','$fecha_nacimiento','$correo_pasajero', '$asientos_reservados')");
     }
 
     public function setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero){
