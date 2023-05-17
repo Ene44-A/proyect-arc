@@ -59,7 +59,7 @@ if(isset($_GET['enviar_reserva'])){
 
     $reserve = new Reserva();
     $reserve->setReservas($estado_vuelo,$fecha_reserva,$id_usuario,$precio_total);
-    $reserve->setPasajeros($nombre_pasajero, $telefono_pasajero, $fecha_nacimiento, $correo_pasajero);
+    $reserve->setPasajeros($nombre_pasajero, $telefono_pasajero, $fecha_nacimiento, $correo_pasajero, $asientos_del_user);
     $reserve->updateVuelo($asietos_restantes, $id_ruta);
     //Variables del pasajero
     // nombre_pasajero, telefono, fecha de nacimiento, correo_pasajero
