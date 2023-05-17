@@ -2,7 +2,7 @@
 
 require_once('../model/Conection.php');
 require_once('../controller/C_Rutas.php');
-include('../controller/confirm_session.php');
+session_start();
 
 require_once('../model/Conection.php');
 require_once('../controller/C_Rutas.php');

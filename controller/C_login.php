@@ -65,17 +65,6 @@ class Login
             }
             return $retorno;
 		}
-
-		public function getUserInfo($email_user){
-			$userId = $this->con->query("SELECT * FROM tbl_usuario WHERE correo_usuario='$email_user'");
-			$retorno =[];
-            $i = 0;
-            while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
-                $retorno[$i] = $fila;
-                $i++;
-            }
-            return $retorno;
-		}
 }
 
 ?>

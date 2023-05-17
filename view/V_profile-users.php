@@ -1,7 +1,6 @@
 <?php
 // Trae controlador de db rutas
 require_once('../model/Conection.php');
-include('../controller/C_login.php');
 
 session_start();
 if (!isset($_SESSION['tbl_usuario'])) {
@@ -16,17 +15,6 @@ if (!isset($_SESSION['tbl_usuario'])) {
     die();
 }
 
-$user_info = new Login;
-$user_get_info = $user_info->getUserInfo($_SESSION['tbl_usuario']);
-
-if (!$user_get_info) {
-    echo "No hay datos para mostrar";
-} else {
-    foreach ($user_get_info as $user) {
-        $user_id = $user['ID_usuario'];
-        $user_name = $user['nombre_usuario'];
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -82,14 +70,14 @@ if (!$user_get_info) {
                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                                 <img src="./assets/img/destination2.jpg" alt="Avatar" class="img-fluid my-5"
                                     style="width: 80px;" />
-                                <h5><?php echo $user_name ?></h5>
+                                <h5>Papucho Flensho</h5>
                                 <i class='bx bxs-plane-take-off'></i>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body p-4">
-                                    <h6>Tu Información</h6>
+                                    <h6>Información</h6>
                                     <hr class="mt-0 mb-4">
-                                <!--     <div class="row pt-1">
+                                    <div class="row pt-1">
                                         <div class="col-6 mb-3">
                                             <h6>Fecha de nacimiento</h6>
                                             <p class="text-muted">Lorem ipsum</p>
@@ -98,17 +86,17 @@ if (!$user_get_info) {
                                             <h6>Teléfono</h6>
                                             <p class="text-muted">123 456 789</p>
                                         </div>
-                                    </div> -->
-                                 <!--    <h6>Usuario</h6>
-                                    <hr class="mt-0 mb-4"> -->
+                                    </div>
+                                    <h6>Usuario</h6>
+                                    <hr class="mt-0 mb-4">
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
                                             <h6>Correo</h6>
-                                            <p class="text-muted">   <?php echo $_SESSION['tbl_usuario'] ?>   </p>
+                                            <p class="text-muted">info@example.com</p>
                                         </div>
                                         <div class="col-6 mb-3">
                                             <h6>ID</h6>
-                                            <p class="text-muted"> <?php echo $user_id ?> </p>
+                                            <p class="text-muted">4</p>
                                         </div>
                                     </div>
                                 </div>

@@ -69,15 +69,15 @@ class User{
             ';
             exit();
         }
-        // elseif(!ctype_alpha($nombre_usuario)) {
-        //     echo '
-        //     <script>
-        //         alert("Nombre de usuario no valido");
-        //         /* window.location = "../view/V_register-users.php"; */
-        //     </script>
-        //     ';
-        //     exit();
-        // }
+        elseif(!ctype_alpha($nombre_usuario)) {
+            echo '
+            <script>
+                alert("Nombre de usuario no valido");
+                /* window.location = "../view/V_register-users.php"; */
+            </script>
+            ';
+            exit();
+        }
         else {
             $encConstrasena = sha1($contrasena);
             $us = "INSERT INTO tbl_usuario (correo_usuario,contrasena,nombre_usuario) VALUES ('$correo','$encConstrasena','$nombre_usuario')";
