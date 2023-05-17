@@ -24,20 +24,17 @@ require('../controller/C_Rutas.php');
     <header>
         <nav class="navbar navbar-expand-md bg-body-tertiary">
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
+                    data-bs-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false'
+                    aria-label='Toggle navigation'>
+                    <span class='navbar-toggler-icon'></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
                     <i class='bx bxs-plane-take-off'></i>
-                    <a class="navbar-brand" href="#">Hidden brand</a>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                    <a class='navbar-brand' href='#'>Tucompañiadevuelos</a>
+                    <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
+                        <li class='nav-item'>
+                            <a class='nav-link active' aria-current='page' href='./index.php'>Inicio</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="ingresar" action="V_login.php">
@@ -45,6 +42,12 @@ require('../controller/C_Rutas.php');
                     </form>
                 </div>
             </div>
+            <style>
+                .navbar-collapse i {
+                    font-size: 40px;
+                    margin: 0 20px;
+                }
+            </style>
         </nav>
 
         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -66,21 +69,21 @@ require('../controller/C_Rutas.php');
                 </div>
             </div>
             <!-- <?php
-                    if(!$lasRutas){
-                        echo"</tr>";
-                        echo"</td>";
-                        echo"No hay datos para mostrar";
-                        echo"</td>";
-                        echo"</tr>";
-                    }else{
-                    foreach($lasRutas as $rutas){
-                        echo"</tr>";
-                        echo"</td>".$rutas['ID_rutas']."</td>";
-                        echo"</td>".$rutas['descripcion']."</td>";
-                        echo "</tr>";
-                    }
-                    }
-                ?> -->
+            if (!$lasRutas) {
+                echo "</tr>";
+                echo "</td>";
+                echo "No hay datos para mostrar";
+                echo "</td>";
+                echo "</tr>";
+            } else {
+                foreach ($lasRutas as $rutas) {
+                    echo "</tr>";
+                    echo "</td>" . $rutas['ID_rutas'] . "</td>";
+                    echo "</td>" . $rutas['descripcion'] . "</td>";
+                    echo "</tr>";
+                }
+            }
+            ?> -->
     </header>
     <!-- FORMATO DE ENTRADA PARA VUELOS -->
     <div class="container">
@@ -91,13 +94,13 @@ require('../controller/C_Rutas.php');
                     <div class="input-group">
                         <div class="input-group-text">Ruta:</div>
 
-                            <select name="suruta" class="form-select">
-                                <?php foreach($lasRutas as $rutas => $value){ ?>
-                                    <option value="<?php echo $rutas; ?>"><?php echo $value['descripcion']; ?></option> 
+                        <select name="suruta" class="form-select">
+                            <?php foreach ($lasRutas as $rutas => $value) { ?>
+                                <option value="<?php echo $rutas; ?>"><?php echo $value['descripcion']; ?></option>
                                 <?php
-                                }
-                                ?>
-                            </select>
+                            }
+                            ?>
+                        </select>
 
                         <!-- <input type="search" placeholder="Seleccione una ruta" id="mySearch" name="q" /> -->
                     </div>
@@ -129,79 +132,86 @@ require('../controller/C_Rutas.php');
             </form>
         </div>
     </div>
-    <!-- CUERPO DE PAGINA -->
-    <div class="container-fluid row justify-content-center align-items-center p-5">
-        <div class="info-oferta">
-            <h2 class="" style="text-align:center;">Ofertas</h2>
-            <p class="paragraph" style="text-align:center; font-size-adjust: 0.5;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque vitae eaque nam nostrum obcaecati eos corporis, magni sequi architecto laboriosam ea dolor accusantium voluptas et aspernatur placeat dolore quos distinctio.</p>
-        </div>
-        <div class="container-xxl row justify-content-center align-items-center p-5">
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body m-1">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+    <div class="container p-4">
+        <h2 class="" style="text-align:center;">Destinos preferidos</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-2">
+            <div class="col">
+                <div class="card h-100 m-2">
+                    <img src="./assets/destination1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Cartagena</h5>
+                        <p class="card-text">Cartagena, la joya caribeña de Colombia. Sumérgete en la magia de esta
+                            ciudad amurallada, donde la historia colonial se combina con playas paradisíacas.</p>
+                    </div>
                 </div>
             </div>
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body m-1">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+            <div class="col">
+                <div class="card h-100 m-2">
+                    <img src="./assets/destination2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Bogotá</h5>
+                        <p class="card-text">No te pierdas la energía de Bogotá. Explora sus modernos museos, disfruta
+                            de su animada vida nocturna y déjate sorprender por la diversidad cultural de esta
+                            metrópolis cosmopolita.</p>
+                    </div>
                 </div>
             </div>
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body m-1">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body m-1">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+            <div class="col">
+                <div class="card h-100 m-2">
+                    <img src="./assets/destination3.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Medellín</h5>
+                        <p class="card-text">Descubre la transformación de Medellín, de una ciudad industrial a un
+                            destino turístico de primer nivel. Admira sus modernos sistemas de transporte y su
+                            impresionante paisaje montañoso.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- CARDS DE SITIOS -->
     <div class="container-fluid row justify-content-center align-items-center p-5">
-        <div class="container justify-content-center">
-            <h3 style="text-align:center;">Lugares en ofertas</h3>
+        <div class="info-oferta">
+            <h2 class="" style="text-align:center;">Ofertas</h2>
+            <p class="paragraph" style="text-align:center; font-size-adjust: 0.5;">Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Itaque vitae eaque nam nostrum obcaecati eos corporis, magni sequi
+                architecto laboriosam ea dolor accusantium voluptas et aspernatur placeat dolore quos distinctio.</p>
         </div>
-        <div class="card m-3 card-oferta p-1" style="width: 24rem;">
-            <img src="../view/assets/img/destination1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+        <div class="container-xxl row justify-content-center align-items-center p-5">
+            <div class="card m-2" style="width: 18rem;">
+                <div class="card-body h-100 m-1">
+                    <h5 class="card-title">¿Tienes auna Tarjeta AriYoyito?</h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">¿Tienes auna Tarjeta AriYoyito?</h6> -->
+                    <p class="card-text">Descubre cómo activarla, aprende a usarla en sencillos pasos y disfruta de
+                        todos sus beneficios.</p>
+
+                </div>
             </div>
-        </div>
-        <div class="card m-3 card-oferta p-1" style="width: 24rem;">
-            <img src="../view/assets/img/destination2.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+            <div class="card m-" style="width: 18rem;">
+                <div class="card-body h-100 m-1">
+                    <h5 class="card-title">Ya eliges cómo volar, ¡Ahora elige qué comer!</h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Ya eliges cómo volar, ¡Ahora elige qué comer!</h6> -->
+                    <p class="card-text">Disfruta desde el 1 de diciembre nuestra nueva oferta de venta de snacks a
+                        bordo.</p>
+
+                </div>
             </div>
-        </div>
-        <div class="card m-3 card-oferta p-1" style="width: 24rem;">
-            <img src="../view/assets/img/destination3.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+            <div class="card m-2" style="width: 18rem;">
+                <div class="card-body h-100 m-1">
+                    <h5 class="card-title">Recarga, conecta y descansa</h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Recarga, conecta y descansa</h6> -->
+                    <p class="card-text">Accede a nuestros Avianca Lounges y disfruta una experiencia todo incluido en
+                        las Salas VIP.</p>
+
+                </div>
+            </div>
+            <div class="card m-2" style="width: 18rem;">
+                <div class="card-body h-100 m-1">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+
+                </div>
             </div>
         </div>
     </div>
@@ -210,11 +220,14 @@ require('../controller/C_Rutas.php');
             <div class="container p-4">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                        <h5 class="text-uppercase">Footer Content</h5>
+                        <h5 class="text-uppercase">Tu compañoa de vuelos</h5>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                            molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae 
-                            aliquam voluptatem veniam, est atque cumque eum delectus sint!
+                            ¡Descubre el mundo desde las alturas y cumple tus sueños de viaje!
+                        </p>
+                        <p>
+
+                            Oferta especial: "¡Reserva ahora y obtén un 15% de descuento en tu próximo vuelo
+                            internacional!"
                         </p>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4 mb-md-0">

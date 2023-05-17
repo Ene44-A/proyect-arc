@@ -1,5 +1,3 @@
-Nem db_aerolinea
-
 CREATE TABLE tbl_usuario(
     ID_usuario int AUTO_INCREMENT NOT NULL PRIMARY KEY,
     correo_usuario varchar(50),
