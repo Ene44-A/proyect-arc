@@ -97,9 +97,9 @@ if (!isset($_SESSION['tbl_usuario'])) {
             <div class="container">
                 <div class="card p-4">
                     <div class="input-group input-group-lg">
-                        <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
+                        <span class="input-group-text" id="inputGroup-sizing-lg">Ruta</span>
                         <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-lg" readonly value="<?php echo $ruta; ?>">
+                            aria-describedby="inputGroup-sizing-lg" disabled value="<?php echo $ruta; ?>">
                     </div>
                     <div class="row">
                         <div class="col">
@@ -125,20 +125,28 @@ if (!isset($_SESSION['tbl_usuario'])) {
                             </div>
 
                             <div class="col-12 mt-2">
-                                <label>Fecha de salida</label>
+                                <label>Fecha Salida-Llegada</label>
                                 <div class="input-group">
                                     <div class="input-group-text"><i class='bx bxs-plane-take-off'></i></div>
                                     <input type="text" class="form-control" id="fecha_de_salida" name="fecha_de_salida"
                                         placeholder="<?php echo $fecha_salida; ?>" autocomplete="off"
                                         value="<?php echo $fecha_salida; ?>" readonly />
+                                        <div class="input-group-text"><i class='bx bxs-plane-land'></i></div>
+                                    <input type="text" class="form-control" id="fecha_de_llegada"
+                                        name="fecha_de_llegada" placeholder="<?php echo $fecha_llegada; ?>"
+                                        autocomplete="off" readonly />
                                 </div>
                             </div>
                             <div class="col-12 mt-2">
-                                <label>Fecha de llegada</label>
+                                <label>Hora Salida-Llegada</label>
                                 <div class="input-group">
+                                <div class="input-group-text"><i class='bx bxs-plane-land'></i></div>
+                                    <input type="text" class="form-control" id="fecha_de_llegada"
+                                        name="fecha_de_llegada" placeholder="<?php echo $hora_salida; ?>"
+                                        autocomplete="off" readonly />
                                     <div class="input-group-text"><i class='bx bxs-plane-land'></i></div>
                                     <input type="text" class="form-control" id="fecha_de_llegada"
-                                        name="fecha_de_llegada" placeholder="<?php echo $fecha_llegada; ?>"
+                                        name="fecha_de_llegada" placeholder="<?php echo $hora_llegada; ?>"
                                         autocomplete="off" readonly />
                                 </div>
                             </div>
@@ -248,12 +256,24 @@ if (!isset($_SESSION['tbl_usuario'])) {
                                     </div>
                                     <input type="number" class="form-control" id="correo_usuario" name="asientos"
                                         max="<?php echo $cantidad_asientos; ?>" placeholder="cantidad de vuelos"
-                                        autocomplete="off">
+                                        autocomplete="off" min="1">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <button type="submit" name="enviar_reserva" class="btn btn-success px-4 float-end mt-4"
                                     id="liveToastBtn">Comprar</button>
+                                    <?php 
+                                    if($cantidad_asientos==0)
+                                    {
+                                        echo "No hay asientos disponibles";
+                                        echo '
+                                            <script>
+                                            window.location = "vuelos.php";
+                                            alert("No hay mas vuelos disponibles a este destino");
+                                            </script>
+                                            ';
+                                     }
+                                  ?>
                             </div>
                         </div>
 
