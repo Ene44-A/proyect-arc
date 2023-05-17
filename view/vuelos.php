@@ -44,13 +44,10 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 </button>
                 <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
                     <i class='bx bxs-plane-take-off'></i>
-                    <a class='navbar-brand' href='#'>Hidden brand</a>
+                    <a class='navbar-brand' href='#'>Tucompañiadevuelos</a>
                     <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='#'>Home</a>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='#'>Link</a>
+                            <a class='nav-link active' aria-current='page' href='./index.php'>Inicio</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="ingresar" action="V_profile-users.php">
@@ -59,6 +56,12 @@ if (!isset($_SESSION['tbl_usuario'])) {
                     </form>
                 </div>
             </div>
+            <style>
+                .navbar-collapse i {
+                    font-size: 40px;
+                    margin: 0 20px;
+                }
+            </style>
         </nav>
     </header>
     <!-- ENTRADA DE USUARIOS -->
@@ -125,40 +128,82 @@ if (!isset($_SESSION['tbl_usuario'])) {
             </table>
         </div>
     </section>
-    <div class="vuelos-pricing-tables-container">
-        <h3 class="vuelos-table__title">Pricing</h3>
-        <div class="vuelos-text-container">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil quam repudiandae error aliquid
-                necessitatibus, in laudantium reprehenderit alias fuga, ratione consequuntur neque voluptatem quae
-                dolorem magni. Odio blanditiis quos modi?</p>
+    <div class="container p-4">
+        <div class="row"></div>
+        <div claass=container col-sm-6 p-4 m-4">
+            <h3 class="vuelos-table__title">Nuevas Ofertas</h3>
+            <p class="text-center">¡Descuentos exclusivos para turistas! ¡Ahorra en tus próximos viajes y descubre el
+                mundo con nuestra empresa de vuelos!
+            </p>
+            <p class="text-center">
+                Descuento de bienvenida: ¡10% de descuento en tu primer vuelo con nosotros! Disfruta de una experiencia
+                inolvidable desde el momento en que te unes a nuestra comunidad de viajeros.</p>
         </div>
-        <div class="vuelos-cards-container">
-            <div class="vuelos__card-item">
-                <h4 class="fs-2 mt-4 mb-4">Personal</h4>
-                <div class="pice-container">
-                    <span class="fs-5">$</span>
-                    <span class="price-main">10</span>
-                    <span class="fs-5">.00</span>
-                </div>
-                <p class="fs-5">10 Projects</p>
-                <p class="fs-5">380 Downloads</p>
-                <p class="fs-5">24/7 Support</p>
-
-                <button type="button" class="btn btn-secondary mt-2">Buy</button>
+        <div class="container">
+            <div class="row row-cols-3 row-cols-md-3 g-2">
+                <?php
+                if (!$vuelosInfo) {
+                    echo "<tr>";
+                    echo "<td>";
+                    echo "nafa mi fai";
+                    echo "</td>";
+                    echo "</tr>";
+                } else {
+                    foreach ($vuelosInfo as $alias) {
+                        $precios = $alias['precio'];
+                        $descripcion = $alias['descripcion'];
+                        $descuento = $precios * 0.15;
+                        $precioConDescuento = $precios - $descuento;
+                        ?>
+                        <div class="col">
+                            <div class="container">
+                                <div class="card text-center m-3 mb-3 p-2" style="width: 20rem;">
+                                    <!-- <img src="./assets/img/Ship2.jpg" class="card-img-top" alt="..."> -->
+                                    <div class="card-body">
+                                        <h5 class="card-title">¡Oferta!</h5>
+                                        <p class="fs-5">Antes</p>
+                                        <p class="fs-5">
+                                            <?php echo $descripcion; ?>
+                                        </p>
+                                        <div class="pice-container text-center">
+                                            <span class="fs-5">$</span>
+                                            <span class="price-main">
+                                                <?php echo $precioConDescuento; ?>
+                                            </span>
+                                            <span class="fs-5">.00</span>
+                                        </div>
+                                        <p class="fs-5">¡AHORA!</p>
+                                        <p class="fs-5 price">
+                                            <?php echo $precios; ?>
+                                        </p>
+                                        <p class="card-text">With supporting text below as a natural lead-in to additional
+                                            content.
+                                        </p>
+                                        <a href="#" class="btn btn-danger">Comprar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }
+                ?>
             </div>
         </div>
     </div>
-
     <footer class="bg-secondary text-white text-center text-md-start">
         <footer class="bg-secondary text-white text-center text-md-start">
             <div class="container p-4">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                        <h5 class="text-uppercase">Footer Content</h5>
+                        <h5 class="text-uppercase">Tu compañoa de vuelos</h5>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                            molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-                            aliquam voluptatem veniam, est atque cumque eum delectus sint!
+                            ¡Descubre el mundo desde las alturas y cumple tus sueños de viaje!
+                        </p>
+                        <p>
+
+                            Oferta especial: "¡Reserva ahora y obtén un 15% de descuento en tu próximo vuelo
+                            internacional!"
                         </p>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -212,7 +257,11 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 <a class="text-white" href="https://google.com/">google.com</a>
             </div>
         </footer>
-
+        <style>
+            .price {
+                text-decoration: line-through;
+            }
+        </style>
         <script src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'
             integrity='sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN'
