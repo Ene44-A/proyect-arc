@@ -86,10 +86,10 @@ require('../controller/C_Rutas.php');
             ?> -->
     </header>
     <!-- FORMATO DE ENTRADA PARA VUELOS -->
-    <div class="container">
+    <div class="container p-3">
         <div class="container container-check">
-            <form class="row gy-2 gx-3 align-items-center">
-                <div class="col-lg">
+            <form action="./V_login.php" class="row gy-1 gx-1 align-items-center p-3">
+                <div class="col-ms">
                     <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
                     <div class="input-group">
                         <div class="input-group-text">Ruta:</div>
@@ -103,31 +103,10 @@ require('../controller/C_Rutas.php');
                         </select>
 
                         <!-- <input type="search" placeholder="Seleccione una ruta" id="mySearch" name="q" /> -->
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <label class="visually-hidden" for="autoSizingInputGroup">Salida</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Salida</div>
-                        <input type="date" class="form-control" id="autoSizingInputGroup">
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <label class="visually-hidden" for="autoSizingInputGroup">Regreso</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Regreso</div>
-                        <input type="date" class="form-control" id="autoSizingInputGroup">
-                    </div>
-                </div>
-                <div class="container-md row gy-2 gx-3 align-items-center">
-                    <div class="col-sm">
-
-                    </div>
-                    <div class="col-sm">
+                        <button type="submit" class="btn btn-success">Consultar</button>
                     </div>
                 </div>
                 <div class="col-md">
-                    <button type="submit" class="btn btn-success">Consultar</button>
                 </div>
             </form>
         </div>
@@ -172,9 +151,13 @@ require('../controller/C_Rutas.php');
     <div class="container-fluid row justify-content-center align-items-center p-5">
         <div class="info-oferta">
             <h2 class="" style="text-align:center;">Ofertas</h2>
-            <p class="paragraph" style="text-align:center; font-size-adjust: 0.5;">Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Itaque vitae eaque nam nostrum obcaecati eos corporis, magni sequi
-                architecto laboriosam ea dolor accusantium voluptas et aspernatur placeat dolore quos distinctio.</p>
+            <p class="paragraph" style="text-align:center; font-size-adjust: 0.5;">¡Descuentos exclusivos para turistas!
+                ¡Ahorra en tus próximos viajes y descubre el mundo con nuestra empresa de vuelos!
+            </p>
+            <p>
+
+                <b>Descuento de bienvenida:</b> ¡15% de descuento en tu primer vuelo con nosotros! Disfruta de una experiencia
+                inolvidable desde el momento en que te unes a nuestra comunidad de viajeros.</p>
         </div>
         <div class="container-xxl row justify-content-center align-items-center p-5">
             <div class="card m-2" style="width: 18rem;">
