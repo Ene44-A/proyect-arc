@@ -70,7 +70,8 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 $estado_vuelo = $route['estado'];
                 $cantidad_asientos = $route['asientos_disponibles'];
                 $precio_tiket = $route['precio'];
-
+                $hora_salida = $route['hora_salida'];
+                $hora_llegada = $route['hora_llegada'];
             }
 
             if (!$user_query) {
@@ -252,7 +253,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                             </div>
                             <div class="col-12">
                                 <button type="submit" name="enviar_reserva" class="btn btn-success px-4 float-end mt-4"
-                                    id="liveToastBtn">Comprar</button>a
+                                    id="liveToastBtn">Comprar</button>
                             </div>
                         </div>
 
