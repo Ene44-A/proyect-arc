@@ -87,13 +87,13 @@ VALUES ('michael.ayalatr@amigo.edu.co', 1029384765, 'Michael Ayala'),
 ('SergioRamos@hotmail.com', 0404105, 'Sergio Ramos'),
 ('Dibumartinez@hotmail.com', 1013080, 'Dibu Martinez');
 
-INSERT INTO tbl_pasajero (nombre_pasajero, telefono, fecha_nacimiento, correo_pasajero)
-VALUES ('Michael Ayala', 310712318, '2001-08-07', 'michael.ayalatr@amigo.edu.co'),
-('Leo Messi', 101930711, '1987-06-24', 'LeoMessi@hotmail.com'),
-('Cristiano Ronaldo', 717101199, '1985-02-05', 'CristianoRonaldo@hotmail.com'),
-('Jh Delacruz', 311817459, '1995-04-14', 'JhDelacruz@hotmail.com'),
-('Sergio Ramos', 010471071, '1986-03-30', 'SergioRamos@hotmail.com'),
-('Dibu Martinez', 010897823, '1992-09-02', 'Dibumartinez@hotmail.com');
+INSERT INTO tbl_pasajero (ID_pasajero, nombre_pasajero, telefono, fecha_nacimiento, correo_pasajero, asientos_reservados)
+VALUES ('1', 'Michael Ayala', 310712318, '2001-08-07', 'michael.ayalatr@amigo.edu.co', '1'),
+('2', 'Leo Messi', 101930711, '1987-06-24', 'LeoMessi@hotmail.com', '2'),
+('3', 'Cristiano Ronaldo', 717101199, '1985-02-05', 'CristianoRonaldo@hotmail.com', '2'),
+('4', 'Jh Delacruz', 311817459, '1995-04-14', 'JhDelacruz@hotmail.com', '1'),
+('5', 'Sergio Ramos', 010471071, '1986-03-30', 'SergioRamos@hotmail.com', '3'),
+('6', 'Dibu Martinez', 010897823, '1992-09-02', 'Dibumartinez@hotmail.com', '1');
 
 INSERT INTO tbl_aerolinea (nombre_aerolinea)
 VALUES ('HardFly'),
@@ -117,21 +117,21 @@ VALUES ('RIONEGRO - SAN ANDRES ISLAS - COLOMBIA'),
 ('BOGOTA-COLOMBIA - CANBERRA-AUSTRALIA'),
 ('BOGOTA-COLOMBIA - BUENOS AIRES-ARGENTINA');
 
-INSERT INTO tbl_vuelo (matricula_avion, ID_rutas, fecha_salida, fecha_llegada, estado, asientos_disponibles, precio)
-VALUES ('HK-4558',1,'2023-04-20', '2023-04-20', 'Disponible', 15, 190000),
-('HK-5348',2,'2023-04-21', '2023-04-21', 'Disponible', 10, 240000),
-('HK-652V',3,'2023-04-24', '2023-04-24', 'Disponible', 5, 200000),
-('N-757AV',4,'2023-04-25', '2023-04-26', 'Disponible', 48, 3240000),
-('HK-5148',5,'2023-04-27', '2023-04-29', 'Disponible', 20, 9180000),
-('HK-647V',6,'2023-05-01', '2023-05-02', 'Disponible', 13, 785000);
+INSERT INTO tbl_vuelo (matricula_avion, ID_rutas, fecha_salida, fecha_llegada, hora_salida, hora_llegada, estado, asientos_disponibles, precio)
+VALUES ('HK-4558',1,'2023-04-20', '2023-04-20', '08:30:00', '09:05:00', 'Disponible', 15, 190000),
+('HK-5348',2,'2023-04-21', '2023-04-21', '10:00:00', '10:40:00', 'Disponible', 10, 240000),
+('HK-652V',3,'2023-04-24', '2023-04-24', '14:00:00', '15:00:00', 'Disponible', 5, 200000),
+('N-757AV',4,'2023-04-25', '2023-04-26', '17:30:00', '03:20:00', 'Disponible', 48, 3240000),
+('HK-5148',5,'2023-04-27', '2023-04-29', '15:00:00', '00:20:00', 'Disponible', 20, 9180000),
+('HK-647V',6,'2023-05-01', '2023-05-02', '07:30:00', '13:40:00', 'Disponible', 13, 785000);
 
 INSERT INTO tbl_reserva (estado, fecha_reserva, ID_usuario, precio_total)
 VALUES ('Confirmado', '2023-04-18', 4, 190000),
-('En espera', '2023-04-23', 2, 3240000),
-('Confirmado', '2023-04-25', 3, 9180000),
+('En espera', '2023-04-23', 2, 6480000),
+('Confirmado', '2023-04-25', 3, 18360000),
 ('Confirmado', '2023-04-30', 1, 785000),
-('En espera', '2023-04-29', 1, 185000),
-('Confirmado', '2023-04-22', 5, 200000);
+('En espera', '2023-04-29', 6, 185000),
+('Confirmado', '2023-04-22', 5, 600000);
 
 INSERT INTO tbl_detalle_reserva (COD_reserva, COD_vuelo, ID_pasajero, estado)
 VALUES (1, 1, 4, 'Confirmado'),
