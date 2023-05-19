@@ -49,9 +49,22 @@
 
             return $retorno;
         } 
-
+         
         public function getSingleVueloInfo($ruta_seleccionada){
-            $query = $this->con->query("SELECT * FROM tbl_rutas INNER JOIN tbl_vuelo ON tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas where descripcion='$ruta_seleccionada'");
+            $query = $this->con->query("SELECT * FROM tbl_rutas INNER JOIN tbl_vuelo ON
+             tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas where descripcion='$ruta_seleccionada'");
+            $retorno =[];
+            $i = 0;
+            while($fila = $query->fetch_assoc()){ //devuelve el arreglo
+                $retorno[$i] = $fila;
+                $i++;
+            }
+            return $retorno;
+        } 
+
+        public function getVueloPorId($id_vuelo){
+            $query = $this->con->query("SELECT * FROM tbl_rutas INNER JOIN tbl_vuelo ON
+             tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas where COD_vuelo='$id_vuelo'");
             $retorno =[];
             $i = 0;
             while($fila = $query->fetch_assoc()){ //devuelve el arreglo

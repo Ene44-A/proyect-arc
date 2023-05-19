@@ -143,7 +143,7 @@ include('../controller/confirm_session.php');
                                     <td><?php echo $alias['asientos_disponibles'] ?></td>
                                     <td><?php echo $alias['precio'] ?></td>
                                     <td><?php  $id = $alias['COD_vuelo'] ?></td>
-                                    <td > <?php echo "<a href='V_reserve-flight.php?prueba=$id'>Reservar</a>";?></td>
+                                    <td > <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Reservar</a>";?></td>
                                 </tr>
                                 <?php 
                                 endforeach;
