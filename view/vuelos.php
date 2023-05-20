@@ -108,12 +108,13 @@ if (!isset($_SESSION['tbl_usuario'])) {
     <section class="vuelos-table-main-container">
         <div class="vuelos-table-container">
             <h3 class="vuelos-table__title">Vuelos</h3>
-            <table class="table table table-striped">
+            <table class="table table table-striped tablita-info">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Ruta</th>
                         <th>Matricula Avion</th>
+                        <th>Hora de salida</th>
+                        <th>Hora de llegada</th>
                         <th>Precio</th>
                     </tr>
                 </thead>
@@ -128,9 +129,10 @@ if (!isset($_SESSION['tbl_usuario'])) {
                     } else {
                         foreach ($vuelosInfo as $alias) {
                             echo "<tr>";
-                            echo "<td>" . $alias['ID_rutas'] . "</td>";
                             echo "<td>" . $alias['descripcion'] . "</td>";
                             echo "<td>" . $alias['matricula_avion'] . "</td>";
+                            echo "<td>" . $alias['hora_salida'] . "</td>";
+                            echo "<td>" . $alias['hora_llegada'] . "</td>";
                             echo "<td>" . $alias['precio'] . "</td>";
                             echo "</tr>";
                         }
@@ -140,7 +142,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
             </table>
         </div>
     </section>
-    <div class="container p-4">
+    <div class="container container-master-oferta p-4">
         <div class="row"></div>
         <div claass="container col-sm-6 p-4 m-4">
             <h3 class="vuelos-table__title">Nuevas Ofertas</h3>
@@ -151,7 +153,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 Descuento de bienvenida: ¡10% de descuento en tu primer vuelo con nosotros! Disfruta de una experiencia
                 inolvidable desde el momento en que te unes a nuestra comunidad de viajeros.</p>
         </div>
-        <div class="container">
+        <div class="container container-ofertas">
             <div class="row row-cols-3 row-cols-md-3 g-2">
                 <?php
                 if (!$vuelosInfo) {
@@ -203,6 +205,30 @@ if (!isset($_SESSION['tbl_usuario'])) {
             </div>
         </div>
     </div>
+                <style>
+                    .vuelos-table-container{
+                        padding-bottom:20px;
+                    overflow: hidden;
+                }
+                .container-ofertas{
+                        overflow: hidden;
+                        max-height: 1200px;
+                    }
+                    .container-master-oferta{
+                        padding-bottom: 40px;
+                        /* border: 2pc solid red; */
+                        position: relative;
+                    }
+                    .container-master-oferta::after{
+                        content: "";
+                        position:absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(to bottom, rgba(0,0,0,0)0%,rgba(0,0,0,0)25%,rgba(255,255,255,0)70%,rgba(255,255,255,1)100%);
+                    }
+                </style>
     <footer class="bg-secondary text-white text-center text-md-start">
         <footer class="bg-secondary text-white text-center text-md-start">
             <div class="container p-4">
