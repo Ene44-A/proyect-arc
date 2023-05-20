@@ -48,10 +48,15 @@ if (!isset($_SESSION['tbl_usuario'])) {
         $user_email = new Login;
         $user_query = $user_email->getIdUser($_SESSION['tbl_usuario']);
 
+   
         $ruta = $_GET['route-selected'];
-
+        $fechas = $_GET['fecha-selected'];
+        
+        echo $fechas;      
         $particularRoute = new Ruta();
-        $myRoute = $particularRoute->getSingleVueloInfo($ruta);
+        $vuelosInfoBuscar = $particularRoute->getVuelosInfoBuscar($ruta,$fechas);
+
+        echo "Resultado:".$_GET['prueba'];
 
         if (!$myRoute) {
             echo "</tr>";
@@ -61,7 +66,6 @@ if (!isset($_SESSION['tbl_usuario'])) {
             echo "</tr>";
         } else {
             foreach ($myRoute as $route) {
-
                 $id_ruta = $route['ID_rutas'];
                 $COD_vuelo = $route['COD_vuelo'];
                 $fecha_salida = $route['fecha_salida'];
@@ -70,8 +74,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 $estado_vuelo = $route['estado'];
                 $cantidad_asientos = $route['asientos_disponibles'];
                 $precio_tiket = $route['precio'];
-                $hora_salida = $route['hora_salida'];
-                $hora_llegada = $route['hora_llegada'];
+
             }
 
             if (!$user_query) {
@@ -124,19 +127,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                                 </div>
                             </div>
 
-                            <div class="col-12 mt-2">
-                                <label>Fecha Salida-Llegada</label>
-                                <div class="input-group">
-                                    <div class="input-group-text"><i class='bx bxs-plane-take-off'></i></div>
-                                    <input type="text" class="form-control" id="fecha_de_salida" name="fecha_de_salida"
-                                        placeholder="<?php echo $fecha_salida; ?>" autocomplete="off"
-                                        value="<?php echo $fecha_salida; ?>" readonly />
-                                        <div class="input-group-text"><i class='bx bxs-plane-land'></i></div>
-                                    <input type="text" class="form-control" id="fecha_de_llegada"
-                                        name="fecha_de_llegada" placeholder="<?php echo $fecha_llegada; ?>"
-                                        autocomplete="off" readonly />
-                                </div>
-                            </div>
+                          
                             <div class="col-12 mt-2">
                                 <label>Hora Salida-Llegada</label>
                                 <div class="input-group">
@@ -261,9 +252,9 @@ if (!isset($_SESSION['tbl_usuario'])) {
                             </div>
                             <div class="col-12">
                                 <button type="submit" name="enviar_reserva" class="btn btn-success px-4 float-end mt-4"
-                                    id="liveToastBtn">Comprar</button>
+                                    id="liveToastBtn">Reservar</button>
                                     <?php 
-                                    if($cantidad_asientos==0)
+                                   /*  if($cantidad_asientos==0)
                                     {
                                         echo "No hay asientos disponibles";
                                         echo '
@@ -272,7 +263,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                                             alert("No hay mas vuelos disponibles a este destino");
                                             </script>
                                             ';
-                                     }
+                                     } */
                                   ?>
                             </div>
                         </div>

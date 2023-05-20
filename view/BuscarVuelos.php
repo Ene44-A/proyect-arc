@@ -1,21 +1,8 @@
 <?php
 
-//require_once('../model/Conection.php');
+require_once('../model/Conection.php');
 require_once('../controller/C_Rutas.php');
 include('../controller/confirm_session.php');
-/* session_start();
-if (!isset($_SESSION['tbl_usuario'])) {
-    echo '
-            <script>
-                alert("Debes inicar sesion");
-                window.location = "V_login.php";
-            </script>
-            ';
-    //header('location: login.php');
-    session_destroy();
-    die();
-} */
-
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +59,6 @@ if (!isset($_SESSION['tbl_usuario'])) {
     <section>
         <div class="container p-2 gx4">
             <div class="container container-check">
-               
                 <form class="row gy-2 gx-3 align-items-center" action="BuscarVuelos.php" method="GET">
                     <div class="col-sm">
                         <label>Rutas<span class="text-danger">*</span></label>
@@ -93,12 +79,15 @@ if (!isset($_SESSION['tbl_usuario'])) {
                             <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
                             <div class="input-group">
                                 <div class="input-group-text">Fecha Salida:</div>
-                                <input type="date" name="fecha-selected" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>                              
+                                <input type="date" name="fecha-selected" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
+                              
                             </div>
                         </div>
+                        
                     </div>
                     <div class="col-ms">
-                        <button type="submit" id="myButton" class="btn btn-success">Buscar</button>
+                        <button type="submit" id="myButton" class="btn btn-success">Consultar</button>
+                       
                     </div>
                 </form>
             </div>
@@ -107,42 +96,66 @@ if (!isset($_SESSION['tbl_usuario'])) {
     <!-- CUERPO DE PAGINA -->
     <section class="vuelos-table-main-container">
         <div class="vuelos-table-container">
-            <h3 class="vuelos-table__title">Vuelos</h3>
+            <h3 class="vuelos-table__title">Vuelos disponibles</h3>
             <table class="table table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Vuelo</th>
                         <th>Ruta</th>
                         <th>Matricula Avion</th>
                         <th>Precio</th>
+                        <th>Fecha Llegada</th>
+                        <th>Hora Salida</th>
+                        <th>Ascientos Disponibles</th>
+                        <th>Precio</th>
+                        <th>Seleccion opcion</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if (!$vuelosInfo) {
-                        echo "<tr>";
-                        echo "<td>";
-                        echo "nafa mi fai";
-                        echo "</td>";
-                        echo "</tr>";
-                    } else {
-                        foreach ($vuelosInfo as $alias) {
-                            echo "<tr>";
-                            echo "<td>" . $alias['ID_rutas'] . "</td>";
-                            echo "<td>" . $alias['descripcion'] . "</td>";
-                            echo "<td>" . $alias['matricula_avion'] . "</td>";
-                            echo "<td>" . $alias['precio'] . "</td>";
-                            echo "</tr>";
-                        }
-                    }
-                    ?>
+                     require_once('../model/Conection.php');
+                     require_once('../controller/C_Rutas.php');
+                     include('../controller/C_login.php');
+             
+                     $user_email = new Login();
+                     $user_query = $user_email->getIdUser($_SESSION['tbl_usuario']);
+             
+                        
+                        $ruta = $_GET['route-selected'];
+                        $fechas = $_GET['fecha-selected'];
+                        
+                        echo $fechas;      
+                        $particularRoute = new Ruta();
+                        $vuelosInfoBuscar = $particularRoute->getVuelosInfoBuscar($ruta,$fechas);
+
+                       
+                                foreach ($vuelosInfoBuscar as $alias):
+                                
+                            ?>
+                            <tr>
+
+                                    <td><?php echo $alias['COD_vuelo'] ?></td>
+                                    <td><?php echo $alias['descripcion'] ?></td>
+                                    <td><?php echo $alias['matricula_avion'] ?></td>
+                                    <td><?php echo $alias['precio'] ?></td>
+                                    <td><?php echo $alias['fecha_salida'] ?></td>
+                                    <td><?php echo $alias['hora_salida'] ?></td>
+                                    <td><?php echo $alias['asientos_disponibles'] ?></td>
+                                    <td><?php echo $alias['precio'] ?></td>
+                                    <td><?php  $id = $alias['COD_vuelo'] ?></td>
+                                    <td > <?php echo "<a href='V_reserve-flight.php?prueba=$id'>Reservar</a>";?></td>
+                                </tr>
+                                <?php 
+                                endforeach;
+                                ?>
+                   
                 </tbody>
             </table>
         </div>
     </section>
     <div class="container p-4">
         <div class="row"></div>
-        <div claass=container col-sm-6 p-4 m-4">
+        <div claass="container col-sm-6 p-4 m-4">
             <h3 class="vuelos-table__title">Nuevas Ofertas</h3>
             <p class="text-center">¡Descuentos exclusivos para turistas! ¡Ahorra en tus próximos viajes y descubre el
                 mundo con nuestra empresa de vuelos!
