@@ -18,7 +18,7 @@ if (!$user_query) {
     }
 }
 $infoReserva = new Reserva();
-$myReserva = $infoReserva->getUsuarioReservas($user_id);
+$myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
 
 ?>
 <!DOCTYPE html>

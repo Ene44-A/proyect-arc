@@ -17,9 +17,8 @@ if(isset($_GET['registro']))
     echo '
             <script>
                 // alert("Esta correo ya se registro");
-                window.location = "../view/vuelos.php";
+                window.location = "../view/V_login.php";
             </script>
             ';
-    
 }
 ?>

@@ -18,7 +18,9 @@ if (!$user_query) {
     }
 }
 $infoReserva = new Reserva();
-$myReserva = $infoReserva->getUsuarioReservas($user_id);
+$myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,6 +96,7 @@ $myReserva = $infoReserva->getUsuarioReservas($user_id);
                         <tr>
                             <th>N°</th>
                             <th>Codigo reserva</th>
+                            <th>Destino</th>
                             <th>Fecha reserva</th>
                             <th>Fecha vuelo</th>
                             <th>Estado</th>
@@ -104,13 +107,14 @@ $myReserva = $infoReserva->getUsuarioReservas($user_id);
                     <tbody>
                         <?php
                         foreach ($myReserva as $reseva):
+                            
                             ?>
                             <tr>
                                 <td>
-                                    <?php echo '#' ?>
+                                    #<?php echo $reseva['COD_reserva'] ?>
                                 </td>
                                 <td>
-                                    <?php echo $reseva['COD_reserva'] ?>
+                                    <?php $infoReserva = new Reserva(); $ruteForID = $infoReserva->getNameRuteByID(intval($reserva['ID_rutas'])); echo $ruteForID['descripcion'] ?>
                                 </td>
                                 <td>
                                     <?php echo $reseva['fecha_reserva'] ?>
