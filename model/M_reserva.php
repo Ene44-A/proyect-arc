@@ -63,7 +63,8 @@ class Reserva{
     }
 
     public function getUsuarioReservas($id_user){
-        $userId = $this->con->query("SELECT * FROM tbl_usuario INNER JOIN tbl_reserva ON tbl_usuario.ID_usuario = tbl_reserva.ID_usuario WHERE tbl_usuario.ID_usuario = $id_user");
+        $userId = $this->con->query("SELECT  r.COD_reserva,r.fecha_reserva, v.fecha_salida,r.estado FROM tbl_usuario as u, tbl_reserva as r, tbl_detalle_reserva as d, tbl_vuelo as v
+        WHERE u.ID_usuario = '$id_user' and r.COD_reserva = d.COD_reserva");
         $retorno =[];
         $i = 0;
         while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
@@ -74,7 +75,10 @@ class Reserva{
     }
 
     public function getReservaMasDetalle($COD_reserva){
-        $userId = $this->con->query("SELECT * FROM tbl_reserva INNER JOIN tbl_detalle_reserva ON tbl_reserva.COD_reserva = tbl_detalle_reserva.COD_reserva WHERE tbl_detalle_reserva.COD_reserva=$COD_reserva");
+        $userId = $this->con->query("SELECT * FROM tbl_reserva 
+        INNER JOIN tbl_detalle_reserva 
+        ON tbl_reserva.COD_reserva = tbl_detalle_reserva.COD_reserva 
+        WHERE tbl_detalle_reserva.COD_reserva=$COD_reserva");
         $retorno =[];
         $i = 0;
         while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
@@ -107,6 +111,31 @@ class Reserva{
         }
         return $retorno;
     }
+/*    public function getReservaInfoBuscar($ruta, $fecha_seleccionada){
+        $query = $this->con->query("SELECT * FROM tbl_vuelo
+        INNER JOIN tbl_detalle_reserva ON tbl_vuelo.COD_vuelo = tbl_detalle_reserva.COD_vuelo
+        INNER JOIN tbl_pasajero ON tbl_detalle_reserva.ID_detalle_reserva = tbl_pasajero.ID_pasajero 
+        INNER JOIN tbl_rutas ON tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas
+        WHERE tbl_rutas.descripcion='$ruta' and fecha_salida='$fecha_seleccionada';");
+        $retorno =[];
+        $i = 0;
+        while($fila = $query->fetch_assoc()){ //devuelve el arreglo
+            $retorno[$i] = $fila;
+            $i++;
+        }
+    }
+                  
+     public function getVueloPorId($id_reserva){
+        $query = $this->con->query("SELECT * FROM tbl_rutas INNER JOIN tbl_vuelo ON
+         tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas where COD_vuelo='$id_vuelo'");
+        $retorno =[];
+        $i = 0;
+        while($fila = $query->fetch_assoc()){ //devuelve el arreglo
+            $retorno[$i] = $fila;
+            $i++;
+        }
+        return $retorno;
+    } */
 
 
 }
