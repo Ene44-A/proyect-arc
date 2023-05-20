@@ -1,9 +1,11 @@
 <?php
 
-//require_once('../model/Conection.php');
 require_once('../controller/C_Rutas.php');
 include('../controller/confirm_session.php');
-/* session_start();
+require_once('../model/Conection.php');
+include('../controller/C_login.php');
+
+// session_start();
 if (!isset($_SESSION['tbl_usuario'])) {
     echo '
             <script>
@@ -14,8 +16,19 @@ if (!isset($_SESSION['tbl_usuario'])) {
     //header('location: login.php');
     session_destroy();
     die();
-} */
+}
 
+$user_info = new Login;
+$user_get_info = $user_info->getUserInfo($_SESSION['tbl_usuario']);
+
+if (!$user_get_info) {
+    echo "No hay datos para mostrar";
+} else {
+    foreach ($user_get_info as $user) {
+        $user_id = $user['ID_usuario'];
+        $user_name = $user['nombre_usuario'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +46,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
     <title>Index</title>
 </head>
 
-<body>
-    <header>
+<header>
         <nav class='navbar navbar-expand-md bg-body-tertiary'>
             <div class='container-fluid'>
                 <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
@@ -44,26 +56,44 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 </button>
                 <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
                     <i class='bx bxs-plane-take-off'></i>
-                    <a class='navbar-brand' href='#'>Tucompañiadevuelos</a>
+                    <a class='navbar-brand' href='./index.php'>Tucompañiadevuelos</a>
                     <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='./index.php'>Inicio</a>
+                            <a class='nav-link active trie-active' aria-current='page' href='./vuelos.php'>Reservar</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link active' aria-current='page' href='./V_info-reserveUser.php'>Mis reservas</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link active' aria-current='page' href='./V_info-reserve.php'>Mis Tickes</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="ingresar" action="V_profile-users.php">
-                        <button class="btn btn btn-success" type="submit"><i class='bx bx-user-circle'></i></button>
-                    </form>
+                    <div class="cont-user">
+                        <i class='bx bx-user-circle'></i>
+                        <h5>
+                            <?php echo $user_name ?>
+                        </h5>
+                        <form class="d-flex" role="logout" action="../model/M_logout.php">
+                            <button class="btn btn-outline-success" type="submit">cerrar sesión</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <style>
-                .navbar-collapse>i {
-                    font-size: 40px;
-                    margin: 0 20px;
+                .cont-user{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
-
-                .bx-user-circle {
+                .cont-user>h5{
+                    padding: 0 40px 0 10px;
+                    font-weight: 900;
+                }
+                .cont-user>i {
                     font-size: 25px;
-                    padding: 0 10px;
+                }
+                .trie-active{
+                    border-bottom: 4px solid rgb(21, 115, 17);
                 }
             </style>
         </nav>
@@ -72,7 +102,6 @@ if (!isset($_SESSION['tbl_usuario'])) {
     <section>
         <div class="container p-2 gx4">
             <div class="container container-check">
-               
                 <form class="row gy-2 gx-3 align-items-center" action="BuscarVuelos.php" method="GET">
                     <div class="col-sm">
                         <label>Rutas<span class="text-danger">*</span></label>

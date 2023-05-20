@@ -17,7 +17,8 @@ if (!$user_query) {
         $user_id = $user['ID_usuario'];
     }
 }
-
+$infoReserva = new Reserva();
+$myReserva = $infoReserva->getUsuarioReservas($user_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +37,7 @@ if (!$user_query) {
 </head>
 
 <body>
-<header>
+    <header>
         <nav class='navbar navbar-expand-md bg-body-tertiary'>
             <div class='container-fluid'>
                 <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
@@ -46,16 +47,18 @@ if (!$user_query) {
                 </button>
                 <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
                     <i class='bx bxs-plane-take-off'></i>
-                    <a class='navbar-brand' href='#'>Tucompañiadevuelos</a>
+                    <a class='navbar-brand' href='./index.php'>Tucompañiadevuelos</a>
                     <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='./index.php'>Inicio</a>
+                            <a class='nav-link active' aria-current='page' href='./vuelos.php'>Reservar</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='./V_info-reserveUser.php'>Mis reservas</a>
+                            <a class='nav-link active trie-active' aria-current='page'
+                                href='./V_info-reserveUser.php'>Mis
+                                reservas</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='./#'>Mis Tickes</a>
+                            <a class='nav-link active' aria-current='page' href='./V_info-reserve.php'>Mis Tickes</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="ingresar" action="V_reserveUser.php">
@@ -73,76 +76,152 @@ if (!$user_query) {
                     font-size: 25px;
                     padding: 0 10px;
                 }
+
+                .trie-active {
+                    border-bottom: 4px solid rgb(21, 115, 17);
+                }
             </style>
         </nav>
     </header>
-    
+
     <!-- CUERPO DE PAGINA -->
     <div class="container text-center">
         <section class="vuelos-table-main-container">
-                <div class="vuelos-table-container">
-                    <h3 class="vuelos-table__title">Gestione sus reserva</h3>
-                    <table class="table table table-striped">
-                        <thead>
+            <div class="vuelos-table-container">
+                <h3 class="vuelos-table__title">Gestione sus reserva</h3>
+                <table class="table table table-striped">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Codigo reserva</th>
+                            <th>Fecha reserva</th>
+                            <th>Fecha vuelo</th>
+                            <th>Estado</th>
+                            <th>Precio total</th>
+                            <th>Seleccion opcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($myReserva as $reseva):
+                            ?>
                             <tr>
-                                <th>N°</th>
-                                <th>Codigo reserva</th>
-                                <th>Fecha reserva</th>
-                                <th>Fecha vuelo</th>
-                                <th>Estado</th>
-                                <th>Precio total</th>
-                                <th>Seleccion opcion</th>
-                                </tr>
-                        </thead>
-                        <tbody>
-                                    <?php
-                                                 //echo $user_id;
-                               
-                                                //$correo = $_SESSION['correo_pasajero'];
-                                                /* echo $fechas;      
-                                                echo $ruta;  */     
-                                                //echo $correo;  
+                                <td>
+                                    <?php echo '#' ?>
+                                </td>
+                                <td>
+                                    <?php echo $reseva['COD_reserva'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $reseva['fecha_reserva'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $reseva['fecha_salida'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $reseva['estado'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $reseva['precio_total'] ?>
+                                </td>
+                                <td>
+                                    <?php $id = $reseva['COD_reserva'] ?>
+                                </td>
+                                <td>
+                                    <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Confirmar</a>"; ?>
+                                </td>
+                                <td>
+                                    <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Cancelar</a>"; ?>
+                                </td>
+                                <td>
+                                    <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Ver</a>"; ?>
+                                </td>
+                            </tr>
 
-                                                /* $ruta = $_GET['route-selected'];
-                                                $fechas = $_GET['fecha-selected'];
-                                                $infoReservaBuscar = new Reserva();
-                                                $reservaInfoBuscar = $infoReservaBuscar->getReservaInfoBuscar($ruta,$fechas); */ 
-                                    
-                                            $infoReserva = new Reserva();
-                                            $myReserva = $infoReserva->getUsuarioReservas($user_id);
-
-                                        if (!$myReserva) {
-                                            echo "</tr>";
-                                            echo "</td>";
-                                            echo "Por el momento usted no tiene reservar";
-                                            echo "</td>";
-                                            echo "</tr>";
-                                        } else {
-                                            foreach ($myReserva as $reseva):
-                                    ?>
-                                            <tr>
-                                                <td><?php echo '#'?></td>
-                                                <td><?php echo $reseva['COD_reserva']?></td>
-                                                <td><?php echo  $reseva['fecha_reserva']?></td>
-                                                <td><?php echo  $reseva['fecha_salida']?></td>
-                                                <td><?php echo  $reseva['estado']?></td>
-                                                <td><?php echo  $reseva['precio_total']?></td>
-                                                <td><?php  $id = $reseva['COD_reserva'] ?></td>
-                                            <td > <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Confirmar</a>";?></td>
-                                            <td > <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Cancelar</a>";?></td>
-                                            <td > <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Ver</a>";?></td>
-                                            </tr>
-                                    
-                                            <?php 
-                                        endforeach;
-                                    }
-                                        ?>
-                                </tbody> 
-                    </table>
-                </div>
+                            <?php
+                        endforeach;
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </div>
+    <footer class="bg-secondary text-white text-center text-md-start">
+        <footer class="bg-secondary text-white text-center text-md-start">
+            <div class="container p-4">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Tu compañoa de vuelos</h5>
+                        <p>
+                            ¡Descubre el mundo desde las alturas y cumple tus sueños de viaje!
+                        </p>
+                        <p>
 
+                            Oferta especial: "¡Reserva ahora y obtén un 15% de descuento en tu próximo vuelo
+                            internacional!"
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Links</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <i class='bx bxs-envelope'></i>
+                                <a href="#!" class="text-white">Link 1</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-linkedin-square'></i>
+                                <a href="#!" class="text-white">Link 2</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-youtube'></i>
+                                <a href="#!" class="text-white">Link 3</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-telegram'></i>
+                                <a href="#!" class="text-white">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mb-0">Links</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <i class='bx bxl-instagram-alt'></i>
+                                <a href="#!" class="text-white">Link 1</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-facebook-circle'></i>
+                                <a href="#!" class="text-white">Link 2</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-twitter'></i>
+                                <a href="#!" class="text-white">Link 3</a>
+                            </li>
+                            <li>
+                                <i class='bx bxl-reddit'></i>
+                                <a href="#!" class="text-white">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2020 Copyright:
+                <a class="text-white" href="https://google.com/">google.com</a>
+            </div>
+        </footer>
+        <style>
+            .price {
+                text-decoration: line-through;
+            }
+        </style>
+        <script src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'
+            integrity='sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN'
+            crossorigin='anonymous'></script>
+        <script src="./js/vuelos.js"></script>
 </body>
 
 </html>
