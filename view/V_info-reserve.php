@@ -3,9 +3,6 @@
 require_once('../model/Conection.php');
 require_once('../controller/C_Rutas.php');
 include('../controller/confirm_session.php');
-
-require_once('../model/Conection.php');
-require_once('../controller/C_Rutas.php');
 include('../controller/C_login.php');
 include('../model/M_reserva.php');
 
@@ -20,28 +17,8 @@ if (!$user_query) {
         $user_id = $user['ID_usuario'];
     }
 }
-//echo $user_id;
-
 $infoReserva = new Reserva();
 $myReserva = $infoReserva->getUsuarioReservas($user_id);
-
-
-
-
-/* session_start();
-if (!isset($_SESSION['tbl_usuario'])) {
-   
-            <script>
-                alert("Debes inicar sesion");
-                window.location = "V_login.php";
-            </script>
-            ';
-    //header('location: login.php');
-    session_destroy();
-    die();
-} */
-
-
 
 ?>
 <!DOCTYPE html>
@@ -173,7 +150,6 @@ if (!isset($_SESSION['tbl_usuario'])) {
                         <div class="row">
                             <div class="col">
                                 <?php
-
                                 if (!$myReserva) {
                                     echo "</tr>";
                                     echo "</td>";
