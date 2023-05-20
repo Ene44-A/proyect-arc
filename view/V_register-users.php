@@ -77,7 +77,7 @@
 
                                             <div class="col-12">
                                                 <button type="submit" class="btn btn-success px-4 float-end mt-4"
-                                                    name="registro">Ingresar</button>
+                                                    name="registro">Registrar</button>
                                             </div>
                                         </form>
                                     </div>
