@@ -74,6 +74,9 @@
             return $retorno;
         }
 
+
+
+
   /*    }   public function getIdRuta(){
             $query = $this->con->query("SELECT ID_rutas  FROM tbl_rutas INNER JOIN tbl_vuelo ON tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas where descripcion='$ruta_seleccionada'");
             $retorno =[];

@@ -17,7 +17,7 @@ include('../controller/confirm_session.php');
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'
         integrity='sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD' crossorigin='anonymous'>
     <link rel='stylesheet' href='./styles/vuelos.css'>
-    <title>Index</title>
+    <title>Vuelos</title>
 </head>
 
 <body>
@@ -35,6 +35,12 @@ include('../controller/confirm_session.php');
                     <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                         <li class='nav-item'>
                             <a class='nav-link active' aria-current='page' href='./index.php'>Inicio</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link active' aria-current='page' href='./V_info-reserveUser.php'>Mis reservas</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link active' aria-current='page' href='./#'>Mis Tickes</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="ingresar" action="V_profile-users.php">
