@@ -47,10 +47,10 @@ class Reserva{
         return $retorno[0];
     }
 
-    public function updateVuelo($asientos_restantes, $id_ruta ){
+    public function updateVuelo($asientos_restantes, $cod_vuelo ){
         if( $asientos_restantes <= 0){
             $asientos_restantes = 0;
-            $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes, estado= 'Agotado' WHERE ID_rutas = $id_ruta ");
+            $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes, estado= 'Agotado' WHERE COD_vuelo = $cod_vuelo ");
             //updated del vuelo
             echo '
             <script>
@@ -60,7 +60,7 @@ class Reserva{
             ';
             exit();
         }else{
-            $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes WHERE ID_rutas = $id_ruta ");
+            $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes WHERE COD_vuelo = $cod_vuelo ");
         }
     }
 

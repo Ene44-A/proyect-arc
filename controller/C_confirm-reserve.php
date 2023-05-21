@@ -41,7 +41,7 @@
         return;
     }
 
-    $reserve->updateVuelo($asietos_restantes, $id_ruta);
+    $reserve->updateVuelo($asietos_restantes, $cod_vuelo);
 
     $reserve->setTikectInfo($cod_reserva, $id_detalle_reserva);
 
