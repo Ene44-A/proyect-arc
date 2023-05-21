@@ -85,7 +85,7 @@ if(isset($_GET['enviar_reserva'])){
 
 	echo '
         <script>
-            window.location = "../view/V_info-reserve.php";
+            window.location = "../view/V_info-reserveUser.php";
         </script>
         ';
         exit();

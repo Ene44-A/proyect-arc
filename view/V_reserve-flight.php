@@ -49,14 +49,12 @@ if (!isset($_SESSION['tbl_usuario'])) {
         $user_query = $user_email->getIdUser($_SESSION['tbl_usuario']);
 
    
-        $ruta = $_GET['route-selected'];
-        $fechas = $_GET['fecha-selected'];
+       /*  $ruta = $_GET['route-selected'];
+        $fechas = $_GET['fecha-selected']; 
         
-        echo $fechas;      
+        echo $fechas;      */
         $particularRoute = new Ruta();
-        $vuelosInfoBuscar = $particularRoute->getVuelosInfoBuscar($ruta,$fechas);
-
-        echo "Resultado:".$_GET['prueba'];
+        $myRoute = $particularRoute->getVueloPorId($_GET['id_vuelo']);
 
         if (!$myRoute) {
             echo "</tr>";
@@ -67,6 +65,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
         } else {
             foreach ($myRoute as $route) {
                 $id_ruta = $route['ID_rutas'];
+                $ruta = $route['descripcion'];
                 $COD_vuelo = $route['COD_vuelo'];
                 $fecha_salida = $route['fecha_salida'];
                 $fecha_llegada = $route['fecha_llegada'];
@@ -74,6 +73,8 @@ if (!isset($_SESSION['tbl_usuario'])) {
                 $estado_vuelo = $route['estado'];
                 $cantidad_asientos = $route['asientos_disponibles'];
                 $precio_tiket = $route['precio'];
+                $hora_salida = $route['hora_salida'];
+                $hora_llegada= $route['hora_llegada'];
 
             }
 
@@ -102,7 +103,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Ruta</span>
                         <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-lg" disabled value="<?php echo $ruta; ?>">
+                            aria-describedby="inputGroup-sizing-lg" disabled value="<?php echo $ruta ?>">
                     </div>
                     <div class="row">
                         <div class="col">
@@ -138,6 +139,19 @@ if (!isset($_SESSION['tbl_usuario'])) {
                                     <div class="input-group-text"><i class='bx bxs-plane-land'></i></div>
                                     <input type="text" class="form-control" id="fecha_de_llegada"
                                         name="fecha_de_llegada" placeholder="<?php echo $hora_llegada; ?>"
+                                        autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <label>Fecha Salida-Llegada</label>
+                                <div class="input-group">
+                                <div class="input-group-text"><i class='bx bxs-plane-land'></i></div>
+                                    <input type="text" class="form-control" id="fecha_de_llegada"
+                                        name="fecha_de_llegada" placeholder="<?php echo $fecha_salida; ?>"
+                                        autocomplete="off" readonly />
+                                    <div class="input-group-text"><i class='bx bxs-plane-land'></i></div>
+                                    <input type="text" class="form-control" id="fecha_de_llegada"
+                                        name="fecha_de_llegada" placeholder="<?php echo $fecha_llegada; ?>"
                                         autocomplete="off" readonly />
                                 </div>
                             </div>
