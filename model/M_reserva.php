@@ -48,7 +48,19 @@ class Reserva{
     }
 
     public function updateVuelo($asientos_restantes, $id_ruta ){
-        $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes WHERE ID_rutas = $id_ruta ");
+        if( $asientos_restantes <= 0){
+            $asientos_restantes = 0;
+            $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes, estado= 'Agotado' WHERE ID_rutas = $id_ruta ");
+            //updated del vuelo
+            echo '
+            <script>
+                window.location = "../view/vuelos.php";
+            </script>
+            ';
+            exit();
+        }else{
+            $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes WHERE ID_rutas = $id_ruta ");
+        }
     }
 
     public function getRutaPorId($id_ruta){
@@ -124,6 +136,11 @@ class Reserva{
             $i++;
         }
         return $retorno[0];
+    }
+
+    public function setTikectInfo($COD_reserva, $ID_detalle){
+        $userId = $this->con->query("INSERT INTO tbl_tiquete (COD_reserva, ID_detalle_reserva)
+        VALUES ('$COD_reserva', '$ID_detalle')");
     }
 
 }

@@ -129,11 +129,25 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                                 <td>
                                     <?php echo $reseva['precio_total'] ?>
                                 </td>
+                                    <?php
+                                        $id = $reseva['COD_reserva'];
+                                        $cod_reserva = $reseva['COD_reserva'];
+                                        $id_detalle_reserva = $reseva['ID_detalle_reserva'];
+                                        $id_ruta = $reseva['ID_rutas'];
+                                        $asientos_disponibles = $reseva['asientos_disponibles'];
+                                        $asientos_reservados = $reseva['asientos_reservados'];
+                                        $cod_vuelo = $reseva['COD_vuelo'];
+                                    ?>
                                 <td>
-                                    <?php $id = $reseva['COD_reserva'] ?>
-                                </td>
-                                <td>
-                                    <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Confirmar</a>"; ?>
+                                    <?php
+                                        echo "<a href='../controller/C_confirm-reserve.php?cod_reserva=$cod_reserva&
+                                                id_detalle=$id_detalle_reserva&
+                                                id_ruta=$id_ruta&
+                                                asientos_dis=$asientos_disponibles&
+                                                asientos_reser=$asientos_reservados&
+                                                cod_vuelo=$cod_vuelo
+                                                '>Confirmar</a>";
+                                    ?>
                                 </td>
                                 <td>
                                     <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Cancelar</a>"; ?>
