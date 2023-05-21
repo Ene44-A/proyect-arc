@@ -21,8 +21,8 @@ class Reserva{
         $this->con->query("INSERT INTO tbl_pasajero(nombre_pasajero,telefono,fecha_nacimiento,correo_pasajero,asientos_reservados) VALUES('$nombre_pasajero','$telefono','$fecha_nacimiento','$correo_pasajero', '$asientos_reservados')");
     }
 
-    public function setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero){
-        $this->con->query("INSERT INTO tbl_detalle_reserva(COD_reserva,COD_vuelo,ID_pasajero, estado) VALUES($COD_reserva, $COD_vuelo, $ID_pasajero, 'confirmado')");
+    public function setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero, $estado){
+        $this->con->query("INSERT INTO tbl_detalle_reserva(COD_reserva,COD_vuelo,ID_pasajero, estado) VALUES($COD_reserva, $COD_vuelo, $ID_pasajero, '$estado')");
     }
 
     public function getUltimatePasajero(){
@@ -153,6 +153,13 @@ class Reserva{
             $i++;
         }
         return $retorno[0];
+    }
+
+    public function updateReservaAndDetalle($COD_reserva, $detalle_reserva, $estado_reserva ){
+            //Update de la tabla reserva
+            $this->con->query("UPDATE tbl_reserva SET estado = '$estado_reserva' WHERE COD_reserva = $COD_reserva");
+            //Update de la tabla detalle de reserva
+            $this->con->query("UPDATE tbl_detalle_reserva SET estado = '$estado_reserva' WHERE ID_detalle_reserva = $detalle_reserva");
     }
 
 }

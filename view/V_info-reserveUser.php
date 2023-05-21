@@ -142,6 +142,7 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                                         $telefono = $reseva['telefono'];
                                         $fecha_nacimiento = $reseva['fecha_nacimiento'];
                                         $asientos_reservados = $reseva['asientos_reservados'];
+                                        $estado_reserva_and_detalle = $reseva['estado']
                                     ?>
                                 <td>
                                     <?php
@@ -150,7 +151,8 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                                                 id_ruta=$id_ruta&
                                                 asientos_dis=$asientos_disponibles&
                                                 asientos_reser=$asientos_reservados&
-                                                cod_vuelo=$cod_vuelo
+                                                cod_vuelo=$cod_vuelo&
+                                                estado_reser=$estado_reserva_and_detalle
                                                 '>Confirmar</a>";
                                     ?>
                                 </td>
