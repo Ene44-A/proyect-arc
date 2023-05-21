@@ -25,9 +25,24 @@
 
     $asietos_restantes = $asientos_disponibles - $asientos_del_user;
 
-
+    //Pendiente cambiar el stados de la reserva a completado
     $reserve = new Reserva();
+    $reserve->getVueloEstado($cod_vuelo);
+
+    $VueloStatus = $reserve->getVueloEstado($cod_vuelo);
+
+    if ($VueloStatus['estado'] == 'Agotado'){
+        echo '
+        <script>
+            alert("No hay asientos para esta reserva");
+            window.location = "../view/vuelos.php";
+        </script>
+        ';
+        return;
+    }
+
     $reserve->updateVuelo($asietos_restantes, $id_ruta);
+
     $reserve->setTikectInfo($cod_reserva, $id_detalle_reserva);
 
      echo '

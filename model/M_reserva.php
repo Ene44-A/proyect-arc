@@ -54,6 +54,7 @@ class Reserva{
             //updated del vuelo
             echo '
             <script>
+				alert("No hay más vuelos disponibles correspondientes con esta reserva");
                 window.location = "../view/vuelos.php";
             </script>
             ';
@@ -141,6 +142,17 @@ class Reserva{
     public function setTikectInfo($COD_reserva, $ID_detalle){
         $userId = $this->con->query("INSERT INTO tbl_tiquete (COD_reserva, ID_detalle_reserva)
         VALUES ('$COD_reserva', '$ID_detalle')");
+    }
+
+    public function getVueloEstado($codVuelo){
+        $userId = $this->con->query("SELECT estado FROM tbl_vuelo WHERE COD_vuelo=$codVuelo");
+        $retorno =[];
+        $i = 0;
+        while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
+            $retorno[$i] = $fila;
+            $i++;
+        }
+        return $retorno[0];
     }
 
 }

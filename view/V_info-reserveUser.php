@@ -137,6 +137,11 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                                         $asientos_disponibles = $reseva['asientos_disponibles'];
                                         $asientos_reservados = $reseva['asientos_reservados'];
                                         $cod_vuelo = $reseva['COD_vuelo'];
+                                        //informacion del pasajero
+                                        $nombre_pasajero = $reseva['nombre_pasajero'];
+                                        $telefono = $reseva['telefono'];
+                                        $fecha_nacimiento = $reseva['fecha_nacimiento'];
+                                        $asientos_reservados = $reseva['asientos_reservados'];
                                     ?>
                                 <td>
                                     <?php
@@ -150,10 +155,17 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                                     ?>
                                 </td>
                                 <td>
-                                    <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Cancelar</a>"; ?>
+                                    <?php echo "<a href='V_ver-info-reserve.php?id_vuelo=$id'>Cancelar</a>"; ?>
                                 </td>
                                 <td>
-                                    <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Ver</a>"; ?>
+                                    <?php 
+                                        echo "<a href='V_ver-info-reserve.php?id_vuelo=$id&
+                                            nombre=$nombre_pasajero&
+                                            telefono=$telefono&
+                                            fechaN=$fecha_nacimiento&
+                                            asientosR=$asientos_reservados
+                                            '>
+                                            Ver</a>"; ?>
                                 </td>
                             </tr>
 
