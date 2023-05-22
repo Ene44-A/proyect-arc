@@ -18,7 +18,9 @@ if (!$user_query) {
     }
 }
 $infoReserva = new Reserva();
-$myReserva = $infoReserva->getUsuarioReservas($user_id);
+$myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,8 +94,8 @@ $myReserva = $infoReserva->getUsuarioReservas($user_id);
                 <table class="table table table-striped">
                     <thead>
                         <tr>
-                            <th>N°</th>
-                            <th>Codigo reserva</th>
+                            <th>COD</th>
+                            <th>Destino</th>
                             <th>Fecha reserva</th>
                             <th>Fecha vuelo</th>
                             <th>Estado</th>
@@ -107,10 +109,13 @@ $myReserva = $infoReserva->getUsuarioReservas($user_id);
                             ?>
                             <tr>
                                 <td>
-                                    <?php echo '#' ?>
+                                    #<?php echo $reseva['COD_reserva'] ?>
                                 </td>
                                 <td>
-                                    <?php echo $reseva['COD_reserva'] ?>
+                                    <?php 
+                                    //$infoReserva = new Reserva();
+                                    $ruteForID = $infoReserva->getNameRuteByID(intval($reseva['ID_rutas']));
+                                    echo $ruteForID['descripcion'] ?>
                                 </td>
                                 <td>
                                     <?php echo $reseva['fecha_reserva'] ?>
@@ -124,16 +129,46 @@ $myReserva = $infoReserva->getUsuarioReservas($user_id);
                                 <td>
                                     <?php echo $reseva['precio_total'] ?>
                                 </td>
+                                    <?php
+                                        $id = $reseva['COD_reserva'];
+                                        $cod_reserva = $reseva['COD_reserva'];
+                                        $id_detalle_reserva = $reseva['ID_detalle_reserva'];
+                                        $id_ruta = $reseva['ID_rutas'];
+                                        $asientos_disponibles = $reseva['asientos_disponibles'];
+                                        $asientos_reservados = $reseva['asientos_reservados'];
+                                        $cod_vuelo = $reseva['COD_vuelo'];
+                                        //informacion del pasajero
+                                        $nombre_pasajero = $reseva['nombre_pasajero'];
+                                        $telefono = $reseva['telefono'];
+                                        $fecha_nacimiento = $reseva['fecha_nacimiento'];
+                                        $asientos_reservados = $reseva['asientos_reservados'];
+                                        $estado_reserva_and_detalle = $reseva['estado']
+                                    ?>
                                 <td>
-                                    <?php $id = $reseva['COD_reserva'] ?>
+                                    <?php
+                                        echo "<a href='../controller/C_confirm-reserve.php?cod_reserva=$cod_reserva&
+                                                id_detalle=$id_detalle_reserva&
+                                                id_ruta=$id_ruta&
+                                                asientos_dis=$asientos_disponibles&
+                                                asientos_reser=$asientos_reservados&
+                                                cod_vuelo=$cod_vuelo&
+                                                estado_reser=$estado_reserva_and_detalle
+                                                '>Confirmar</a>";
+                                    ?>
                                 </td>
                                 <td>
-                                    <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Confirmar</a>"; ?>
+                                    <?php echo "<a href='V_ver-info-reserve.php?id_vuelo=$id'>Cancelar</a>"; ?>
                                 </td>
                                 <td>
-                                    <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Cancelar</a>"; ?>
+                                    <?php 
+                                        echo "<a href='V_ver-info-reserve.php?id_vuelo=$id&
+                                            nombre=$nombre_pasajero&
+                                            telefono=$telefono&
+                                            fechaN=$fecha_nacimiento&
+                                            asientosR=$asientos_reservados
+                                            '>
+                                            Ver</a>"; ?>
                                 </td>
-                                
                             </tr>
 
                             <?php
