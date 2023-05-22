@@ -3,6 +3,33 @@
 require_once('../model/Conection.php');
 require_once('../controller/C_Rutas.php');
 include('../controller/confirm_session.php');
+// include('../controller/C_login.php');
+
+
+// session_start();
+// if (!isset($_SESSION['tbl_usuario'])) {
+//     echo '
+//             <script>
+//                 alert("Debes inicar sesion");
+//                 window.location = "V_login.php";
+//             </script>
+//             ';
+//     //header('location: login.php');
+//     session_destroy();
+//     die();
+// }
+// $user_info = new Login;
+// $user_get_info = $user_info->getUserInfo($_SESSION['tbl_usuario']);
+
+
+// if (!$user_get_info) {
+//     echo "No hay datos para mostrar";
+// } else {
+//     foreach ($user_get_info as $user) {
+//         $user_id = $user['ID_usuario'];
+//         $user_name = $user['nombre_usuario'];
+//     }
+// }
 ?>
 
 <!DOCTYPE html>
@@ -22,41 +49,57 @@ include('../controller/confirm_session.php');
 
 <body>
     <header>
-        <nav class='navbar navbar-expand-md bg-body-tertiary'>
+    <nav class='navbar navbar-expand-md bg-body-tertiary'>
             <div class='container-fluid'>
                 <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
-                    data-bs-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false'
-                    aria-label='Toggle navigation'>
-                    <span class='navbar-toggler-icon'></span>
-                </button>
-                <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
+                data-bs-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false'
+                aria-label='Toggle navigation'>
+                <span class='navbar-toggler-icon'></span>
+            </button>
+            <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
                     <i class='bx bxs-plane-take-off'></i>
-                    <a class='navbar-brand' href='#'>Tucompañiadevuelos</a>
+                    <a class='navbar-brand' href='./index.php'>Tucompañiadevuelos</a>
                     <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='./index.php'>Inicio</a>
+                            <a class='nav-link active trie-active' aria-current='page' href='./vuelos.php'>Reservar</a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link active' aria-current='page' href='./V_info-reserveUser.php'>Mis reservas</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='./#'>Mis Tickes</a>
+                            <a class='nav-link active' aria-current='page' href='./V_info-reserve.php'>Mis Tickes</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="ingresar" action="V_profile-users.php">
-                        <button class="btn btn btn-success" type="submit"><i class='bx bx-user-circle'></i></button>
-                    </form>
+                    <div class="cont-user">
+                        <i class='bx bx-user-circle'></i>
+                        <h5>
+                            <?php //echo $user_name ?>
+                        </h5>
+                        <form class="d-flex" role="logout" action="../model/M_logout.php">
+                            <button class="btn btn-outline-success" type="submit">cerrar sesión</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <style>
-                .navbar-collapse>i {
+                 .navbar-collapse>i {
                     font-size: 40px;
                     margin: 0 20px;
                 }
-
-                .bx-user-circle {
+                .cont-user{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .cont-user>h5{
+                    padding: 0 40px 0 10px;
+                    font-weight: 900;
+                }
+                .cont-user>i {
                     font-size: 25px;
-                    padding: 0 10px;
+                }
+                .trie-active{
+                    border-bottom: 4px solid rgb(21, 115, 17);
                 }
             </style>
         </nav>
@@ -69,7 +112,6 @@ include('../controller/confirm_session.php');
                     <div class="col-sm">
                         <label>Rutas<span class="text-danger">*</span></label>
                         <div class="input-group">
-                            <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
                             <div class="input-group">
                                 <div class="input-group-text">Ruta:</div>
                                 <select class="form-select" id="autoSizingSelect mySelect" name="route-selected">
@@ -79,21 +121,14 @@ include('../controller/confirm_session.php');
                                     }
                                     ?>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
-                            <div class="input-group">
                                 <div class="input-group-text">Fecha Salida:</div>
-                                <input type="date" name="fecha-selected" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
-                              
+                                <input class="form-control" type="date" name="fecha-selected" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="col-ms">
                         <button type="submit" id="myButton" class="btn btn-success">Consultar</button>
-                       
                     </div>
                 </form>
             </div>
@@ -122,21 +157,20 @@ include('../controller/confirm_session.php');
                      require_once('../model/Conection.php');
                      require_once('../controller/C_Rutas.php');
                      include('../controller/C_login.php');
-             
+
                      $user_email = new Login();
-                     $user_query = $user_email->getIdUser($_SESSION['tbl_usuario']);
-             
-                        
+                     $usera_query = $user_email->getIdUser($_SESSION['tbl_usuario']);
+
                         $ruta = $_GET['route-selected'];
                         $fechas = $_GET['fecha-selected'];
-                        
-                        echo $fechas;      
+
+                        echo $fechas;
                         $particularRoute = new Ruta();
                         $vuelosInfoBuscar = $particularRoute->getVuelosInfoBuscar($ruta,$fechas);
 
-                       
+
                                 foreach ($vuelosInfoBuscar as $alias):
-                                
+
                             ?>
                             <tr>
 
@@ -151,10 +185,9 @@ include('../controller/confirm_session.php');
                                     <td><?php  $id = $alias['COD_vuelo'] ?></td>
                                     <td > <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Reservar</a>";?></td>
                                 </tr>
-                                <?php 
+                                <?php
                                 endforeach;
                                 ?>
-                   
                 </tbody>
             </table>
         </div>

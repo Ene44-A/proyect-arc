@@ -50,11 +50,11 @@ if (!$user_get_info) {
         <nav class='navbar navbar-expand-md bg-body-tertiary'>
             <div class='container-fluid'>
                 <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
-                    data-bs-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false'
-                    aria-label='Toggle navigation'>
-                    <span class='navbar-toggler-icon'></span>
-                </button>
-                <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
+                data-bs-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false'
+                aria-label='Toggle navigation'>
+                <span class='navbar-toggler-icon'></span>
+            </button>
+            <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
                     <i class='bx bxs-plane-take-off'></i>
                     <a class='navbar-brand' href='./index.php'>Tucompañiadevuelos</a>
                     <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
@@ -80,6 +80,10 @@ if (!$user_get_info) {
                 </div>
             </div>
             <style>
+                .navbar-collapse>i {
+                    font-size: 40px;
+                    margin: 0 20px;
+                }
                 .cont-user{
                     display: flex;
                     justify-content: center;
@@ -106,7 +110,6 @@ if (!$user_get_info) {
                     <div class="col-sm">
                         <label>Rutas<span class="text-danger">*</span></label>
                         <div class="input-group">
-                            <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
                             <div class="input-group">
                                 <div class="input-group-text">Ruta:</div>
                                 <select class="form-select" id="autoSizingSelect mySelect" name="route-selected">
@@ -116,18 +119,13 @@ if (!$user_get_info) {
                                     }
                                     ?>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
-                            <div class="input-group">
                                 <div class="input-group-text">Fecha Salida:</div>
-                                <input type="date" name="fecha-selected" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>                              
+                                <input class="form-control" type="date" name="fecha-selected" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
                             </div>
                         </div>
                     </div>
                     <div class="col-ms">
-                        <button type="submit" id="myButton" class="btn btn-success">Buscar</button>
+                        <button type="submit" id="myButton" class="btn btn-success">Consultar</button>
                     </div>
                 </form>
             </div>
@@ -137,27 +135,27 @@ if (!$user_get_info) {
     <section class="vuelos-table-main-container">
         <div class="vuelos-table-container">
             <h3 class="vuelos-table__title">Vuelos</h3>
-            <table class="table table table-striped tablita-info">
+            <table class="table table-hover table-striped tablita-info">
                 <thead>
                     <tr>
-                        <th>Ruta</th>
-                        <th>Matricula Avion</th>
-                        <th>Hora de salida</th>
-                        <th>Hora de llegada</th>
-                        <th>Precio</th>
+                        <th scope="col">Ruta</th>
+                        <th scope="col">Matricula Avion</th>
+                        <th scope="col">Hora de salida</th>
+                        <th scope="col">Hora de llegada</th>
+                        <th scope="col">Precio</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     if (!$vuelosInfo) {
-                        echo "<tr>";
+                        echo '<tr scope="row">';
                         echo "<td>";
                         echo "nafa mi fai";
                         echo "</td>";
                         echo "</tr>";
                     } else {
                         foreach ($vuelosInfo as $alias) {
-                            echo "<tr>";
+                            echo '<tr scope="row">';
                             echo "<td>" . $alias['descripcion'] . "</td>";
                             echo "<td>" . $alias['matricula_avion'] . "</td>";
                             echo "<td>" . $alias['hora_salida'] . "</td>";

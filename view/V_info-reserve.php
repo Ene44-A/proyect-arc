@@ -20,6 +20,30 @@ if (!$user_query) {
 $infoReserva = new Reserva();
 $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
 
+// session_start();
+if (!isset($_SESSION['tbl_usuario'])) {
+    echo '
+            <script>
+                alert("Debes inicar sesion");
+                window.location = "V_login.php";
+            </script>
+            ';
+    //header('location: login.php');
+    session_destroy();
+    die();
+}
+
+$user_info = new Login;
+$user_get_info = $user_info->getUserInfo($_SESSION['tbl_usuario']);
+
+if (!$user_get_info) {
+    echo "No hay datos para mostrar";
+} else {
+    foreach ($user_get_info as $user) {
+        $user_id = $user['ID_usuario'];
+        $user_name = $user['nombre_usuario'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,9 +84,15 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                             <a class='nav-link active trie-active' aria-current='page' href='./V_info-reserve.php'>Mis Tickes</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="ingresar" action="V_reserveUser.php">
-                        <button class="btn btn btn-success" type="submit"><i class='bx bx-user-circle'></i></button>
-                    </form>
+                    <div class="cont-user">
+                        <i class='bx bx-user-circle icon-user'></i>
+                        <h5>
+                            <?php echo $user_name ?>
+                        </h5>
+                        <form class="d-flex" role="logout" action="../model/M_logout.php">
+                            <button class="btn btn-outline-success" type="submit">cerrar sesión</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <style>
@@ -70,10 +100,19 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                     font-size: 40px;
                     margin: 0 20px;
                 }
+                .cont-user{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .cont-user>h5{
+                    padding: 0 40px 0 10px;
+                    font-weight: 900;
+                }
+                .icon-user {
+                    display: flex;
 
-                .bx-user-circle {
                     font-size: 25px;
-                    padding: 0 10px;
                 }
                 .trie-active{
                     border-bottom: 4px solid rgb(21, 115, 17);

@@ -10,12 +10,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./styles/registro-user.css">
-    <title>Ingreso</title>
+    <title>Recuperacion de contraseña</title>
 </head>
 
 <body>
-    <header class="vh-100 m-0 row justify-content-center align-content-center header-1">
-        <div class="login-page">
+    <header class="vh-100 m-0 row justify-content-center align-content-center header-2">
+        <div class="resetpass-page">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
@@ -25,7 +25,7 @@
 
                                 <div class="col-md-5 ps-0 d-none d-md-block">
                                     <div class="form-right h-100 bg-success text-white text-center pt-5">
-                                        <h2 class="fs-1">¿Quieres ser parte del equipo?</h2>
+                                        <h2 class="fs-1">Rucuperar contraseña</h2>
                                         <div class="mb3 p-5" style="margin:20px 0;">
                                             <button type="submit" class="btn btn-light btn-action"><a
                                                     href="V_login.php">Volver</a></button>
@@ -39,17 +39,7 @@
                                 </style>
                                 <div class="col-md-7 pe-0">
                                     <div class="form-left h-100 py-5 px-5">
-                                        <form action="../model/M_User.php" method="GET" class="row g-4">
-
-                                            <div class="col-12">
-                                                <label>Nombre<span class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <div class="input-group-text"><i class="bi bi-person-fill"></i>
-                                                    </div>
-                                                    <input type="text" class="form-control" id="nombre_usuario"
-                                                        name="nombre_usuario" placeholder="Nombre" required>
-                                                </div>
-                                            </div>
+                                        <form action="../model/M_reset-password.php" method="POST" class="row g-4">
 
                                             <div class="col-12">
                                                 <label>Correo<span class="text-danger">*</span></label>
@@ -62,22 +52,29 @@
                                             </div>
 
                                             <div class="col-12">
-                                                <label>Contraseña<span class="text-danger">*</span></label>
+                                                <label>Nueva Contraseña<span class="text-danger">*</span></label>
                                                 <div class="input-group">
-                                                    <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-                                                    <input type="password" class="form-control" id="contrasena"
-                                                        name="contrasena" placeholder="contrasena">
-                                                    <div id="passwordHelpBlock" class="form-text">
-                                                        Su contraseña debe tener entre 8 y 20 caracteres, contener
-                                                        letras y números, y no debe contener espacios, caracteres
-                                                        especiales ni emoji.
+                                                    <div class="input-group-text">
+                                                        <i class="bi bi-lock-fill"></i>
                                                     </div>
+                                                    <input type="password" class="form-control" id="password"
+                                                        name="password" required>
                                                 </div>
                                             </div>
-
+                                            <div class="col-12">
+                                                <label for="confirm_password">Confirmar contraseña <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-text">
+                                                        <i class="bi bi-lock-fill"></i>
+                                                    </div>
+                                                    <input type="password" id="confirm_password" name="confirm_password"
+                                                        class="form-control" required>
+                                                </div>
+                                            </div>
                                             <div class="col-12">
                                                 <button type="submit" class="btn btn-success px-4 float-end mt-4"
-                                                    name="registro">Registrar</button>
+                                                    name="nuevacontra">Confirmar</button>
                                             </div>
                                         </form>
                                     </div>
