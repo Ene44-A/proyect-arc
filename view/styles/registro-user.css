@@ -1,5 +1,12 @@
-header{
+.header-1{
     background: url(../assets/img/img5.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header-2{
+    background: url(../assets/img/img2.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

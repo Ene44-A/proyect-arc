@@ -55,7 +55,8 @@
                                     <div class="form-right h-100 bg-success text-white text-center pt-5">
                                         <h2 class="fs-1">¡Bienvenido de nuevo!</h2>
                                         <div class="mb3 p-2" style="margin:20px 0;">
-                                            <a class="link-register" href="V_register-users.php">Registrar cuenta nueva</a>
+                                            <a class="link-register" href="V_register-users.php">Registrar cuenta nueva</a><br>
+                                            <a class="resetpass-page" href="V_reset-password.php">Olvidaste tu contraseña? </a>
                                         </div>
                                         <button type="submit" class="btn btn-light btn-action"><a
                                                 href="index.php">Volver</a></button>
