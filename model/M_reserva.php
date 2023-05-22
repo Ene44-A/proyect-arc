@@ -63,8 +63,9 @@ class Reserva{
     }
 
     public function getUsuarioReservas($id_user){
-        $userId = $this->con->query("SELECT * FROM tbl_usuario as u, tbl_reserva as r, tbl_detalle_reserva as d, tbl_vuelo as v
-        WHERE u.ID_usuario = '$id_user'");
+        $userId = $this->con->query("SELECT * FROM tbl_usuario as u, tbl_reserva as r
+        INNER JOIN tbl_detalle_reserva as d ON d.COD_reserva=r.COD_reserva
+        INNER JOIN tbl_vuelo as v ON v.COD_vuelo=d.COD_vuelo WHERE u.ID_usuario = '$id_user'");
         $retorno =[];
         $i = 0;
         while($fila = $userId->fetch_assoc()){ //devuelve el arreglo

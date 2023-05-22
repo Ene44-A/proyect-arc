@@ -59,7 +59,7 @@ if (!$user_get_info) {
                     <a class='navbar-brand' href='./index.php'>Tucompañiadevuelos</a>
                     <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                         <li class='nav-item'>
-                            <a class='nav-link active trie-active' aria-current='page' href='./vuelos.php'>Reservar</a>
+                            <a class='nav-link active trie-active' aria-current='page' href='./vuelos.php'>Buscar vuelo</a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link active' aria-current='page' href='./V_info-reserveUser.php'>Mis reservas</a>

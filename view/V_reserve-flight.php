@@ -266,7 +266,7 @@ if (!isset($_SESSION['tbl_usuario'])) {
                             </div>
                             <div class="col-12">
                                 <button type="submit" name="enviar_reserva" class="btn btn-success px-4 float-end mt-4"
-                                    id="liveToastBtn">Reservar</button>
+                                    id="liveToastBtn">Guardar</button>
                                     <?php 
                                    /*  if($cantidad_asientos==0)
                                     {
