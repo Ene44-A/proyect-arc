@@ -20,6 +20,30 @@ if (!$user_query) {
 $infoReserva = new Reserva();
 $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
 
+// session_start();
+if (!isset($_SESSION['tbl_usuario'])) {
+    echo '
+            <script>
+                alert("Debes inicar sesion");
+                window.location = "V_login.php";
+            </script>
+            ';
+    //header('location: login.php');
+    session_destroy();
+    die();
+}
+
+$user_info = new Login;
+$user_get_info = $user_info->getUserInfo($_SESSION['tbl_usuario']);
+
+if (!$user_get_info) {
+    echo "No hay datos para mostrar";
+} else {
+    foreach ($user_get_info as $user) {
+        $user_id = $user['ID_usuario'];
+        $user_name = $user['nombre_usuario'];
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -63,9 +87,15 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                             <a class='nav-link active' aria-current='page' href='./V_info-reserve.php'>Mis Tickes</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="ingresar" action="V_reserveUser.php">
-                        <button class="btn btn btn-success" type="submit"><i class='bx bx-user-circle'></i></button>
-                    </form>
+                    <div class="cont-user">
+                        <i class='bx bx-user-circle'></i>
+                        <h5>
+                            <?php echo $user_name ?>
+                        </h5>
+                        <form class="d-flex" role="logout" action="../model/M_logout.php">
+                            <button class="btn btn-outline-success" type="submit">cerrar sesión</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <style>
@@ -73,13 +103,19 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                     font-size: 40px;
                     margin: 0 20px;
                 }
-
-                .bx-user-circle {
-                    font-size: 25px;
-                    padding: 0 10px;
+                .cont-user{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
-
-                .trie-active {
+                .cont-user>h5{
+                    padding: 0 40px 0 10px;
+                    font-weight: 900;
+                }
+                .cont-user>i {
+                    font-size: 25px;
+                }
+                .trie-active{
                     border-bottom: 4px solid rgb(21, 115, 17);
                 }
             </style>
@@ -91,28 +127,29 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
         <section class="vuelos-table-main-container">
             <div class="vuelos-table-container">
                 <h3 class="vuelos-table__title">Gestione sus reserva</h3>
-                <table class="table table table-striped">
+                <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>COD</th>
-                            <th>Destino</th>
-                            <th>Fecha reserva</th>
-                            <th>Fecha vuelo</th>
-                            <th>Estado</th>
-                            <th>Precio total</th>
-                            <th>Seleccion opcion</th>
+                            <th scope="col">COD</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">Fecha reserva</th>
+                            <th scope="col">Fecha vuelo</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Precio total</th>
+                            <th scope="col">Seleccion opcion</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         foreach ($myReserva as $reseva):
                             ?>
-                            <tr>
+                            <tr scope="row">
                                 <td>
-                                    #<?php echo $reseva['COD_reserva'] ?>
+                                    #
+                                    <?php echo $reseva['COD_reserva'] ?>
                                 </td>
                                 <td>
-                                    <?php 
+                                    <?php
                                     //$infoReserva = new Reserva();
                                     $ruteForID = $infoReserva->getNameRuteByID(intval($reseva['ID_rutas']));
                                     echo $ruteForID['descripcion'] ?>
@@ -129,24 +166,24 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                                 <td>
                                     <?php echo $reseva['precio_total'] ?>
                                 </td>
-                                    <?php
-                                        $id = $reseva['COD_reserva'];
-                                        $cod_reserva = $reseva['COD_reserva'];
-                                        $id_detalle_reserva = $reseva['ID_detalle_reserva'];
-                                        $id_ruta = $reseva['ID_rutas'];
-                                        $asientos_disponibles = $reseva['asientos_disponibles'];
-                                        $asientos_reservados = $reseva['asientos_reservados'];
-                                        $cod_vuelo = $reseva['COD_vuelo'];
-                                        //informacion del pasajero
-                                        $nombre_pasajero = $reseva['nombre_pasajero'];
-                                        $telefono = $reseva['telefono'];
-                                        $fecha_nacimiento = $reseva['fecha_nacimiento'];
-                                        $asientos_reservados = $reseva['asientos_reservados'];
-                                        $estado_reserva_and_detalle = $reseva['estado']
+                                <?php
+                                $id = $reseva['COD_reserva'];
+                                $cod_reserva = $reseva['COD_reserva'];
+                                $id_detalle_reserva = $reseva['ID_detalle_reserva'];
+                                $id_ruta = $reseva['ID_rutas'];
+                                $asientos_disponibles = $reseva['asientos_disponibles'];
+                                $asientos_reservados = $reseva['asientos_reservados'];
+                                $cod_vuelo = $reseva['COD_vuelo'];
+                                //informacion del pasajero
+                                $nombre_pasajero = $reseva['nombre_pasajero'];
+                                $telefono = $reseva['telefono'];
+                                $fecha_nacimiento = $reseva['fecha_nacimiento'];
+                                $asientos_reservados = $reseva['asientos_reservados'];
+                                $estado_reserva_and_detalle = $reseva['estado']
                                     ?>
                                 <td>
                                     <?php
-                                        echo "<a href='../controller/C_confirm-reserve.php?cod_reserva=$cod_reserva&
+                                    echo "<a href='../controller/C_confirm-reserve.php?cod_reserva=$cod_reserva&
                                                 id_detalle=$id_detalle_reserva&
                                                 id_ruta=$id_ruta&
                                                 asientos_dis=$asientos_disponibles&
@@ -160,14 +197,13 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
                                     <?php echo "<a href='V_ver-info-reserve.php?id_vuelo=$id'>Cancelar</a>"; ?>
                                 </td>
                                 <td>
-                                    <?php 
-                                        echo "<a href='V_ver-info-reserve.php?id_vuelo=$id&
+                                    <?php
+                                    echo "<a href='V_ver-info-reserve.php?id_vuelo=$id&
                                             nombre=$nombre_pasajero&
                                             telefono=$telefono&
                                             fechaN=$fecha_nacimiento&
                                             asientosR=$asientos_reservados
-                                            '>
-                                            Ver</a>"; ?>
+                                            '>Ver</a>"; ?>
                                 </td>
                             </tr>
 
@@ -179,6 +215,28 @@ $myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
             </div>
         </section>
     </div>
+    <style>
+        section {
+            height: auto;
+            /* width: 100vw; */
+        }
+
+        .vuelos-table-container {
+            border: 2px solid black;
+            padding: 120px;
+            border-radius: 30px;
+        }
+
+        .vuelos-table-container>h3 {
+            padding-bottom: 40px;
+        }
+
+        @media (max-width: 991px) {
+            .vuelos-table-container {
+                padding: 10px;
+            }
+        }
+    </style>
     <footer class="bg-secondary text-white text-center text-md-start">
         <footer class="bg-secondary text-white text-center text-md-start">
             <div class="container p-4">
