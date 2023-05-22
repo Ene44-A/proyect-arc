@@ -21,8 +21,8 @@ class Reserva{
         $this->con->query("INSERT INTO tbl_pasajero(nombre_pasajero,telefono,fecha_nacimiento,correo_pasajero,asientos_reservados) VALUES('$nombre_pasajero','$telefono','$fecha_nacimiento','$correo_pasajero', '$asientos_reservados')");
     }
 
-    public function setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero){
-        $this->con->query("INSERT INTO tbl_detalle_reserva(COD_reserva,COD_vuelo,ID_pasajero, estado) VALUES($COD_reserva, $COD_vuelo, $ID_pasajero, 'confirmado')");
+    public function setDetalleReserva($COD_reserva, $COD_vuelo, $ID_pasajero, $estado){
+        $this->con->query("INSERT INTO tbl_detalle_reserva(COD_reserva,COD_vuelo,ID_pasajero, estado) VALUES($COD_reserva, $COD_vuelo, $ID_pasajero, '$estado')");
     }
 
     public function getUltimatePasajero(){
@@ -47,8 +47,21 @@ class Reserva{
         return $retorno[0];
     }
 
-    public function updateVuelo($asientos_restantes, $id_ruta ){
-        $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes WHERE ID_rutas = $id_ruta ");
+    public function updateVuelo($asientos_restantes, $cod_vuelo ){
+        if( $asientos_restantes <= 0){
+            $asientos_restantes = 0;
+            $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes, estado= 'Agotado' WHERE COD_vuelo = $cod_vuelo ");
+            //updated del vuelo
+            echo '
+            <script>
+				alert("No hay más vuelos disponibles correspondientes con esta reserva");
+                window.location = "../view/vuelos.php";
+            </script>
+            ';
+            exit();
+        }else{
+            $this->con->query("UPDATE tbl_vuelo SET asientos_disponibles = $asientos_restantes WHERE COD_vuelo = $cod_vuelo ");
+        }
     }
 
     public function getRutaPorId($id_ruta){
@@ -124,6 +137,29 @@ class Reserva{
             $i++;
         }
         return $retorno[0];
+    }
+
+    public function setTikectInfo($COD_reserva, $ID_detalle){
+        $userId = $this->con->query("INSERT INTO tbl_tiquete (COD_reserva, ID_detalle_reserva)
+        VALUES ('$COD_reserva', '$ID_detalle')");
+    }
+
+    public function getVueloEstado($codVuelo){
+        $userId = $this->con->query("SELECT estado FROM tbl_vuelo WHERE COD_vuelo=$codVuelo");
+        $retorno =[];
+        $i = 0;
+        while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
+            $retorno[$i] = $fila;
+            $i++;
+        }
+        return $retorno[0];
+    }
+
+    public function updateReservaAndDetalle($COD_reserva, $detalle_reserva, $estado_reserva ){
+            //Update de la tabla reserva
+            $this->con->query("UPDATE tbl_reserva SET estado = '$estado_reserva' WHERE COD_reserva = $COD_reserva");
+            //Update de la tabla detalle de reserva
+            $this->con->query("UPDATE tbl_detalle_reserva SET estado = '$estado_reserva' WHERE ID_detalle_reserva = $detalle_reserva");
     }
 
 }
