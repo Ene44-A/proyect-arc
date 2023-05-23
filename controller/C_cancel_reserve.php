@@ -26,31 +26,13 @@
     if($estado_reserva == 'Confirmado') {
         echo '
         <script>
-            alert("Su reserva ya ha sido Confirmada");
+            alert("Su reserva ya ha sido Confirmada, no se puede alterar");
             window.location = "../view/V_info-reserve.php";
         </script>
         ';
         return;
     }
 
-    $asietos_restantes = $asientos_disponibles - $asientos_del_user;
-
-    //Pendiente cambiar el stados de la reserva a completado
-    $reserve = new Reserva();
-    $reserve->getVueloEstado($cod_vuelo);
-
-    $VueloStatus = $reserve->getVueloEstado($cod_vuelo);
-
-    if ($VueloStatus['estado'] == 'Agotado'){
-        echo '
-        <script>
-            alert("No hay asientos para esta reserva");
-            window.location = "../view/vuelos.php";
-        </script>
-        ';
-        $reserve->updateReservaAndDetalle($cod_reserva, $id_detalle_reserva, 'No Disponible' );
-        return;
-    }
     if($estado_reserva == 'Cancelado') {
         echo '
         <script>
@@ -61,13 +43,33 @@
         return;
     }
 
+    $asietos_restantes = $asientos_disponibles - $asientos_del_user;
+
+    //Pendiente cambiar el stados de la reserva a completado
+    $reserve = new Reserva();
+    // $reserve->getVueloEstado($cod_vuelo);
+
+    // $VueloStatus = $reserve->getVueloEstado($cod_vuelo);
+
+    // if ($VueloStatus['estado'] == 'Agotado'){
+    //     echo '
+    //     <script>
+    //         alert("No hay asientos para esta reserva");
+    //         window.location = "../view/vuelos.php";
+    //     </script>
+    //     ';
+    //     $reserve->updateReservaAndDetalle($cod_reserva, $id_detalle_reserva, 'No Disponible' );
+    //     return;
+    // }
+
     $reserve->updateVuelo($asietos_restantes, $cod_vuelo);
-    $reserve->updateReservaAndDetalle($cod_reserva, $id_detalle_reserva, 'Confirmado' );
-    $reserve->setTikectInfo($cod_reserva, $id_detalle_reserva);
+    $reserve->updateReservaAndDetalle($cod_reserva, $id_detalle_reserva, 'Cancelado' );
+    //$reserve->setTikectInfo($cod_reserva, $id_detalle_reserva);
 
      echo '
     <script>
-        window.location = "../view/V_info-reserve.php";
+        alert("Su reserva ha sido cancelada con exito");
+        window.location = "../view/V_info-reserveUser.php";
     </script>
     ';
     exit();
