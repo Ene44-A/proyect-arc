@@ -121,6 +121,7 @@ if (!$user_get_info) {
                                 </select>
                                 <div class="input-group-text">Fecha Salida:</div>
                                 <input class="form-control" type="date" name="fecha-selected" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
+                                <input class="form-control" type="text" name="user-name" value="<?php echo $user_name; ?>" style="display: none;" >
                             </div>
                         </div>
                     </div>

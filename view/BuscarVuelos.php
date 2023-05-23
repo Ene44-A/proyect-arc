@@ -30,6 +30,7 @@ include('../controller/confirm_session.php');
 //         $user_name = $user['nombre_usuario'];
 //     }
 // }
+$user_name = $_GET['user-name'];
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +74,7 @@ include('../controller/confirm_session.php');
                     <div class="cont-user">
                         <i class='bx bx-user-circle'></i>
                         <h5>
-                            <?php //echo $user_name ?>
+                            <?php echo $user_name ?>
                         </h5>
                         <form class="d-flex" role="logout" action="../model/M_logout.php">
                             <button class="btn btn-outline-success" type="submit">cerrar sesión</button>
