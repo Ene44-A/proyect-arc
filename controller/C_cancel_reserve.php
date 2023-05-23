@@ -62,7 +62,7 @@
     //     return;
     // }
 
-    $reserve->updateVuelo($asietos_restantes, $cod_vuelo);
+    // $reserve->updateVuelo($asietos_restantes, $cod_vuelo);
     $reserve->updateReservaAndDetalle($cod_reserva, $id_detalle_reserva, 'Cancelado' );
     //$reserve->setTikectInfo($cod_reserva, $id_detalle_reserva);
 

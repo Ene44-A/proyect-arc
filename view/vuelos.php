@@ -1,8 +1,8 @@
 <?php
 
 require_once('../controller/C_Rutas.php');
-include('../controller/confirm_session.php');
 require_once('../model/Conection.php');
+include('../controller/confirm_session.php');
 include('../controller/C_login.php');
 
 // session_start();
