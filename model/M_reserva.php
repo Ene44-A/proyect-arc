@@ -78,9 +78,10 @@ class Reserva{
 
     public function getUsuarioReservas($correo_pasajero){
         $userId = $this->con->query("SELECT * FROM tbl_vuelo
-                INNER JOIN tbl_detalle_reserva ON tbl_vuelo.COD_vuelo = tbl_detalle_reserva.COD_vuelo
-                 INNER JOIN tbl_reserva ON tbl_reserva.COD_reserva = tbl_detalle_reserva.COD_reserva
-                INNER JOIN tbl_pasajero ON tbl_detalle_reserva.ID_detalle_reserva = tbl_pasajero.ID_pasajero WHERE correo_pasajero='$correo_pasajero';");
+        INNER JOIN tbl_detalle_reserva ON tbl_vuelo.COD_vuelo = tbl_detalle_reserva.COD_vuelo
+        INNER JOIN tbl_tiquete ON tbl_detalle_reserva.ID_detalle_reserva = tbl_tiquete.ID_detalle_reserva
+        INNER JOIN tbl_pasajero ON tbl_detalle_reserva.ID_pasajero = tbl_pasajero.ID_pasajero
+        WHERE tbl_detalle_reserva.estado='Confirmado' AND tbl_pasajero.correo_pasajero='$correo_pasajero';");
         $retorno =[];
         $i = 0;
         while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
