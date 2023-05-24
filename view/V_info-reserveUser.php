@@ -194,7 +194,14 @@ if (!$user_get_info) {
                                     ?>
                                 </td>
                                 <td>
-                                    <?php echo "<a href='V_ver-info-reserve.php?id_vuelo=$id'>Cancelar</a>"; ?>
+                                    <?php echo "<a href='../controller/C_cancel_reserve.php?cod_reserva=$cod_reserva&
+                                                id_detalle=$id_detalle_reserva&
+                                                id_ruta=$id_ruta&
+                                                asientos_dis=$asientos_disponibles&
+                                                asientos_reser=$asientos_reservados&
+                                                cod_vuelo=$cod_vuelo&
+                                                estado_reser=$estado_reserva_and_detalle
+                                                '>Cancelar</a>"; ?>
                                 </td>
                                 <td>
                                     <?php

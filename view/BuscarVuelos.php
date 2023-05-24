@@ -30,6 +30,7 @@ include('../controller/confirm_session.php');
 //         $user_name = $user['nombre_usuario'];
 //     }
 // }
+$user_name = $_GET['user-name'];
 ?>
 
 <!DOCTYPE html>
@@ -49,14 +50,14 @@ include('../controller/confirm_session.php');
 
 <body>
     <header>
-    <nav class='navbar navbar-expand-md bg-body-tertiary'>
+        <nav class='navbar navbar-expand-md bg-body-tertiary'>
             <div class='container-fluid'>
                 <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
-                data-bs-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false'
-                aria-label='Toggle navigation'>
-                <span class='navbar-toggler-icon'></span>
-            </button>
-            <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
+                    data-bs-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false'
+                    aria-label='Toggle navigation'>
+                    <span class='navbar-toggler-icon'></span>
+                </button>
+                <div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
                     <i class='bx bxs-plane-take-off'></i>
                     <a class='navbar-brand' href='./index.php'>Tucompañiadevuelos</a>
                     <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
@@ -64,7 +65,8 @@ include('../controller/confirm_session.php');
                             <a class='nav-link active trie-active' aria-current='page' href='./vuelos.php'>Reservar</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='./V_info-reserveUser.php'>Mis reservas</a>
+                            <a class='nav-link active' aria-current='page' href='./V_info-reserveUser.php'>Mis
+                                reservas</a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link active' aria-current='page' href='./V_info-reserve.php'>Mis Tickes</a>
@@ -73,7 +75,7 @@ include('../controller/confirm_session.php');
                     <div class="cont-user">
                         <i class='bx bx-user-circle'></i>
                         <h5>
-                            <?php //echo $user_name ?>
+                            <?php echo $user_name ?>
                         </h5>
                         <form class="d-flex" role="logout" action="../model/M_logout.php">
                             <button class="btn btn-outline-success" type="submit">cerrar sesión</button>
@@ -82,23 +84,27 @@ include('../controller/confirm_session.php');
                 </div>
             </div>
             <style>
-                 .navbar-collapse>i {
+                .navbar-collapse>i {
                     font-size: 40px;
                     margin: 0 20px;
                 }
-                .cont-user{
+
+                .cont-user {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                 }
-                .cont-user>h5{
+
+                .cont-user>h5 {
                     padding: 0 40px 0 10px;
                     font-weight: 900;
                 }
+
                 .cont-user>i {
                     font-size: 25px;
                 }
-                .trie-active{
+
+                .trie-active {
                     border-bottom: 4px solid rgb(21, 115, 17);
                 }
             </style>
@@ -122,7 +128,8 @@ include('../controller/confirm_session.php');
                                     ?>
                                 </select>
                                 <div class="input-group-text">Fecha Salida:</div>
-                                <input class="form-control" type="date" name="fecha-selected" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
+                                <input class="form-control" type="date" name="fecha-selected" required min=<?php $hoy = date("Y-m-d");
+                                echo $hoy; ?>>
                             </div>
                         </div>
 
@@ -154,40 +161,60 @@ include('../controller/confirm_session.php');
                 </thead>
                 <tbody>
                     <?php
-                     require_once('../model/Conection.php');
-                     require_once('../controller/C_Rutas.php');
-                     include('../controller/C_login.php');
+                    require_once('../model/Conection.php');
+                    require_once('../controller/C_Rutas.php');
+                    include('../controller/C_login.php');
 
-                     $user_email = new Login();
-                     $usera_query = $user_email->getIdUser($_SESSION['tbl_usuario']);
+                    $user_email = new Login();
+                    $usera_query = $user_email->getIdUser($_SESSION['tbl_usuario']);
 
-                        $ruta = $_GET['route-selected'];
-                        $fechas = $_GET['fecha-selected'];
+                    $ruta = $_GET['route-selected'];
+                    $fechas = $_GET['fecha-selected'];
 
-                        echo $fechas;
-                        $particularRoute = new Ruta();
-                        $vuelosInfoBuscar = $particularRoute->getVuelosInfoBuscar($ruta,$fechas);
+                    echo $fechas;
+                    $particularRoute = new Ruta();
+                    $vuelosInfoBuscar = $particularRoute->getVuelosInfoBuscar($ruta, $fechas);
 
 
-                                foreach ($vuelosInfoBuscar as $alias):
+                    foreach ($vuelosInfoBuscar as $alias):
 
-                            ?>
-                            <tr>
+                        ?>
+                        <tr>
 
-                                    <td><?php echo $alias['COD_vuelo'] ?></td>
-                                    <td><?php echo $alias['descripcion'] ?></td>
-                                    <td><?php echo $alias['matricula_avion'] ?></td>
-                                    <td><?php echo $alias['precio'] ?></td>
-                                    <td><?php echo $alias['fecha_salida'] ?></td>
-                                    <td><?php echo $alias['hora_salida'] ?></td>
-                                    <td><?php echo $alias['asientos_disponibles'] ?></td>
-                                    <td><?php echo $alias['precio'] ?></td>
-                                    <td><?php  $id = $alias['COD_vuelo'] ?></td>
-                                    <td > <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Reservar</a>";?></td>
-                                </tr>
-                                <?php
-                                endforeach;
-                                ?>
+                            <td>
+                                <?php echo $alias['COD_vuelo'] ?>
+                            </td>
+                            <td>
+                                <?php echo $alias['descripcion'] ?>
+                            </td>
+                            <td>
+                                <?php echo $alias['matricula_avion'] ?>
+                            </td>
+                            <td>
+                                <?php echo $alias['precio'] ?>
+                            </td>
+                            <td>
+                                <?php echo $alias['fecha_salida'] ?>
+                            </td>
+                            <td>
+                                <?php echo $alias['hora_salida'] ?>
+                            </td>
+                            <td>
+                                <?php echo $alias['asientos_disponibles'] ?>
+                            </td>
+                            <td>
+                                <?php echo $alias['precio'] ?>
+                            </td>
+                            <td>
+                                <?php $id = $alias['COD_vuelo'] ?>
+                            </td>
+                            <td>
+                                <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Reservar</a>"; ?>
+                            </td>
+                        </tr>
+                        <?php
+                    endforeach;
+                    ?>
                 </tbody>
             </table>
         </div>

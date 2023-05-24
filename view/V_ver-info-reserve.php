@@ -48,10 +48,10 @@ if (!isset($_SESSION['tbl_usuario'])) {
         $user_email = new Login;
         $user_query = $user_email->getIdUser($_SESSION['tbl_usuario']);
 
-   
+
        /*  $ruta = $_GET['route-selected'];
-        $fechas = $_GET['fecha-selected']; 
-        
+        $fechas = $_GET['fecha-selected'];
+
         echo $fechas;      */
         $particularRoute = new Ruta();
         $myRoute = $particularRoute->getVueloPorId($_GET['id_vuelo']);

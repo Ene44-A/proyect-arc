@@ -34,7 +34,7 @@ require('../controller/C_Rutas.php');
                     <a class='navbar-brand' href='#'>Tucompañiadevuelos</a>
                     <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                         <li class='nav-item'>
-                            <a class='nav-link active' aria-current='page' href='./index.php'>Inicio</a>
+                            <!-- <a class='nav-link active' aria-current='page' href='./index.php'>Inicio</a> -->
                         </li>
                     </ul>
                     <form class="d-flex" role="ingresar" action="V_login.php">
