@@ -171,7 +171,7 @@ if (!$user_get_info) {
     </section>
     <div class="container container-master-oferta p-4">
         <div class="row"></div>
-        <div claass=container col-sm-6 p-4 m-4">
+        <div claass="container col-sm-6 p-4 m-4">
             <h3 class="vuelos-table__title">Nuevas Ofertas</h3>
             <p class="text-center">¡Descuentos exclusivos para turistas! ¡Ahorra en tus próximos viajes y descubre el
                 mundo con nuestra empresa de vuelos!
