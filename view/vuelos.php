@@ -125,6 +125,7 @@ if (!$user_get_info) {
                             <div class="input-group-text">Fecha Salida:</div>
                             <input class="form-control" type="date" name="fecha-selected" required min=<?php $hoy = date("Y-m-d");
                             echo $hoy; ?>>
+                                <input class="form-control" type="text" name="user-name" value="<?php echo $user_name; ?>" style="display: none;" >
                         </div>
                     </div>
                 </div>
@@ -175,7 +176,7 @@ if (!$user_get_info) {
 </section>
 <div class="container container-master-oferta p-4">
     <div class="row"></div>
-    <div claass="container col-sm-6 p-4 m-4">
+    <div claass=""container col-sm-6 p-4 m-4">
         <h3 class="vuelos-table__title">Nuevas Ofertas</h3>
         <p class="text-center">¡Descuentos exclusivos para turistas! ¡Ahorra en tus próximos viajes y descubre el
             mundo con nuestra empresa de vuelos!
