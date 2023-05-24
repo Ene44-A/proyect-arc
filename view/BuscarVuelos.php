@@ -144,13 +144,12 @@ include('../controller/confirm_session.php');
     <section class="vuelos-table-main-container">
         <div class="vuelos-table-container">
             <h3 class="vuelos-table__title">Vuelos disponibles</h3>
-            <table class="table table table-striped">
+            <table class="table table-hover table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Vuelo</th>
                         <th>Ruta</th>
                         <th>Matricula Avion</th>
-                        <th>Precio</th>
                         <th>Fecha Llegada</th>
                         <th>Hora Salida</th>
                         <th>Ascientos Disponibles</th>
@@ -170,13 +169,12 @@ include('../controller/confirm_session.php');
                     $ruta = $_GET['route-selected'];
                     $fechas = $_GET['fecha-selected'];
 
-                    echo $fechas;
                     $particularRoute = new Ruta();
                     $vuelosInfoBuscar = $particularRoute->getVuelosInfoBuscar($ruta, $fechas);
 
 
                     foreach ($vuelosInfoBuscar as $alias):
-
+                        $precio = $alias['precio']
                         ?>
                         <tr>
 
@@ -190,9 +188,6 @@ include('../controller/confirm_session.php');
                                 <?php echo $alias['matricula_avion'] ?>
                             </td>
                             <td>
-                                <?php echo $alias['precio'] ?>
-                            </td>
-                            <td>
                                 <?php echo $alias['fecha_salida'] ?>
                             </td>
                             <td>
@@ -202,19 +197,24 @@ include('../controller/confirm_session.php');
                                 <?php echo $alias['asientos_disponibles'] ?>
                             </td>
                             <td>
-                                <?php echo $alias['precio'] ?>
+                                <?php echo "$" . number_format($precio); ?>
                             </td>
                             <td>
-                                <?php $id = $alias['COD_vuelo'] ?>
-                            </td>
-                            <td>
-                                <?php echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Reservar</a>"; ?>
+                                <?php $id = $alias['COD_vuelo'];
+                                echo "<a href='V_reserve-flight.php?id_vuelo=$id'>Reservar</a>"; ?>
                             </td>
                         </tr>
                         <?php
                     endforeach;
                     ?>
                 </tbody>
+                <style>
+                    a{
+                        text-decoration: none;
+                        color:#198754;
+                        font-weight:700;
+                    }
+                </style>
             </table>
         </div>
     </section>

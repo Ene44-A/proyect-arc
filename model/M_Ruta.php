@@ -25,7 +25,7 @@
         }
 
         public function getVuelosInfo(){
-            $query = $this->con->query('SELECT * FROM tbl_rutas INNER JOIN tbl_vuelo ON tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas;');
+            $query = $this->con->query('SELECT * FROM tbl_rutas INNER JOIN tbl_vuelo ON tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas ORDER BY RAND();');
             $retorno =[];
             $i = 0;
             while($fila = $query->fetch_assoc()){ //devuelve el arreglo
@@ -36,7 +36,7 @@
         }
          public function getVuelosInfoBuscar($ruta, $fecha_seleccionada){
             $query = $this->con->query("SELECT * FROM tbl_rutas 
-            INNER JOIN tbl_vuelo ON tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas where tbl_rutas.descripcion = '$ruta' and
+            INNER JOIN tbl_vuelo ON tbl_rutas.ID_rutas = tbl_vuelo.ID_rutas  WHERE tbl_vuelo.asientos_disponibles>0 AND tbl_rutas.descripcion = '$ruta' AND
              tbl_vuelo.fecha_salida='$fecha_seleccionada';");
             $retorno =[];
             $i = 0;
