@@ -75,8 +75,21 @@ class Reserva{
         return $retorno;
     }
     // SELECT * FROM tbl_usuario as u, tbl_reserva as r, tbl_detalle_reserva as d, tbl_vuelo as v WHERE u.ID_usuario = '$id_user'
-
     public function getUsuarioReservas($correo_pasajero){
+        $userId = $this->con->query("SELECT * FROM tbl_vuelo
+                INNER JOIN tbl_detalle_reserva ON tbl_vuelo.COD_vuelo = tbl_detalle_reserva.COD_vuelo
+                 INNER JOIN tbl_reserva ON tbl_reserva.COD_reserva = tbl_detalle_reserva.COD_reserva
+                INNER JOIN tbl_pasajero ON tbl_detalle_reserva.ID_detalle_reserva = tbl_pasajero.ID_pasajero WHERE correo_pasajero='$correo_pasajero';");
+        $retorno =[];
+        $i = 0;
+        while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
+            $retorno[$i] = $fila;
+            $i++;
+        }
+        return $retorno;
+    }
+
+    public function getUsuarioReservasForTiket($correo_pasajero){
         $userId = $this->con->query("SELECT * FROM tbl_vuelo
         INNER JOIN tbl_detalle_reserva ON tbl_vuelo.COD_vuelo = tbl_detalle_reserva.COD_vuelo
         INNER JOIN tbl_tiquete ON tbl_detalle_reserva.ID_detalle_reserva = tbl_tiquete.ID_detalle_reserva
@@ -131,6 +144,16 @@ class Reserva{
 
     public function getNameRuteByID($ID_rutas){
         $userId = $this->con->query("SELECT descripcion FROM tbl_rutas WHERE ID_rutas=$ID_rutas");
+        $retorno =[];
+        $i = 0;
+        while($fila = $userId->fetch_assoc()){ //devuelve el arreglo
+            $retorno[$i] = $fila;
+            $i++;
+        }
+        return $retorno[0];
+    }
+    public function getDateByRuteForID($COD_reserva){
+        $userId = $this->con->query("SELECT fecha_reserva FROM tbl_reserva WHERE COD_reserva='$COD_reserva'");
         $retorno =[];
         $i = 0;
         while($fila = $userId->fetch_assoc()){ //devuelve el arreglo

@@ -18,7 +18,7 @@ if (!$user_query) {
     }
 }
 $infoReserva = new Reserva();
-$myReserva = $infoReserva->getUsuarioReservas($_SESSION['tbl_usuario']);
+$myReserva = $infoReserva->getUsuarioReservasForTiket($_SESSION['tbl_usuario']);
 
 // session_start();
 if (!isset($_SESSION['tbl_usuario'])) {
@@ -142,8 +142,8 @@ if (!$user_get_info) {
                     $COD_reserva = $reserva['COD_reserva'];
                     $correo_usuario = $reserva['correo_pasajero'];
                     $estado = $reserva['estado'];
-                    // $precio_total = $reserva['precio_total'];
-            
+                    $precio = $reserva['precio'];
+
                     $matricula_avion = $reserva['matricula_avion'];
                     $hora_salida = $reserva['hora_salida'];
                     $hora_llegada = $reserva['hora_llegada'];
@@ -151,6 +151,10 @@ if (!$user_get_info) {
                     $telefono = $reserva['telefono'];
                     $COD_tiquete = $reserva['COD_tiquete'];
                     $asientos_reservados = $reserva['asientos_reservados'];
+
+
+                    $precio_total = $precio * $asientos_reservados;
+
                     ?>
 
                     <div class="card mb-3">
@@ -177,7 +181,7 @@ if (!$user_get_info) {
                             <div class="card-air">
                                 <i class='bx bxs-plane-take-off'></i>
                                 <h3 class="card-title">AIR TICKET ─ [
-                                <?php
+                                    <?php
                                     //$infoReserva = new Reserva();
                                     $ruteForID = $infoReserva->getNameRuteByID(intval($reserva['ID_rutas']));
                                     echo $ruteForID['descripcion'] ?> ]
@@ -232,9 +236,11 @@ if (!$user_get_info) {
                                                             value=' <?php echo $COD_reserva; ?> '
                                                             aria-describedby="basic-addon3 basic-addon4" disabled>
                                                         <span class="input-group-text" id="basic-addon3">Fecha Res.</span>
-                                                        <input type="text" class="form-control" id="basic-url"
-                                                            value=' <?php //echo $fecha_reserva; ?> '
-                                                            aria-describedby="basic-addon3 basic-addon4" disabled>
+                                                        <input type="text" class="form-control" id="basic-url" value='<?php
+                                                            $infoReservaForCod = new Reserva();
+                                                            $fecha_reserva = $infoReservaForCod->getDateByRuteForID($reserva['COD_reserva']);
+                                                            echo $fecha_reserva['fecha_reserva'];
+                                                            ?> ' aria-describedby="basic-addon3 basic-addon4" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
@@ -257,7 +263,7 @@ if (!$user_get_info) {
                                                     <div class="input-group input-group-lg">
                                                         <span class="input-group-text" id="basic-addon3">PRECIO TOTAL</span>
                                                         <input type="text" class="form-control" id="basic-url"
-                                                            value=' <?php echo $precio_total; ?> '
+                                                            value=' <?php echo "$" . number_format($precio_total, 0); ?> '
                                                             aria-describedby="basic-addon3 basic-addon4" disabled>
                                                     </div>
                                                 </div>

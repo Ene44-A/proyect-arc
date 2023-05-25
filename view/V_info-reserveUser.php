@@ -103,19 +103,23 @@ if (!$user_get_info) {
                     font-size: 40px;
                     margin: 0 20px;
                 }
-                .cont-user{
+
+                .cont-user {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                 }
-                .cont-user>h5{
+
+                .cont-user>h5 {
                     padding: 0 40px 0 10px;
                     font-weight: 900;
                 }
+
                 .cont-user>i {
                     font-size: 25px;
                 }
-                .trie-active{
+
+                .trie-active {
                     border-bottom: 4px solid rgb(21, 115, 17);
                 }
             </style>
@@ -136,7 +140,7 @@ if (!$user_get_info) {
                             <th scope="col">Fecha vuelo</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Precio total</th>
-                            <th scope="col">Seleccion opcion</th>
+                            <th colspan="3" scope="col">Seleccion opcion</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -183,7 +187,7 @@ if (!$user_get_info) {
                                     ?>
                                 <td>
                                     <?php
-                                    echo "<a href='../controller/C_confirm-reserve.php?cod_reserva=$cod_reserva&
+                                    echo "<a class='confirmar' href='../controller/C_confirm-reserve.php?cod_reserva=$cod_reserva&
                                                 id_detalle=$id_detalle_reserva&
                                                 id_ruta=$id_ruta&
                                                 asientos_dis=$asientos_disponibles&
@@ -194,7 +198,7 @@ if (!$user_get_info) {
                                     ?>
                                 </td>
                                 <td>
-                                    <?php echo "<a href='../controller/C_cancel_reserve.php?cod_reserva=$cod_reserva&
+                                    <?php echo "<a class='cancelar' href='../controller/C_cancel_reserve.php?cod_reserva=$cod_reserva&
                                                 id_detalle=$id_detalle_reserva&
                                                 id_ruta=$id_ruta&
                                                 asientos_dis=$asientos_disponibles&
@@ -205,7 +209,7 @@ if (!$user_get_info) {
                                 </td>
                                 <td>
                                     <?php
-                                    echo "<a href='V_ver-info-reserve.php?id_vuelo=$id&
+                                    echo "<a class='ver' href='V_ver-info-reserve.php?id_vuelo=$id_ruta&
                                             nombre=$nombre_pasajero&
                                             telefono=$telefono&
                                             fechaN=$fecha_nacimiento&
@@ -217,6 +221,35 @@ if (!$user_get_info) {
                             <?php
                         endforeach;
                         ?>
+                        <style>
+                            td>a{
+                                font-weight: 700;
+                                text-decoration: none;
+                                border-radius: 5px;
+                                /* border: 2px solid grey; */
+                                padding: 4px 6px;
+                                color:white;
+                            }
+                            
+                            .confirmar {
+                                background: rgb(18, 187, 31 );
+                            }
+                            .cancelar {
+                                background: rgb(249, 27, 27 );
+                            }
+                            .ver {
+                                background: rgb(29, 153, 245 );
+                            }
+                            .confirmar:hover {
+                                background:  rgb(11, 153, 11);
+                            }
+                            .cancelar:hover {
+                                background: rgb(174, 18, 18 );
+                            }
+                            .ver:hover {
+                                background: rgb(24, 132, 211 );
+                            }
+                        </style>
                     </tbody>
                 </table>
             </div>
