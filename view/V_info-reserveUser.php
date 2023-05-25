@@ -209,7 +209,7 @@ if (!$user_get_info) {
                                 </td>
                                 <td>
                                     <?php
-                                    echo "<a class='ver' href='V_ver-info-reserve.php?id_vuelo=$id&
+                                    echo "<a class='ver' href='V_ver-info-reserve.php?id_vuelo=$id_ruta&
                                             nombre=$nombre_pasajero&
                                             telefono=$telefono&
                                             fechaN=$fecha_nacimiento&
